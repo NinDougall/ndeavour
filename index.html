@@ -10,7 +10,7 @@
             --ink: #170431;
             --purple: #372757;
             --lavender: #e0d6f8;
-            --muted: #8679a4;
+            --muted: #665779;
             --soft: #f7f3ff;
             --white: #ffffff;
             --gold: #f6c763;
@@ -25,6 +25,29 @@
 
         html {
             scroll-behavior: smooth;
+        }
+
+        :focus-visible {
+            outline: 4px solid var(--gold);
+            outline-offset: 4px;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            z-index: 1000;
+            transform: translateY(-160%);
+            padding: 12px 18px;
+            border-radius: 999px;
+            background: var(--ink);
+            color: var(--white);
+            font-weight: 800;
+            transition: transform 180ms ease;
+        }
+
+        .skip-link:focus-visible {
+            transform: translateY(0);
         }
 
         body {
@@ -80,6 +103,12 @@
             font-weight: 700;
         }
 
+        .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+        }
+
         .nav-links a:hover {
             color: var(--ink);
         }
@@ -101,6 +130,10 @@
         .button:hover {
             transform: translateY(-2px);
             box-shadow: 0 16px 38px rgba(55, 39, 87, 0.24);
+        }
+
+        .button:focus-visible {
+            box-shadow: 0 0 0 4px var(--soft), 0 0 0 8px var(--gold);
         }
 
         .button.secondary {
@@ -418,6 +451,21 @@
             padding-top: 24px;
         }
 
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+
+            .button:hover {
+                transform: none;
+            }
+        }
+
         @media (max-width: 960px) {
             .nav {
                 align-items: flex-start;
@@ -487,6 +535,7 @@
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <header class="site-header">
         <div class="container nav">
             <a class="logo-link" href="#top" aria-label="N-Deavour Services home">
@@ -502,12 +551,12 @@
         </div>
     </header>
 
-    <main id="top">
-        <section class="hero">
+    <main id="main-content" tabindex="-1">
+        <section id="top" class="hero" aria-labelledby="hero-heading">
             <div class="container hero-grid">
                 <div>
                     <span class="eyebrow">Privacy-first AI and operations support</span>
-                    <h1>Practical technology help for small businesses that need less admin and more momentum.</h1>
+                    <h1 id="hero-heading">Practical technology help for small businesses that need less admin and more momentum.</h1>
                     <p class="hero-copy">N-Deavour Services helps local entrepreneurs and established business owners simplify operations, protect sensitive information, and build useful AI-powered workflows without enterprise-level budgets.</p>
                     <div class="hero-actions">
                         <a class="button" href="#services">Explore services</a>
@@ -527,12 +576,12 @@
             </div>
         </section>
 
-        <section id="services">
+        <section id="services" aria-labelledby="services-heading">
             <div class="container">
                 <div class="section-heading">
                     <div>
                         <span class="eyebrow">Services</span>
-                        <h2>Everything N-Deavour Services offers.</h2>
+                        <h2 id="services-heading">Everything N-Deavour Services offers.</h2>
                     </div>
                     <p>Choose one targeted engagement or combine services into a practical improvement plan for your business.</p>
                 </div>
@@ -571,12 +620,12 @@
             </div>
         </section>
 
-        <section id="solutions">
+        <section id="solutions" aria-labelledby="solutions-heading">
             <div class="container">
                 <div class="solution-highlight">
                     <div>
                         <span class="eyebrow">Example solution</span>
-                        <h2>Financial Planner AI is one kind of custom solution.</h2>
+                        <h2 id="solutions-heading">Financial Planner AI is one kind of custom solution.</h2>
                         <p>A financial planner AI can help a business owner organize budgets, forecast cash flow, compare scenarios, and prepare decision-ready summaries. It is an example of the custom AI workflows N-Deavour can design around your real operations.</p>
                         <ul>
                             <li>Turn invoices, goals, and recurring costs into plain-language summaries.</li>
@@ -586,7 +635,7 @@
                         </ul>
                         <p><small>Financial Planner AI is planning and administrative support, not regulated financial advice.</small></p>
                     </div>
-                    <div class="mockup" aria-label="Financial Planner AI mockup">
+                    <div class="mockup" role="img" aria-label="Example Financial Planner AI summary showing monthly revenue forecast, recurring costs, scenario prompt, and next action.">
                         <div class="mockup-row"><strong>Monthly revenue forecast</strong><span>$23.3K year-one target</span></div>
                         <div class="mockup-row"><strong>Recurring costs</strong><span>Tech, ecommerce, marketing</span></div>
                         <div class="mockup-row"><strong>Scenario prompt</strong><span>What if admin time drops 20%?</span></div>
@@ -596,12 +645,12 @@
             </div>
         </section>
 
-        <section>
+        <section aria-labelledby="audience-heading">
             <div class="container">
                 <div class="section-heading">
                     <div>
                         <span class="eyebrow">Who it helps</span>
-                        <h2>For entrepreneurs and owners who are tired of admin overload.</h2>
+                        <h2 id="audience-heading">For entrepreneurs and owners who are tired of admin overload.</h2>
                     </div>
                     <p>N-Deavour is designed for young entrepreneurs building lean operations and established owners who want technology to reduce complexity instead of adding more of it.</p>
                 </div>
@@ -620,12 +669,12 @@
             </div>
         </section>
 
-        <section id="process">
+        <section id="process" aria-labelledby="process-heading">
             <div class="container">
                 <div class="section-heading">
                     <div>
                         <span class="eyebrow">Process</span>
-                        <h2>Simple, collaborative, and grounded in your workflow.</h2>
+                        <h2 id="process-heading">Simple, collaborative, and grounded in your workflow.</h2>
                     </div>
                 </div>
                 <div class="process">
@@ -645,12 +694,12 @@
             </div>
         </section>
 
-        <section id="pricing">
+        <section id="pricing" aria-labelledby="pricing-heading">
             <div class="container">
                 <div class="section-heading">
                     <div>
                         <span class="eyebrow">Pricing</span>
-                        <h2>Clear starting points from the business plan.</h2>
+                        <h2 id="pricing-heading">Clear starting points from the business plan.</h2>
                     </div>
                     <p>Every engagement is scoped around the actual business problem, data sensitivity, and level of support needed.</p>
                 </div>
@@ -679,11 +728,11 @@
             </div>
         </section>
 
-        <section id="contact">
+        <section id="contact" aria-labelledby="contact-heading">
             <div class="container">
                 <div class="cta">
                     <span class="eyebrow">Start with what is slowing you down</span>
-                    <h2>Let's build technology that makes your business feel lighter.</h2>
+                    <h2 id="contact-heading">Let's build technology that makes your business feel lighter.</h2>
                     <p>If paperwork, privacy worries, or repetitive admin are pulling attention away from your work, N-Deavour Services can help you choose a practical next step. Reach out through your preferred sales channel, including website, social, email, phone, or referral.</p>
                     <div class="hero-actions">
                         <a class="button" href="#process">Review the engagement process</a>
