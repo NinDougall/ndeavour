@@ -3,118 +3,142 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="N-Deavour Services delivers practical AI automation, privacy consulting, and emotional support debriefing for small and medium-sized businesses that want advanced technology without enterprise complexity.">
+  <meta name="description" content="N-Deavour Services helps small and local businesses eliminate messy paperwork and administrative overhead so you can focus on what you love - safely, affordably, and ethically.">
   <title>N-Deavour Services | Practical AI, Operations &amp; Privacy Support</title>
   <style>
-    /* --- Tokens ----------------------------------------------- */
+    /* =========================================================
+       DESIGN TOKENS
+    ========================================================= */
     :root {
-      --ink:         #111118;
-      --accent:      #3d2c6e;
-      --muted:       #5c5474;
-      --white:       #ffffff;
-      --soft:        #f8f7fc;
-      --line:        #e4e0ef;
-      --focus-ring:  #9e6500;
-      --ease:        200ms ease-in-out;
+      --ink:        #111118;
+      --accent:     #3d2c6e;
+      --muted:      #5c5474;
+      --white:      #ffffff;
+      --soft:       #f7f6fb;
+      --line:       #e4e0ef;
+      --focus:      #9e6500;
+      --err:        #b91c1c;
+      --ok:         #15803d;
+      --ease:       200ms ease-in-out;
+      --r-sm:       6px;
+      --r-md:       10px;
     }
 
-    /* --- Reset ------------------------------------------------ */
+    /* =========================================================
+       RESET
+    ========================================================= */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
       min-width: 320px;
       color: var(--ink);
       background: var(--white);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+                   "Segoe UI", Helvetica, Arial, sans-serif;
       font-size: 1rem;
-      line-height: 1.5;
+      line-height: 1.7;
     }
 
-    /* --- Focus ------------------------------------------------ */
+    a  { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    img { display: block; max-width: 100%; }
+
+    /* =========================================================
+       ACCESSIBILITY
+    ========================================================= */
     :focus-visible {
-      outline: 3px solid var(--focus-ring);
+      outline: 3px solid var(--focus);
       outline-offset: 4px;
-      border-radius: 4px;
+      border-radius: var(--r-sm);
     }
 
-    /* --- Accessibility helpers -------------------------------- */
     .skip-link {
       position: absolute;
-      inset-block-start: 14px;
-      inset-inline-start: 14px;
+      inset-block-start: 16px;
+      inset-inline-start: 16px;
       z-index: 9999;
-      padding: 12px 18px;
-      border-radius: 6px;
+      padding: 12px 20px;
       background: var(--accent);
       color: var(--white);
       font-weight: 700;
       font-size: 0.875rem;
+      border-radius: var(--r-sm);
       transform: translateY(-200%);
       transition: transform var(--ease);
     }
     .skip-link:focus-visible { transform: translateY(0); }
 
     .sr-only {
-      position: absolute;
-      width: 1px; height: 1px;
-      padding: 0; margin: -1px;
-      overflow: hidden;
-      clip: rect(0 0 0 0);
-      white-space: nowrap;
-      border: 0;
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0 0 0 0); white-space: nowrap; border: 0;
     }
 
-    /* --- Typography ------------------------------------------- */
-    h1, h2, h3 {
+    /* =========================================================
+       TYPOGRAPHY
+    ========================================================= */
+    h1 {
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
       color: var(--ink);
+    }
+
+    h2 {
+      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+      font-weight: 600;
       line-height: 1.2;
       letter-spacing: -0.02em;
+      color: var(--ink);
     }
-    h1 { font-size: clamp(2.25rem, 5.5vw, 3.75rem); }
-    h2 { font-size: clamp(1.65rem, 3.5vw, 2.5rem); }
-    h3 { font-size: 1.1rem; font-weight: 700; }
 
-    p { color: var(--muted); line-height: 1.7; }
+    h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--ink);
+    }
 
-    a { color: inherit; text-decoration: none; }
+    p { color: var(--muted); }
 
-    img { display: block; max-width: 100%; }
-
-    /* --- Layout primitives ------------------------------------ */
+    /* =========================================================
+       LAYOUT PRIMITIVES
+    ========================================================= */
     .container {
       width: min(1080px, 100% - 40px);
       margin-inline: auto;
     }
 
-    section { padding-block: 96px; }
-
     .section-label {
-      display: block;
-      margin-bottom: 12px;
+      display: inline-block;
+      margin-bottom: 14px;
       color: var(--muted);
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 800;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
-    /* --- Buttons ---------------------------------------------- */
+    /* =========================================================
+       BUTTONS
+    ========================================================= */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       min-height: 48px;
       min-width: 48px;
-      padding: 0 24px;
+      padding: 0 28px;
       border: 2px solid transparent;
-      border-radius: 6px;
+      border-radius: var(--r-sm);
       font: inherit;
       font-size: 0.95rem;
       font-weight: 700;
       cursor: pointer;
       transition: background var(--ease), color var(--ease), border-color var(--ease);
+      text-align: center;
     }
 
     .btn-primary {
@@ -123,22 +147,28 @@
       border-color: var(--accent);
     }
     .btn-primary:hover { background: #2e2054; border-color: #2e2054; }
+    .btn-primary:focus-visible {
+      outline-color: var(--focus);
+      outline-offset: 4px;
+    }
 
-    .btn-ghost {
+    .btn-outline {
       background: transparent;
       color: var(--accent);
       border-color: var(--accent);
     }
-    .btn-ghost:hover { background: var(--soft); }
+    .btn-outline:hover { background: var(--soft); }
 
-    /* --- Header ----------------------------------------------- */
+    /* =========================================================
+       SITE HEADER
+    ========================================================= */
     .site-header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255,255,255,0.94);
+      background: rgba(255, 255, 255, 0.95);
       border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(14px);
+      backdrop-filter: blur(16px);
     }
 
     .header-inner {
@@ -150,101 +180,112 @@
     }
 
     .logo-link img {
-      width: min(210px, 48vw);
+      width: clamp(120px, 22vw, 160px);
       height: auto;
     }
 
-    .site-nav { display: flex; align-items: center; gap: 4px; }
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
 
     .site-nav a {
       display: inline-flex;
       align-items: center;
       min-height: 44px;
-      padding: 0 12px;
-      border-radius: 6px;
+      padding: 0 14px;
+      border-radius: var(--r-sm);
       color: var(--accent);
       font-size: 0.9rem;
-      font-weight: 700;
+      font-weight: 600;
       transition: background var(--ease), color var(--ease);
     }
     .site-nav a:hover { background: var(--soft); color: var(--ink); }
 
-    /* --- Hero ------------------------------------------------- */
-    .hero {
-      padding-block: 112px 96px;
-      border-bottom: 1px solid var(--line);
+    /* =========================================================
+       SECTION SHELL
+    ========================================================= */
+    .section { padding-block: 104px; }
+    .section--soft { background: var(--soft); }
+    .section--dark {
+      background: var(--ink);
+      color: var(--white);
     }
+    .section--dark h2,
+    .section--dark h3,
+    .section--dark p,
+    .section--dark .section-label { color: rgba(255,255,255,0.92); }
+    .section--dark .section-label { color: rgba(255,255,255,0.55); }
+    .section--dark p { color: rgba(255,255,255,0.75); }
 
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 64px;
-      align-items: center;
-    }
+    /* =========================================================
+       A. HERO
+    ========================================================= */
+    .hero { padding-block: 120px 96px; }
 
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 24px;
-      padding: 6px 14px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--muted);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-    }
+    .hero-body { max-width: 740px; }
 
-    .hero-eyebrow-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    .hero h1 { max-width: 660px; margin-bottom: 24px; }
+    .hero h1 { margin-bottom: 22px; }
 
     .hero-lead {
-      max-width: 580px;
-      font-size: 1.125rem;
+      max-width: 620px;
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
       margin-bottom: 36px;
     }
 
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
-
-    .hero-aside {
+    .hero-actions {
       display: flex;
-      flex-direction: column;
-      gap: 2px;
+      flex-wrap: wrap;
+      gap: 14px;
     }
 
-    .stat-item {
-      padding: 20px 28px;
-      border-top: 1px solid var(--line);
+    /* =========================================================
+       B. PHILOSOPHY
+    ========================================================= */
+    .philosophy-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
     }
-    .stat-item:last-child { border-bottom: 1px solid var(--line); }
 
-    .stat-value {
-      display: block;
+    .philosophy-copy h2 { margin-bottom: 24px; }
+    .philosophy-copy p + p { margin-top: 18px; }
+
+    .philosophy-aside {
+      padding-block-start: 8px;
+    }
+
+    .journey-list {
+      display: grid;
+      gap: 0;
+    }
+
+    .journey-item {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding-block: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+    .journey-item:first-child { border-top: 1px solid var(--line); }
+
+    .journey-index {
+      padding-top: 3px;
       color: var(--accent);
-      font-size: 1.5rem;
-      font-weight: 900;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
     }
 
-    .stat-label {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 0.85rem;
-    }
+    .journey-item h3 { margin-bottom: 6px; }
 
-    /* --- Pillars ---------------------------------------------- */
-    .pillars { background: var(--soft); }
-
-    .pillars-intro {
+    /* =========================================================
+       C. SOLUTIONS MATRIX
+    ========================================================= */
+    .solutions-intro {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 48px;
@@ -252,136 +293,118 @@
       margin-bottom: 56px;
     }
 
-    .pillars-intro p { font-size: 1.05rem; }
+    .solutions-intro p { font-size: 1.05rem; }
 
-    .pillars-grid {
+    .solutions-list { display: grid; gap: 1px; background: var(--line); }
+
+    .solution-row {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .pillar {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      padding: 36px 32px;
+      grid-template-columns: 56px 1fr auto;
+      gap: 32px;
+      align-items: start;
+      padding: 36px 0;
       background: var(--white);
+      border-bottom: 1px solid var(--line);
     }
+    .solution-row:last-child { border-bottom: 0; }
 
-    .pillar-number {
+    .solution-rank {
+      padding-top: 4px;
       color: var(--line);
       font-size: 2rem;
       font-weight: 900;
-      letter-spacing: -0.04em;
       line-height: 1;
+      letter-spacing: -0.04em;
+      user-select: none;
     }
 
-    .pillar h3 { color: var(--ink); font-size: 1.2rem; line-height: 1.3; }
+    .solution-body h3 { margin-bottom: 8px; }
 
-    .pillar-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      list-style: none;
-      margin-top: auto;
-    }
-
-    .pillar-tags li {
+    .solution-weight {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 10px;
       padding: 4px 10px;
-      border: 1px solid var(--line);
+      background: var(--soft);
       border-radius: 4px;
       color: var(--muted);
       font-size: 0.78rem;
       font-weight: 700;
+      letter-spacing: 0.04em;
     }
 
-    /* --- About / Philosophy ----------------------------------- */
-    .about-inner {
+    .solution-price {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .price-amount {
+      display: block;
+      color: var(--accent);
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .price-unit {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    /* =========================================================
+       D. HUMAN-CENTRIC
+    ========================================================= */
+    .humancentric-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
-      align-items: start;
+      align-items: center;
     }
 
-    .about-copy h2 { margin-bottom: 20px; }
+    .humancentric-inner h2 { margin-bottom: 18px; }
+    .humancentric-inner p + p { margin-top: 16px; }
 
-    .about-copy p + p { margin-top: 18px; }
-
-    .about-values {
+    .humancentric-aside {
       display: grid;
       gap: 24px;
-      list-style: none;
     }
 
-    .value-item {
-      display: grid;
-      grid-template-columns: 24px 1fr;
-      gap: 14px;
-      align-items: start;
-      padding-top: 24px;
-      border-top: 1px solid var(--line);
+    .hc-point {
+      padding: 28px 0;
+      border-top: 1px solid rgba(255,255,255,0.12);
     }
-    .value-item:first-child { padding-top: 0; border-top: 0; }
+    .hc-point:first-child { border-top: 0; padding-top: 0; }
 
-    .value-marker {
-      width: 6px;
-      height: 6px;
-      margin-top: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
+    .hc-point h3 { margin-bottom: 8px; }
 
-    .value-item h3 { margin-bottom: 6px; }
-
-    /* --- Contact ---------------------------------------------- */
-    .contact { background: var(--soft); border-top: 1px solid var(--line); }
-
-    .contact-inner {
+    /* =========================================================
+       E. INQUIRY FORM
+    ========================================================= */
+    .form-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
       align-items: start;
     }
 
-    .contact-copy h2 { margin-bottom: 16px; }
+    .form-copy h2 { margin-bottom: 16px; }
+    .form-copy p + p { margin-top: 16px; }
 
-    .contact-detail {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 32px;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
+    .inquiry-form { display: grid; gap: 22px; }
 
-    .contact-detail-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      flex-shrink: 0;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-    }
-
-    /* --- Form ------------------------------------------------- */
-    .inquiry-form { display: grid; gap: 20px; }
-
-    .field {
-      display: grid;
-      gap: 6px;
-    }
+    .field { display: grid; gap: 7px; }
 
     .field label {
       color: var(--ink);
       font-size: 0.875rem;
       font-weight: 700;
     }
+
+    .required-mark { color: var(--accent); margin-inline-start: 3px; }
 
     .field-hint {
       color: var(--muted);
@@ -392,44 +415,56 @@
     .field select,
     .field textarea {
       width: 100%;
-      padding: 0 14px;
+      padding: 0 16px;
       height: 48px;
       border: 1px solid var(--line);
-      border-radius: 6px;
+      border-radius: var(--r-sm);
       background: var(--white);
       color: var(--ink);
       font: inherit;
       font-size: 0.95rem;
-      transition: border-color var(--ease);
+      transition: border-color var(--ease), outline var(--ease);
     }
 
     .field textarea {
       height: auto;
-      min-height: 112px;
-      padding: 14px;
+      min-height: 120px;
+      padding: 14px 16px;
       resize: vertical;
     }
 
     .field input::placeholder,
-    .field textarea::placeholder { color: var(--muted); opacity: 0.7; }
-
-    .field input:focus-visible,
-    .field select:focus-visible,
-    .field textarea:focus-visible {
-      outline: 3px solid var(--focus-ring);
-      outline-offset: 2px;
-      border-color: var(--accent);
+    .field textarea::placeholder {
+      color: var(--muted);
+      opacity: 0.6;
     }
 
     .field input:hover,
     .field select:hover,
     .field textarea:hover { border-color: var(--accent); }
 
-    .field select { appearance: none; padding-inline-end: 36px; cursor: pointer; }
+    .field input:focus-visible,
+    .field select:focus-visible,
+    .field textarea:focus-visible {
+      border-color: var(--accent);
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .field input[aria-invalid="true"],
+    .field textarea[aria-invalid="true"] {
+      border-color: var(--err);
+    }
+
+    .field-error {
+      color: var(--err);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
 
     .select-wrap { position: relative; }
-
-    .select-arrow {
+    .field select { appearance: none; padding-inline-end: 38px; cursor: pointer; }
+    .select-caret {
       position: absolute;
       inset-block-start: 50%;
       inset-inline-end: 14px;
@@ -438,14 +473,19 @@
       color: var(--muted);
     }
 
-    .required-mark { color: var(--accent); margin-inline-start: 2px; }
-
-    .form-note {
+    .form-meta {
       color: var(--muted);
       font-size: 0.8rem;
+      margin-top: 4px;
     }
 
-    /* --- Footer ----------------------------------------------- */
+    .form-status {
+      min-height: 1.4em;
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
     footer {
       padding-block: 36px;
       border-top: 1px solid var(--line);
@@ -455,12 +495,15 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     footer p { font-size: 0.875rem; }
 
-    /* --- Reduced motion --------------------------------------- */
+    /* =========================================================
+       REDUCED MOTION
+    ========================================================= */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         scroll-behavior: auto !important;
@@ -470,52 +513,37 @@
       }
     }
 
-    /* --- Responsive ------------------------------------------- */
-    @media (max-width: 860px) {
-      section { padding-block: 72px; }
+    /* =========================================================
+       RESPONSIVE BREAKPOINTS
+    ========================================================= */
+    @media (max-width: 900px) {
+      .section { padding-block: 80px; }
+      .hero { padding-block: 80px 72px; }
 
-      .hero { padding-block: 72px; }
+      .philosophy-inner,
+      .solutions-intro,
+      .humancentric-inner,
+      .form-inner { grid-template-columns: 1fr; gap: 48px; }
 
-      .hero-inner {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .hero-aside {
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
-
-      .stat-item {
-        flex: 1;
-        min-width: 150px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-      }
-      .stat-item:last-child { border: 1px solid var(--line); }
-
-      .pillars-intro,
-      .about-inner,
-      .contact-inner {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .pillars-grid { grid-template-columns: 1fr; }
+      .solution-row { grid-template-columns: 40px 1fr; }
+      .solution-price { grid-column: 2; text-align: left; }
     }
 
     @media (max-width: 600px) {
       .container { width: min(100%, 100% - 32px); }
-
-      section { padding-block: 56px; }
-      .hero { padding-block: 56px; }
-
+      .section { padding-block: 64px; }
+      .hero { padding-block: 64px 56px; }
       .site-nav { display: none; }
-
       .hero-actions { flex-direction: column; }
       .hero-actions .btn { width: 100%; justify-content: center; }
+      .solution-row { grid-template-columns: 1fr; gap: 14px; }
+      .solution-rank { font-size: 1.4rem; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
 
-      .footer-inner { flex-direction: column; gap: 8px; text-align: center; }
+    @media (max-width: 360px) {
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.5rem; }
     }
   </style>
 </head>
@@ -523,364 +551,531 @@
 
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <!-- --- Header ------------------------------------------- -->
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
   <header class="site-header">
     <div class="container header-inner">
-      <a class="logo-link" href="#top" aria-label="N-Deavour Services -- return to top">
-        <img src="logo.png" alt="N-Deavour Services wordmark">
+
+      <a class="logo-link" href="#top" aria-label="N-Deavour Services home page">
+        <img
+          src="logo.png"
+          alt="N-Deavour Services Logo - Excellence through efficiency"
+          width="160"
+          height="auto"
+        >
       </a>
-      <nav class="site-nav" aria-label="Primary">
-        <a href="#pillars">Services</a>
-        <a href="#about">About</a>
+
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#philosophy">About</a>
+        <a href="#solutions">Services</a>
+        <a href="#support">Support</a>
         <a href="#contact">Contact</a>
       </nav>
+
     </div>
   </header>
 
-  <!-- --- Main --------------------------------------------- -->
+  <!-- =====================================================
+       MAIN
+  ====================================================== -->
   <main id="main-content" tabindex="-1">
 
-    <!-- Hero -->
-    <section id="top" class="hero" aria-labelledby="hero-h1">
-      <div class="container hero-inner">
+    <!-- ================================================
+         A. HERO
+    ================================================= -->
+    <section id="top" class="section hero" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="hero-body">
 
-        <div>
-          <div class="hero-eyebrow" aria-hidden="true">
-            <span class="hero-eyebrow-dot"></span>
-            Privacy-first . AI-practical . Human-centred
-          </div>
-          <h1 id="hero-h1">
-            Advanced technology.<br>
-            No enterprise budget required.
+          <span class="section-label" aria-hidden="true">N-Deavour Services</span>
+
+          <h1 id="hero-heading">
+            Remove the paperwork.<br>
+            Protect what matters.<br>
+            Get back to work.
           </h1>
+
           <p class="hero-lead">
-            N-Deavour Services brings practical AI automation, privacy governance,
-            and human support consulting to small and medium-sized businesses that
-            are ready to reduce administrative friction and protect what matters.
+            Helping small and local businesses eliminate messy paperwork and
+            administrative overhead so you can focus on what you love&mdash;safely,
+            affordably, and ethically.
           </p>
+
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#contact">Start a conversation</a>
-            <a class="btn btn-ghost"   href="#pillars">Explore services</a>
+            <a class="btn btn-primary" href="#contact">Streamline Your Operations</a>
+            <a class="btn btn-outline" href="#solutions">View Services</a>
           </div>
+
         </div>
-
-        <aside aria-label="At a glance">
-          <div class="stat-item">
-            <span class="stat-value">$80/hr</span>
-            <span class="stat-label">Consulting engagements</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-value">4 pillars</span>
-            <span class="stat-label">Core service areas</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-value">Privacy-in</span>
-            <span class="stat-label">Designed from day one</span>
-          </div>
-        </aside>
-
       </div>
     </section>
 
-    <!-- Pillars -->
-    <section id="pillars" aria-labelledby="pillars-h2">
-      <div class="container pillars">
+    <!-- ================================================
+         B. PHILOSOPHY
+    ================================================= -->
+    <section id="philosophy" class="section section--soft" aria-labelledby="philosophy-heading">
+      <div class="container">
+        <div class="philosophy-inner">
 
-        <div class="pillars-intro">
+          <div class="philosophy-copy">
+            <span class="section-label">About the founder</span>
+            <h2 id="philosophy-heading">
+              Advanced, secure AI shouldn&rsquo;t only be available to giant corporations.
+            </h2>
+            <p>
+              N-Deavour was founded by Ninian Dougall&mdash;a play on the initials N.D.,
+              and a commitment to constantly endeavouring to improve. The practice grew
+              from a simple frustration: the most useful technology keeps getting locked
+              behind enterprise budgets, leaving smaller businesses to manage with
+              outdated processes and real privacy risk.
+            </p>
+            <p>
+              The name is personal by design. The work is, too.
+            </p>
+          </div>
+
+          <ol class="journey-list" aria-label="Founder journey">
+
+            <li class="journey-item">
+              <span class="journey-index" aria-hidden="true">01</span>
+              <div>
+                <h3>Healthcare safety &amp; records privacy</h3>
+                <p>
+                  Started at a local hospice clearing out manual paperwork so frontline
+                  staff could focus on patients, while keeping sensitive medical records
+                  completely private. The first lesson: removing administrative friction
+                  is an act of care.
+                </p>
+              </div>
+            </li>
+
+            <li class="journey-item">
+              <span class="journey-index" aria-hidden="true">02</span>
+              <div>
+                <h3>AI red-teaming &amp; data privacy testing</h3>
+                <p>
+                  Moved into testing advanced AI systems&mdash;finding critical data
+                  leaks, hallucination errors, and privacy vulnerabilities before they
+                  reached real users. The second lesson: AI is only safe when someone
+                  is actively looking for what can go wrong.
+                </p>
+              </div>
+            </li>
+
+            <li class="journey-item">
+              <span class="journey-index" aria-hidden="true">03</span>
+              <div>
+                <h3>Bringing it to small businesses</h3>
+                <p>
+                  Both threads converged into one practice. AI is simply a practical
+                  tool for handling repetitive tasks and safeguarding business data.
+                  Small businesses deserve the same access to it that enterprise
+                  teams have always had.
+                </p>
+              </div>
+            </li>
+
+          </ol>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         C. SOLUTIONS MATRIX
+    ================================================= -->
+    <section id="solutions" class="section" aria-labelledby="solutions-heading">
+      <div class="container">
+
+        <div class="solutions-intro">
           <div>
             <span class="section-label">Services</span>
-            <h2 id="pillars-h2">Three pillars. One focused practice.</h2>
+            <h2 id="solutions-heading">Four practical services. Transparent pricing.</h2>
           </div>
           <p>
-            Each service area is designed to remove a specific category of operational friction.
-            They can be engaged individually or woven into a broader programme depending on
-            your team size, risk profile, and goals.
+            Each service targets a distinct category of operational friction.
+            Engagements are scoped around your actual workflow, data sensitivity,
+            and business size&mdash;not a one-size package.
           </p>
         </div>
 
-        <div class="pillars-grid">
+        <ol class="solutions-list" aria-label="Services ordered by revenue priority">
 
-          <article class="pillar">
-            <span class="pillar-number" aria-hidden="true">01</span>
-            <h3>Practical AI Automation &amp; Custom App Building</h3>
-            <p>
-              Custom AI workflows and lightweight applications that handle repeatable
-              administrative tasks -- intake, reporting, drafting, planning, and
-              data annotation -- so your team spends time on work that requires
-              human judgment.
-            </p>
-            <ul class="pillar-tags" aria-label="What this includes">
-              <li>Custom AI solutions</li>
-              <li>Process automation</li>
-              <li>Operational optimization</li>
-              <li>AI data annotation</li>
-            </ul>
-          </article>
+          <li class="solution-row">
+            <span class="solution-rank" aria-hidden="true">01</span>
+            <div class="solution-body">
+              <h3>Custom AI Solutions</h3>
+              <p>
+                Purpose-built AI tools and lightweight applications that automate the
+                repetitive administrative tasks draining your team&rsquo;s time&mdash;intake,
+                reporting, drafting, planning, and data workflows&mdash;without
+                requiring any technical complexity on your end.
+              </p>
+              <span class="solution-weight" aria-label="40 percent of annual revenue mix">40% revenue mix</span>
+            </div>
+            <div class="solution-price">
+              <span class="price-amount">$1,000</span>
+              <span class="price-unit">per service</span>
+            </div>
+          </li>
 
-          <article class="pillar">
-            <span class="pillar-number" aria-hidden="true">02</span>
-            <h3>Privacy Consulting</h3>
-            <p>
-              Structured privacy reviews and governance programmes aligned with
-              CIPP/C and CIPM frameworks. From identifying data risks to building
-              practical policies, roles, and review routines that fit your size
-              and regulatory exposure.
-            </p>
-            <ul class="pillar-tags" aria-label="What this includes">
-              <li>Privacy risk reviews</li>
-              <li>CIPP/C . CIPM alignment</li>
-              <li>Data handling practices</li>
-              <li>Privacy management programs</li>
-            </ul>
-          </article>
+          <li class="solution-row">
+            <span class="solution-rank" aria-hidden="true">02</span>
+            <div class="solution-body">
+              <h3>Operational Optimization Consulting</h3>
+              <p>
+                Hands-on consulting to map your current workflows, identify system
+                bottlenecks, and clean up redundant paperwork so your team&rsquo;s
+                attention returns to the work that actually matters.
+              </p>
+              <span class="solution-weight" aria-label="25 percent of annual revenue mix">25% revenue mix</span>
+            </div>
+            <div class="solution-price">
+              <span class="price-amount">$80</span>
+              <span class="price-unit">per hour</span>
+            </div>
+          </li>
 
-          <article class="pillar">
-            <span class="pillar-number" aria-hidden="true">03</span>
-            <h3>Emotional Support Consulting &amp; Debriefing</h3>
-            <p>
-              Post-incident and ongoing debriefing support for individuals and
-              teams navigating high-stress, high-stakes, or emotionally demanding
-              work environments -- reducing burnout and restoring clarity before
-              it becomes a systemic problem.
-            </p>
-            <ul class="pillar-tags" aria-label="What this includes">
-              <li>Post-incident debriefing</li>
-              <li>Burnout prevention</li>
-              <li>Team resilience support</li>
-              <li>Freelance emotional support</li>
-            </ul>
-          </article>
+          <li class="solution-row">
+            <span class="solution-rank" aria-hidden="true">03</span>
+            <div class="solution-body">
+              <h3>Privacy Consulting</h3>
+              <p>
+                Practical digital privacy consulting aligned with CIPP/C and CIPM
+                frameworks&mdash;reviewing how sensitive data moves through your
+                business and identifying specific, actionable improvements to keep
+                customer and operational records safe and compliant.
+              </p>
+              <span class="solution-weight" aria-label="20 percent of annual revenue mix">20% revenue mix</span>
+            </div>
+            <div class="solution-price">
+              <span class="price-amount">$80</span>
+              <span class="price-unit">per hour</span>
+            </div>
+          </li>
 
-        </div>
+          <li class="solution-row">
+            <span class="solution-rank" aria-hidden="true">04</span>
+            <div class="solution-body">
+              <h3>Custom Privacy Management Programs</h3>
+              <p>
+                A comprehensive, end-to-end privacy governance framework built
+                explicitly for your small business&mdash;policies, roles, procedures,
+                and review routines that secure your infrastructure against structural
+                data leaks and evolving compliance risks.
+              </p>
+              <span class="solution-weight" aria-label="15 percent of annual revenue mix">15% revenue mix</span>
+            </div>
+            <div class="solution-price">
+              <span class="price-amount">$2,000</span>
+              <span class="price-unit">per service</span>
+            </div>
+          </li>
+
+        </ol>
       </div>
     </section>
 
-    <!-- About / Philosophy -->
-    <section id="about" aria-labelledby="about-h2">
-      <div class="container about-inner">
-
-        <div class="about-copy">
-          <span class="section-label">About</span>
-          <h2 id="about-h2">Built by someone who cleared the paperwork so others could focus on patients.</h2>
-          <p>
-            N-Deavour Services was founded by Ninian Dougall. The name is a deliberate play
-            on the initials N.D. -- a constant reminder that the work is personal, not just
-            professional.
-          </p>
-          <p>
-            The practice started in healthcare safety, finding ways to remove administrative
-            clutter from staff workflows so they could direct attention back to the people
-            in their care. That same instinct -- reduce the friction, protect the sensitive,
-            and trust the humans -- shapes every engagement today.
-          </p>
-          <p>
-            The vision is simple: technological excellence should not require an enterprise
-            budget. Small and medium-sized businesses deserve equal access to advanced, secure,
-            and ethical innovation.
-          </p>
-        </div>
-
-        <ul class="about-values" aria-label="Operating principles">
-          <li class="value-item">
-            <span class="value-marker" aria-hidden="true"></span>
-            <div>
-              <h3>Privacy is not an afterthought</h3>
-              <p>Every engagement considers how sensitive information moves and where it is at risk, before building anything.</p>
-            </div>
-          </li>
-          <li class="value-item">
-            <span class="value-marker" aria-hidden="true"></span>
-            <div>
-              <h3>The smallest useful improvement first</h3>
-              <p>Complexity compounds fast. The most valuable step is usually the narrowest one that creates real relief.</p>
-            </div>
-          </li>
-          <li class="value-item">
-            <span class="value-marker" aria-hidden="true"></span>
-            <div>
-              <h3>AI is a tool, not a replacement</h3>
-              <p>Automation handles the repetitive. People handle the judgment calls. That boundary is always respected.</p>
-            </div>
-          </li>
-          <li class="value-item">
-            <span class="value-marker" aria-hidden="true"></span>
-            <div>
-              <h3>Human support is part of operations</h3>
-              <p>Burnout and emotional overload are operational problems. Debriefing and support belong in the toolkit alongside process work.</p>
-            </div>
-          </li>
-        </ul>
-
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="contact" aria-labelledby="contact-h2">
-      <div class="container contact-inner">
-
-        <div class="contact-copy">
-          <span class="section-label">Contact</span>
-          <h2 id="contact-h2">Tell me what is slowing you down.</h2>
-          <p>
-            No obligation, no sales process. Describe the friction point and
-            we can decide together whether there is a practical next step
-            worth taking.
-          </p>
-          <div class="contact-detail">
-            <span class="contact-detail-icon" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
-                <path d="M2 4l6 5 6-5M2 4h12v9H2V4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            Replies via your preferred channel within two business days.
-          </div>
-          <div class="contact-detail">
-            <span class="contact-detail-icon" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
-                <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/>
-                <path d="M8 5v4l2.5 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-            </span>
-            Based in Canada. Available remotely across time zones.
-          </div>
-        </div>
-
-        <form class="inquiry-form" id="inquiry-form" novalidate aria-label="Inquiry form">
-
-          <div class="field">
-            <label for="name">Full name <span class="required-mark" aria-hidden="true">*</span></label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              autocomplete="name"
-              placeholder="Your full name"
-              required
-              aria-required="true"
-              aria-describedby="name-hint"
-            >
-            <span id="name-hint" class="field-hint">Used only to address your reply.</span>
-          </div>
-
-          <div class="field">
-            <label for="email">Email address <span class="required-mark" aria-hidden="true">*</span></label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              autocomplete="email"
-              placeholder="you@example.com"
-              required
-              aria-required="true"
-            >
-          </div>
-
-          <div class="field">
-            <label for="service">Service interest</label>
-            <div class="select-wrap">
-              <select id="service" name="service" aria-label="Select area of interest">
-                <option value="">Select an area (optional)</option>
-                <option value="ai">AI Automation &amp; Custom App Building</option>
-                <option value="privacy-consult">Privacy Consulting</option>
-                <option value="privacy-program">Privacy Management Program</option>
-                <option value="emotional">Emotional Support &amp; Debriefing</option>
-                <option value="unsure">Not sure yet -- I need to talk it through</option>
-              </select>
-              <svg class="select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
-                <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="message">What is the friction point? <span class="required-mark" aria-hidden="true">*</span></label>
-            <textarea
-              id="message"
-              name="message"
-              placeholder="Describe the workflow, privacy concern, or support need that is taking the most time or causing the most stress."
-              required
-              aria-required="true"
-              aria-describedby="message-hint"
-            ></textarea>
-            <span id="message-hint" class="field-hint">Plain language is fine -- no need for technical detail.</span>
-          </div>
+    <!-- ================================================
+         D. HUMAN-CENTRIC
+    ================================================= -->
+    <section id="support" class="section section--dark" aria-labelledby="support-heading">
+      <div class="container">
+        <div class="humancentric-inner">
 
           <div>
-            <button class="btn btn-primary" type="submit">Send inquiry</button>
-            <p class="form-note" style="margin-top:12px;">
-              <span class="required-mark" aria-hidden="true">*</span> Required fields.
-              Information shared here is used only to respond to your inquiry.
+            <span class="section-label">Human-centric layer</span>
+            <h2 id="support-heading">
+              Operational change is hard on people. That deserves a dedicated service.
+            </h2>
+            <p>
+              Restructuring workflows, adopting new technology, or navigating a major
+              operational shift creates human friction. Burnout, decision fatigue, and
+              unprocessed stress do not fix themselves when you deploy a new tool.
+            </p>
+            <p>
+              Emotional Support Consulting and Debriefing is a structured, confidential
+              service for individuals and teams working through high-pressure transitions.
+              It belongs in the operational toolkit alongside process improvement.
             </p>
           </div>
 
-        </form>
+          <div class="humancentric-aside" aria-label="What emotional support consulting includes">
 
+            <div class="hc-point">
+              <h3>Post-transition debriefing</h3>
+              <p>
+                Structured sessions following significant operational changes, technology
+                adoptions, or difficult workplace events to restore clarity and reduce
+                residual friction.
+              </p>
+            </div>
+
+            <div class="hc-point">
+              <h3>Burnout prevention &amp; resilience support</h3>
+              <p>
+                Ongoing support for owners and team members navigating sustained
+                high-pressure environments&mdash;identifying early signals and creating
+                practical routines before burnout compounds.
+              </p>
+            </div>
+
+            <div class="hc-point">
+              <h3>Freelance emotional support debriefing</h3>
+              <p>
+                Confidential one-to-one debriefing for individuals working in demanding
+                or emotionally intensive roles who need a structured space to process
+                and reset.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         E. INQUIRY FORM
+    ================================================= -->
+    <section id="contact" class="section section--soft" aria-labelledby="form-heading">
+      <div class="container">
+        <div class="form-inner">
+
+          <div class="form-copy">
+            <span class="section-label">Get in touch</span>
+            <h2 id="form-heading">Tell me what is slowing your business down.</h2>
+            <p>
+              No sales script, no obligation. Describe the friction point and we can
+              figure out together whether there is a practical next step worth taking.
+            </p>
+            <p>
+              Responses within two business days via your preferred channel. Based in
+              Canada; available remotely across time zones.
+            </p>
+          </div>
+
+          <form
+            class="inquiry-form"
+            id="inquiry-form"
+            novalidate
+            aria-label="Business inquiry form"
+          >
+
+            <div class="field">
+              <label for="full-name">
+                Full name
+                <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <input
+                id="full-name"
+                name="full_name"
+                type="text"
+                autocomplete="name"
+                placeholder="Your full name"
+                required
+                aria-required="true"
+                aria-describedby="full-name-hint"
+              >
+              <span id="full-name-hint" class="field-hint">
+                Used only to address your reply.
+              </span>
+            </div>
+
+            <div class="field">
+              <label for="biz-email">
+                Business email
+                <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <input
+                id="biz-email"
+                name="biz_email"
+                type="email"
+                autocomplete="email"
+                placeholder="you@yourbusiness.com"
+                required
+                aria-required="true"
+              >
+            </div>
+
+            <div class="field">
+              <label for="service-interest">Area of interest</label>
+              <div class="select-wrap">
+                <select id="service-interest" name="service_interest">
+                  <option value="">Select a service (optional)</option>
+                  <option value="ai">Custom AI Solutions</option>
+                  <option value="ops">Operational Optimization</option>
+                  <option value="privacy-consult">Privacy Consulting</option>
+                  <option value="privacy-program">Privacy Management Program</option>
+                  <option value="support">Emotional Support &amp; Debriefing</option>
+                  <option value="unsure">Not sure yet</option>
+                </select>
+                <svg
+                  class="select-caret"
+                  width="16" height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="bottleneck">
+                Describe your operation bottleneck
+                <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                id="bottleneck"
+                name="bottleneck"
+                placeholder="What is the workflow, privacy concern, or repetitive task that is taking the most time or creating the most stress?"
+                required
+                aria-required="true"
+                aria-describedby="bottleneck-hint"
+              ></textarea>
+              <span id="bottleneck-hint" class="field-hint">
+                Plain language is fine. No technical detail required.
+              </span>
+            </div>
+
+            <div>
+              <button class="btn btn-primary" type="submit">
+                Send Inquiry
+              </button>
+              <p class="form-meta" style="margin-top: 12px;">
+                <span aria-hidden="true"><span class="required-mark">*</span></span>
+                Required fields. Information shared here is used solely to respond to your inquiry.
+              </p>
+            </div>
+
+            <div
+              id="form-status"
+              class="form-status"
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+            ></div>
+
+          </form>
+
+        </div>
       </div>
     </section>
 
   </main>
 
-  <!-- --- Footer ------------------------------------------- -->
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
   <footer>
     <div class="container footer-inner">
       <p>&copy; 2026 N-Deavour Services. All rights reserved.</p>
-      <p>Privacy-first AI, operations, and human support consulting.</p>
+      <p>Privacy-first AI &amp; operations consulting for small business.</p>
     </div>
   </footer>
 
+  <!-- =====================================================
+       FORM VALIDATION
+  ====================================================== -->
   <script>
-    // Inline form validation -- accessible error feedback
-    const form = document.getElementById('inquiry-form');
-    if (form) {
+    (function () {
+      var form    = document.getElementById('inquiry-form');
+      var status  = document.getElementById('form-status');
+
+      if (!form) return;
+
+      function clearError(id) {
+        var field = document.getElementById(id);
+        var err   = document.getElementById(id + '-err');
+        if (err) err.remove();
+        if (field) {
+          field.removeAttribute('aria-invalid');
+          var desc = (field.getAttribute('aria-describedby') || '')
+            .replace(id + '-err', '').trim();
+          if (desc) {
+            field.setAttribute('aria-describedby', desc);
+          } else {
+            field.removeAttribute('aria-describedby');
+          }
+        }
+      }
+
+      function setError(id, message) {
+        var field = document.getElementById(id);
+        if (!field) return;
+        clearError(id);
+        field.setAttribute('aria-invalid', 'true');
+        var err   = document.createElement('span');
+        err.id    = id + '-err';
+        err.className = 'field-error';
+        err.setAttribute('role', 'alert');
+        err.textContent = message;
+        field.insertAdjacentElement('afterend', err);
+        var existing = field.getAttribute('aria-describedby') || '';
+        field.setAttribute('aria-describedby',
+          (existing + ' ' + err.id).trim());
+      }
+
+      function isValidEmail(v) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+      }
+
       form.addEventListener('submit', function (e) {
         e.preventDefault();
-        let firstError = null;
+        status.textContent = '';
 
-        ['name', 'email', 'message'].forEach(function (id) {
-          const field = document.getElementById(id);
-          const existing = document.getElementById(id + '-error');
-          if (existing) existing.remove();
-          field.removeAttribute('aria-invalid');
-          if (!field.value.trim()) {
-            field.setAttribute('aria-invalid', 'true');
-            const err = document.createElement('span');
-            err.id = id + '-error';
-            err.setAttribute('role', 'alert');
-            err.style.cssText = 'color:#b91c1c;font-size:0.82rem;font-weight:700;display:block;margin-top:4px;';
-            err.textContent = id === 'email' ? 'A valid email address is required.' : 'This field is required.';
-            field.insertAdjacentElement('afterend', err);
-            field.setAttribute('aria-describedby', (field.getAttribute('aria-describedby') || '') + ' ' + err.id);
-            if (!firstError) firstError = field;
+        var fields = [
+          { id: 'full-name',   msg: 'Please enter your full name.' },
+          { id: 'biz-email',   msg: '' },
+          { id: 'bottleneck',  msg: 'Please describe your operation bottleneck.' },
+        ];
+
+        var firstInvalid = null;
+
+        fields.forEach(function (f) {
+          clearError(f.id);
+        });
+
+        // Required text fields
+        ['full-name', 'bottleneck'].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (!el || !el.value.trim()) {
+            setError(id, id === 'full-name'
+              ? 'Please enter your full name.'
+              : 'Please describe your operation bottleneck.');
+            if (!firstInvalid) firstInvalid = document.getElementById(id);
           }
         });
 
-        const emailField = document.getElementById('email');
-        if (emailField.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value.trim())) {
-          emailField.setAttribute('aria-invalid', 'true');
-          const existing = document.getElementById('email-error');
-          if (existing) existing.remove();
-          const err = document.createElement('span');
-          err.id = 'email-error';
-          err.setAttribute('role', 'alert');
-          err.style.cssText = 'color:#b91c1c;font-size:0.82rem;font-weight:700;display:block;margin-top:4px;';
-          err.textContent = 'Please enter a valid email address.';
-          emailField.insertAdjacentElement('afterend', err);
-          if (!firstError) firstError = emailField;
+        // Email validation
+        var emailEl = document.getElementById('biz-email');
+        if (emailEl) {
+          var ev = emailEl.value.trim();
+          if (!ev) {
+            setError('biz-email', 'A business email address is required.');
+            if (!firstInvalid) firstInvalid = emailEl;
+          } else if (!isValidEmail(ev)) {
+            setError('biz-email', 'Please enter a valid email address.');
+            if (!firstInvalid) firstInvalid = emailEl;
+          }
         }
 
-        if (firstError) {
-          firstError.focus();
-        } else {
-          const status = document.createElement('p');
-          status.setAttribute('role', 'status');
-          status.setAttribute('aria-live', 'polite');
-          status.style.cssText = 'color:#15803d;font-weight:700;margin-top:8px;';
-          status.textContent = 'Your inquiry has been received. We will be in touch within two business days.';
-          form.appendChild(status);
-          form.reset();
+        if (firstInvalid) {
+          firstInvalid.focus();
+          return;
         }
+
+        // Success
+        form.reset();
+        status.textContent =
+          'Your inquiry has been received. We will be in touch within two business days.';
       });
-    }
+    }());
   </script>
 
 </body>
