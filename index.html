@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="N-Deavour Services dashboard for privacy-first AI automation, operational optimization, freelance timesheets, dashboards, and Phreedom chat support.">
-    <title>N-Deavour Services Dashboard</title>
+    <meta name="description" content="N-Deavour Services helps small and medium-sized businesses reduce admin burden with operational optimization, custom AI solutions, privacy consulting, and privacy management programs.">
+    <title>N-Deavour Services | Practical AI, Operations & Privacy Support</title>
     <style>
         :root {
             --ink: #170431;
             --purple: #372757;
             --muted: #5f527c;
             --line: #e8e2f2;
-            --soft: #faf8ff;
+            --soft: #fbf9ff;
             --white: #ffffff;
             --gold: #f6c763;
-            --shadow: 0 20px 60px rgba(23, 4, 49, 0.08);
+            --shadow: 0 18px 60px rgba(23, 4, 49, 0.08);
         }
 
         * {
@@ -33,7 +33,7 @@
             background: var(--white);
             font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             font-size: 16px;
-            line-height: 1.65;
+            line-height: 1.68;
         }
 
         a {
@@ -70,209 +70,57 @@
         }
 
         .container {
-            width: min(1120px, calc(100% - 40px));
+            width: min(1080px, calc(100% - 40px));
             margin: 0 auto;
         }
 
         .site-header {
             position: sticky;
             top: 0;
-            z-index: 50;
-            background: rgba(255, 255, 255, 0.9);
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.92);
             border-bottom: 1px solid var(--line);
             backdrop-filter: blur(16px);
         }
 
-        .topbar {
-            min-height: 76px;
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .logo-link {
-            justify-self: center;
-        }
-
-        .logo-link img {
-            width: min(210px, 50vw);
-            height: auto;
-        }
-
-        .app-menu {
-            position: relative;
-            justify-self: start;
-        }
-
-        .menu-button {
-            min-width: 48px;
-            min-height: 48px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 0 14px;
-            border: 1px solid var(--line);
-            border-radius: 999px;
-            background: var(--white);
-            color: var(--ink);
-            cursor: pointer;
-            font-weight: 800;
-            list-style: none;
-        }
-
-        .menu-button::-webkit-details-marker {
-            display: none;
-        }
-
-        .menu-icon,
-        .menu-icon::before,
-        .menu-icon::after {
-            width: 18px;
-            height: 2px;
-            display: block;
-            border-radius: 999px;
-            background: currentColor;
-            content: "";
-        }
-
-        .menu-icon {
-            position: relative;
-        }
-
-        .menu-icon::before,
-        .menu-icon::after {
-            position: absolute;
-            left: 0;
-        }
-
-        .menu-icon::before {
-            top: -6px;
-        }
-
-        .menu-icon::after {
-            top: 6px;
-        }
-
-        .menu-label {
-            font-size: 0.9rem;
-        }
-
-        .menu-panel {
-            position: absolute;
-            top: calc(100% + 12px);
-            left: 0;
-            width: min(300px, calc(100vw - 40px));
-            padding: 10px;
-            border: 1px solid var(--line);
-            border-radius: 24px;
-            background: var(--white);
-            box-shadow: var(--shadow);
-        }
-
-        .menu-panel a {
-            min-height: 48px;
+        .nav {
+            min-height: 78px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 18px;
-            padding: 12px 14px;
-            border-radius: 16px;
-            color: var(--purple);
-            font-weight: 800;
+            gap: 28px;
         }
 
-        .menu-panel a:hover,
-        .menu-panel a:focus-visible {
+        .logo-link img {
+            width: min(220px, 50vw);
+            height: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--purple);
+            font-size: 0.9rem;
+            font-weight: 750;
+        }
+
+        .nav-links a {
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            padding: 0 10px;
+            border-radius: 999px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
             background: var(--soft);
             color: var(--ink);
         }
 
-        .menu-panel small {
-            color: var(--muted);
-            font-weight: 700;
-        }
-
-        .header-action {
-            justify-self: end;
-            min-height: 44px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 16px;
-            border: 1px solid var(--line);
-            border-radius: 999px;
-            color: var(--purple);
-            font-size: 0.9rem;
-            font-weight: 800;
-        }
-
-        main {
-            background: linear-gradient(180deg, var(--soft) 0, var(--white) 360px);
-        }
-
-        section {
-            padding: 78px 0;
-            scroll-margin-top: 96px;
-        }
-
-        .section-header {
-            max-width: 720px;
-            margin-bottom: 30px;
-        }
-
-        .eyebrow {
-            display: inline-flex;
-            margin-bottom: 14px;
-            color: var(--muted);
-            font-size: 0.78rem;
-            font-weight: 900;
-            letter-spacing: 0.09em;
-            text-transform: uppercase;
-        }
-
-        h1,
-        h2,
-        h3 {
-            color: var(--ink);
-            line-height: 1.16;
-            letter-spacing: -0.025em;
-        }
-
-        h1 {
-            max-width: 760px;
-            font-size: clamp(2.15rem, 5vw, 3.6rem);
-        }
-
-        h2 {
-            font-size: clamp(1.6rem, 3vw, 2.35rem);
-        }
-
-        h3 {
-            font-size: 1.05rem;
-        }
-
-        p {
-            color: var(--muted);
-        }
-
-        .lead {
-            max-width: 680px;
-            margin-top: 18px;
-            color: var(--purple);
-            font-size: clamp(1rem, 1.6vw, 1.12rem);
-        }
-
-        .actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 26px;
-        }
-
         .button {
-            min-height: 48px;
+            min-height: 46px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -281,6 +129,7 @@
             border-radius: 999px;
             background: var(--ink);
             color: var(--white);
+            font-size: 0.92rem;
             font-weight: 850;
         }
 
@@ -290,129 +139,177 @@
             color: var(--ink);
         }
 
+        main {
+            background: linear-gradient(180deg, var(--soft) 0, var(--white) 380px);
+        }
+
+        section {
+            padding: 78px 0;
+            scroll-margin-top: 96px;
+        }
+
+        .hero {
+            padding: 94px 0 72px;
+        }
+
+        .section-header {
+            max-width: 690px;
+            margin-bottom: 30px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            margin-bottom: 14px;
+            color: var(--muted);
+            font-size: 0.76rem;
+            font-weight: 900;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--ink);
+            line-height: 1.17;
+            letter-spacing: -0.025em;
+        }
+
+        h1 {
+            max-width: 760px;
+            font-size: clamp(2.15rem, 5vw, 3.5rem);
+        }
+
+        h2 {
+            font-size: clamp(1.55rem, 3vw, 2.25rem);
+        }
+
+        h3 {
+            font-size: 1.05rem;
+        }
+
+        p,
+        li {
+            color: var(--muted);
+        }
+
+        .lead {
+            max-width: 660px;
+            margin-top: 18px;
+            color: var(--purple);
+            font-size: clamp(1rem, 1.5vw, 1.12rem);
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
         .grid {
             display: grid;
             gap: 18px;
         }
 
-        .dashboard-grid {
-            grid-template-columns: 1.25fr 0.75fr;
+        .hero-grid {
+            grid-template-columns: minmax(0, 1fr) 320px;
             align-items: stretch;
-            margin-top: 42px;
+            gap: 40px;
+        }
+
+        .service-grid,
+        .pricing-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .process-grid {
+            grid-template-columns: repeat(3, 1fr);
         }
 
         .card {
-            padding: 26px;
+            padding: 24px;
             border: 1px solid var(--line);
-            border-radius: 28px;
+            border-radius: 26px;
             background: var(--white);
-            box-shadow: 0 14px 44px rgba(23, 4, 49, 0.05);
-        }
-
-        .card.compact {
-            padding: 22px;
+            box-shadow: 0 12px 42px rgba(23, 4, 49, 0.05);
         }
 
         .card p {
             margin-top: 10px;
         }
 
-        .metric-grid {
-            grid-template-columns: repeat(3, 1fr);
-            margin-top: 18px;
-        }
-
-        .metric {
-            padding: 18px;
-            border: 1px solid var(--line);
-            border-radius: 20px;
-            background: var(--soft);
-        }
-
-        .metric strong {
-            display: block;
-            color: var(--ink);
-            font-size: 1.4rem;
-            line-height: 1;
-        }
-
-        .metric span {
-            display: block;
-            margin-top: 8px;
-            color: var(--muted);
-            font-size: 0.9rem;
-            font-weight: 700;
-        }
-
-        .service-grid {
-            grid-template-columns: repeat(4, 1fr);
-        }
-
-        .tag-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 18px;
+        .metric-list {
+            display: grid;
+            gap: 12px;
             list-style: none;
         }
 
-        .tag-list li,
-        .pill {
-            display: inline-flex;
-            align-items: center;
-            min-height: 34px;
-            padding: 6px 10px;
+        .metric-list li {
+            padding: 14px;
             border: 1px solid var(--line);
-            border-radius: 999px;
+            border-radius: 18px;
             background: var(--soft);
-            color: var(--purple);
-            font-size: 0.85rem;
-            font-weight: 800;
+        }
+
+        .metric-list strong {
+            display: block;
+            color: var(--ink);
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .metric-list span {
+            display: block;
+            margin-top: 6px;
+            color: var(--muted);
+            font-size: 0.88rem;
+            font-weight: 700;
         }
 
         .solution-card {
             display: grid;
-            grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
-            gap: 24px;
-            padding: 30px;
+            grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+            gap: 22px;
+            padding: 28px;
             border: 1px solid var(--line);
             border-radius: 32px;
             background: var(--white);
             box-shadow: var(--shadow);
         }
 
-        .solution-summary {
+        .solution-copy {
             display: grid;
             gap: 14px;
         }
 
-        .summary-row {
+        .solution-step {
             padding: 18px;
             border: 1px solid var(--line);
             border-radius: 20px;
             background: var(--soft);
         }
 
-        .summary-row span {
+        .solution-step span {
             display: block;
             margin-bottom: 6px;
-            color: var(--muted);
+            color: var(--purple);
             font-size: 0.78rem;
             font-weight: 900;
             letter-spacing: 0.08em;
             text-transform: uppercase;
         }
 
-        .solution-demo {
+        .planner-preview {
             display: grid;
             gap: 14px;
             padding: 20px;
             border: 1px solid var(--line);
             border-radius: 24px;
-            background: #fbfaff;
+            background: #fcfbff;
         }
 
-        .demo-header {
+        .preview-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -421,7 +318,18 @@
             border-bottom: 1px solid var(--line);
         }
 
-        .demo-row {
+        .preview-header strong {
+            color: var(--ink);
+        }
+
+        .preview-header span,
+        .preview-row span {
+            color: var(--muted);
+            font-size: 0.88rem;
+            font-weight: 750;
+        }
+
+        .preview-row {
             display: grid;
             grid-template-columns: 1fr auto;
             gap: 18px;
@@ -429,126 +337,13 @@
             border-bottom: 1px solid var(--line);
         }
 
-        .demo-row:last-child {
+        .preview-row:last-child {
             border-bottom: 0;
         }
 
-        .demo-row strong,
-        .demo-header strong {
+        .preview-row strong {
             color: var(--ink);
             font-size: 0.96rem;
-        }
-
-        .demo-row span,
-        .demo-header span {
-            color: var(--muted);
-            font-size: 0.9rem;
-            font-weight: 700;
-        }
-
-        .timesheet-table {
-            width: 100%;
-            margin-top: 18px;
-            border-collapse: collapse;
-            overflow: hidden;
-            border: 1px solid var(--line);
-            border-radius: 22px;
-        }
-
-        .timesheet-table th,
-        .timesheet-table td {
-            padding: 14px;
-            border-bottom: 1px solid var(--line);
-            text-align: left;
-            vertical-align: top;
-        }
-
-        .timesheet-table th {
-            color: var(--purple);
-            background: var(--soft);
-            font-size: 0.86rem;
-        }
-
-        .timesheet-table td {
-            color: var(--muted);
-        }
-
-        .timesheet-table tr:last-child td {
-            border-bottom: 0;
-        }
-
-        .chat-shell {
-            max-width: 760px;
-            padding: 20px;
-            border: 1px solid var(--line);
-            border-radius: 30px;
-            background: var(--white);
-            box-shadow: var(--shadow);
-        }
-
-        .message-list {
-            display: grid;
-            gap: 14px;
-            list-style: none;
-        }
-
-        .message {
-            max-width: 84%;
-            padding: 14px 16px;
-            border-radius: 20px;
-            color: var(--purple);
-            background: var(--soft);
-        }
-
-        .message.bot {
-            border-top-left-radius: 6px;
-        }
-
-        .message.user {
-            justify-self: end;
-            border-top-right-radius: 6px;
-            background: var(--ink);
-            color: var(--white);
-        }
-
-        .chat-status {
-            min-height: 1.5em;
-            margin-top: 14px;
-            color: var(--muted);
-            font-size: 0.9rem;
-            font-weight: 700;
-        }
-
-        .chat-compose {
-            display: flex;
-            gap: 10px;
-            margin-top: 18px;
-            padding-top: 18px;
-            border-top: 1px solid var(--line);
-        }
-
-        .chat-compose label {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-            clip: rect(0 0 0 0);
-            white-space: nowrap;
-        }
-
-        .chat-compose input {
-            min-height: 48px;
-            flex: 1;
-            min-width: 0;
-            padding: 0 14px;
-            border: 1px solid var(--line);
-            border-radius: 999px;
-            color: var(--ink);
-            font: inherit;
-        }
-
-        .pricing-grid {
-            grid-template-columns: repeat(4, 1fr);
         }
 
         .price {
@@ -563,11 +358,34 @@
             font-size: 0.86rem;
         }
 
+        .cta {
+            padding: 42px;
+            border: 1px solid var(--line);
+            border-radius: 32px;
+            background: var(--ink);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta p {
+            max-width: 660px;
+            margin: 14px auto 0;
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .cta .eyebrow,
+        .cta h2 {
+            color: var(--white);
+        }
+
+        .cta .actions {
+            justify-content: center;
+        }
+
         footer {
-            padding: 36px 0;
+            padding: 34px 0;
             border-top: 1px solid var(--line);
             color: var(--muted);
-            background: var(--white);
         }
 
         .footer-row {
@@ -588,68 +406,55 @@
         }
 
         @media (max-width: 980px) {
-            .dashboard-grid,
+            .hero-grid,
             .solution-card {
                 grid-template-columns: 1fr;
             }
 
             .service-grid,
-            .pricing-grid,
-            .metric-grid {
+            .pricing-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 720px) {
             .container {
-                width: min(100% - 28px, 1120px);
+                width: min(100% - 28px, 1080px);
             }
 
-            .topbar {
-                grid-template-columns: auto 1fr;
+            .nav {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 16px 0;
+                gap: 12px;
             }
 
-            .logo-link {
-                justify-self: start;
+            .nav-links {
+                flex-wrap: wrap;
             }
 
-            .header-action {
-                display: none;
-            }
-
-            .menu-label {
-                position: absolute;
-                width: 1px;
-                height: 1px;
-                overflow: hidden;
-                clip: rect(0 0 0 0);
-                white-space: nowrap;
-            }
-
-            section {
+            section,
+            .hero {
                 padding: 56px 0;
             }
 
             .service-grid,
             .pricing-grid,
-            .metric-grid {
+            .process-grid {
                 grid-template-columns: 1fr;
             }
 
+            .card,
             .solution-card,
-            .card {
+            .cta {
                 padding: 22px;
                 border-radius: 24px;
             }
 
-            .timesheet-table {
-                display: block;
-                overflow-x: auto;
-                white-space: nowrap;
-            }
-
-            .chat-compose {
-                flex-direction: column;
+            .preview-row,
+            .preview-header {
+                grid-template-columns: 1fr;
+                align-items: start;
             }
 
             .footer-row {
@@ -661,60 +466,40 @@
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <header class="site-header">
-        <div class="container topbar">
-            <details class="app-menu">
-                <summary class="menu-button" aria-label="Open site menu">
-                    <span class="menu-icon" aria-hidden="true"></span>
-                    <span class="menu-label">Menu</span>
-                </summary>
-                <nav class="menu-panel" aria-label="Site sections">
-                    <a href="#dashboard">Dashboard <small>Home</small></a>
-                    <a href="#timesheet">Timesheet <small>Freelance</small></a>
-                    <a href="#chat">Chat <small>Phreedom</small></a>
-                    <a href="#services">Services <small>Consulting</small></a>
-                    <a href="#solutions">Example <small>AI planner</small></a>
-                    <a href="#pricing">Pricing <small>Rates</small></a>
-                </nav>
-            </details>
-            <a class="logo-link" href="#dashboard" aria-label="N-Deavour Services dashboard home">
+        <div class="container nav">
+            <a class="logo-link" href="#top" aria-label="N-Deavour Services home">
                 <img src="logo.png" alt="N-Deavour Services Logo">
             </a>
-            <a class="header-action" href="#chat">Chat with Phreedom</a>
+            <nav class="nav-links" aria-label="Primary navigation">
+                <a href="#services">Services</a>
+                <a href="#solutions">Example</a>
+                <a href="#process">Process</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#contact">Contact</a>
+            </nav>
         </div>
     </header>
 
     <main id="main-content" tabindex="-1">
-        <section id="dashboard" aria-labelledby="dashboard-heading">
-            <div class="container">
-                <div class="section-header">
-                    <span class="eyebrow">Dashboard</span>
-                    <h1 id="dashboard-heading">N-Deavour Services command center.</h1>
-                    <p class="lead">A simplified home base for privacy-first AI solutions, operations consulting, freelance time tracking, and Phreedom chat support.</p>
+        <section id="top" class="hero" aria-labelledby="hero-heading">
+            <div class="container grid hero-grid">
+                <div>
+                    <span class="eyebrow">Privacy-first AI and operations support</span>
+                    <h1 id="hero-heading">Practical systems for small businesses with too much admin.</h1>
+                    <p class="lead">N-Deavour Services helps local entrepreneurs and established owners simplify operations, protect sensitive information, and build useful AI workflows without enterprise-level complexity.</p>
                     <div class="actions">
-                        <a class="button" href="#timesheet">Open timesheet</a>
-                        <a class="button secondary" href="#chat">Open chat</a>
+                        <a class="button" href="#services">View services</a>
+                        <a class="button secondary" href="#solutions">See example solution</a>
                     </div>
                 </div>
-                <div class="grid dashboard-grid">
-                    <article class="card">
-                        <h2>Dashboards</h2>
-                        <p>Use this home page to quickly see what N-Deavour Services can help manage: service work, custom AI solutions, privacy needs, and client-facing tools.</p>
-                        <div class="grid metric-grid" aria-label="Dashboard summary metrics">
-                            <div class="metric"><strong>4</strong><span>Core service lines</span></div>
-                            <div class="metric"><strong>$80/hr</strong><span>Consulting rate</span></div>
-                            <div class="metric"><strong>AI</strong><span>Workflow examples</span></div>
-                        </div>
-                    </article>
-                    <aside class="card compact" aria-labelledby="next-actions-heading">
-                        <h2 id="next-actions-heading">Next actions</h2>
-                        <ul class="tag-list">
-                            <li>Review current admin burden</li>
-                            <li>Log freelance time</li>
-                            <li>Ask Phreedom for guidance</li>
-                            <li>Scope an AI solution</li>
-                        </ul>
-                    </aside>
-                </div>
+                <aside class="card" aria-label="N-Deavour Services overview">
+                    <h2>What changes</h2>
+                    <ul class="metric-list">
+                        <li><strong>Less admin</strong><span>Simpler workflows and fewer repeated tasks</span></li>
+                        <li><strong>Safer AI</strong><span>Useful automation with privacy in mind</span></li>
+                        <li><strong>Clear next steps</strong><span>Small improvements that match your business</span></li>
+                    </ul>
+                </aside>
             </div>
         </section>
 
@@ -722,25 +507,25 @@
             <div class="container">
                 <div class="section-header">
                     <span class="eyebrow">Services</span>
-                    <h2 id="services-heading">Focused services with less noise.</h2>
-                    <p>N-Deavour Services now centers on four practical offers for small and medium-sized businesses.</p>
+                    <h2 id="services-heading">Four focused ways to work together.</h2>
+                    <p>Each service is scoped around the actual workflow, data sensitivity, and level of support needed.</p>
                 </div>
                 <div class="grid service-grid">
-                    <article class="card compact">
+                    <article class="card">
                         <h3>Operational optimization</h3>
-                        <p>Map workflows, reduce paperwork, and simplify repeatable admin tasks.</p>
+                        <p>Map workflows, reduce paperwork, and simplify repeatable business administration.</p>
                     </article>
-                    <article class="card compact">
+                    <article class="card">
                         <h3>Custom AI solutions</h3>
                         <p>Build focused tools for planning, intake, reporting, drafting, and automation.</p>
                     </article>
-                    <article class="card compact">
+                    <article class="card">
                         <h3>Privacy consulting</h3>
-                        <p>Review data handling and identify safer ways to use sensitive information.</p>
+                        <p>Review how sensitive data moves through your business and identify safer practices.</p>
                     </article>
-                    <article class="card compact">
+                    <article class="card">
                         <h3>Privacy management program</h3>
-                        <p>Create practical policies, roles, procedures, and review routines.</p>
+                        <p>Create policies, roles, procedures, and review routines that fit your size and risk.</p>
                     </article>
                 </div>
             </div>
@@ -750,99 +535,58 @@
             <div class="container">
                 <div class="section-header">
                     <span class="eyebrow">Example solution</span>
-                    <h2 id="solutions-heading">Financial Planner AI as a product-style workflow.</h2>
-                    <p>This is one example of a custom AI solution. It supports planning and admin decisions without replacing professional financial advice.</p>
+                    <h2 id="solutions-heading">Financial Planner AI, formatted as a clear decision tool.</h2>
+                    <p>This is one example of a custom AI workflow. It supports planning and administration; it is not regulated financial advice.</p>
                 </div>
                 <article class="solution-card">
-                    <div class="solution-summary">
-                        <div class="summary-row">
+                    <div class="solution-copy">
+                        <div class="solution-step">
                             <span>Problem</span>
-                            <p>Business owners need quick budget and cash-flow context without rebuilding spreadsheets every time.</p>
+                            <p>Owners need fast budget and cash-flow context without rebuilding spreadsheets or losing track of assumptions.</p>
                         </div>
-                        <div class="summary-row">
-                            <span>Solution</span>
-                            <p>A privacy-aware assistant that organizes inputs, summarizes assumptions, and prepares decision-ready scenarios.</p>
+                        <div class="solution-step">
+                            <span>Workflow</span>
+                            <p>The assistant organizes inputs, highlights missing information, and turns business details into review-ready scenarios.</p>
                         </div>
-                        <div class="summary-row">
+                        <div class="solution-step">
                             <span>Outcome</span>
-                            <p>Cleaner planning conversations, fewer missed costs, and a clearer next action for the owner to review.</p>
+                            <p>The owner gets a cleaner planning conversation, a visible privacy check, and a practical next action.</p>
                         </div>
                     </div>
-                    <div class="solution-demo" role="img" aria-label="Financial Planner AI dashboard example with forecast, cost, scenario, privacy, and next action rows.">
-                        <div class="demo-header">
+                    <div class="planner-preview" role="img" aria-label="Financial Planner AI example dashboard with forecast, costs, scenario, privacy check, and next action.">
+                        <div class="preview-header">
                             <strong>Financial Planner AI</strong>
                             <span>Example dashboard</span>
                         </div>
-                        <div class="demo-row"><strong>Revenue forecast</strong><span>$23.3K year-one target</span></div>
-                        <div class="demo-row"><strong>Recurring costs</strong><span>Tech, ecommerce, marketing</span></div>
-                        <div class="demo-row"><strong>Scenario</strong><span>What if admin time drops 20%?</span></div>
-                        <div class="demo-row"><strong>Privacy check</strong><span>Confirm sensitive inputs before use</span></div>
-                        <div class="demo-row"><strong>Next action</strong><span>Review assumptions with owner</span></div>
+                        <div class="preview-row"><strong>Revenue forecast</strong><span>$23.3K year-one target</span></div>
+                        <div class="preview-row"><strong>Recurring costs</strong><span>Tech, ecommerce, marketing</span></div>
+                        <div class="preview-row"><strong>Scenario</strong><span>What if admin time drops 20%?</span></div>
+                        <div class="preview-row"><strong>Privacy check</strong><span>Confirm sensitive inputs before use</span></div>
+                        <div class="preview-row"><strong>Next action</strong><span>Review assumptions with owner</span></div>
                     </div>
                 </article>
             </div>
         </section>
 
-        <section id="timesheet" aria-labelledby="timesheet-heading">
+        <section id="process" aria-labelledby="process-heading">
             <div class="container">
                 <div class="section-header">
-                    <span class="eyebrow">Timesheet</span>
-                    <h2 id="timesheet-heading">Freelance timesheet section.</h2>
-                    <p>Track freelance work in a simple structure: client, project, task, hours, rate, and review status.</p>
+                    <span class="eyebrow">Process</span>
+                    <h2 id="process-heading">Small steps before big systems.</h2>
                 </div>
-                <article class="card">
-                    <h3>Timesheet preview</h3>
-                    <table class="timesheet-table">
-                        <caption class="eyebrow">Sample freelance time entries</caption>
-                        <thead>
-                            <tr>
-                                <th scope="col">Client</th>
-                                <th scope="col">Project</th>
-                                <th scope="col">Task</th>
-                                <th scope="col">Hours</th>
-                                <th scope="col">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Local business</td>
-                                <td>AI workflow</td>
-                                <td>Process mapping</td>
-                                <td>2.5</td>
-                                <td>Ready to review</td>
-                            </tr>
-                            <tr>
-                                <td>Healthcare support</td>
-                                <td>Privacy review</td>
-                                <td>Data handling notes</td>
-                                <td>1.5</td>
-                                <td>Draft</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </article>
-            </div>
-        </section>
-
-        <section id="chat" aria-labelledby="chat-heading">
-            <div class="container">
-                <div class="section-header">
-                    <span class="eyebrow">Chat</span>
-                    <h2 id="chat-heading">Talk with Phreedom.</h2>
-                    <p>Phreedom is the bot interaction area for asking questions, exploring workflows, and getting guided support.</p>
-                </div>
-                <div class="chat-shell" aria-label="Phreedom chat">
-                    <ul class="message-list" id="phreedom-log" role="log" aria-live="polite" aria-relevant="additions">
-                        <li class="message bot"><strong>Phreedom:</strong> What would you like to simplify today?</li>
-                        <li class="message user">I need to reduce admin time and track client work.</li>
-                        <li class="message bot"><strong>Phreedom:</strong> Start with your timesheet, then we can identify repeatable tasks for automation.</li>
-                    </ul>
-                    <p class="chat-status" id="phreedom-status" role="status" aria-live="polite"></p>
-                    <form class="chat-compose" id="phreedom-form" aria-label="Phreedom chat input">
-                        <label for="phreedom-message">Message Phreedom</label>
-                        <input id="phreedom-message" name="message" type="text" autocomplete="off" placeholder="Message Phreedom...">
-                        <button class="button" type="submit">Send</button>
-                    </form>
+                <div class="grid process-grid">
+                    <article class="card">
+                        <h3>Discover</h3>
+                        <p>Find the workflow, admin burden, or privacy concern that is creating the most friction.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Design</h3>
+                        <p>Choose the smallest useful improvement and define what success should look like.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Refine</h3>
+                        <p>Test the solution against real use cases and adjust it to fit how the business works.</p>
+                    </article>
                 </div>
             </div>
         </section>
@@ -851,26 +595,39 @@
             <div class="container">
                 <div class="section-header">
                     <span class="eyebrow">Pricing</span>
-                    <h2 id="pricing-heading">Simple starting points.</h2>
-                    <p>Pricing is scoped around the actual workflow, privacy risk, and support needed.</p>
+                    <h2 id="pricing-heading">Clear starting points.</h2>
                 </div>
                 <div class="grid pricing-grid">
-                    <article class="card compact">
+                    <article class="card">
                         <h3>Optimization</h3>
                         <p class="price">$80 <small>/ hour</small></p>
                     </article>
-                    <article class="card compact">
+                    <article class="card">
                         <h3>Custom AI</h3>
                         <p class="price">$1,000 <small>/ service</small></p>
                     </article>
-                    <article class="card compact">
+                    <article class="card">
                         <h3>Privacy consulting</h3>
                         <p class="price">$80 <small>/ hour</small></p>
                     </article>
-                    <article class="card compact">
+                    <article class="card">
                         <h3>Privacy program</h3>
                         <p class="price">$2,000 <small>/ service</small></p>
                     </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" aria-labelledby="contact-heading">
+            <div class="container">
+                <div class="cta">
+                    <span class="eyebrow">Start simple</span>
+                    <h2 id="contact-heading">Choose one workflow to make lighter.</h2>
+                    <p>Bring the paperwork, privacy worry, or repetitive task that is slowing you down. N-Deavour Services can help shape the next practical step.</p>
+                    <div class="actions">
+                        <a class="button" href="#services">Review services</a>
+                        <a class="button secondary" href="#solutions">Review example</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -879,58 +636,8 @@
     <footer>
         <div class="container footer-row">
             <p>&copy; 2026 N-Deavour Services.</p>
-            <p>Privacy-first AI, operations, dashboards, timesheets, and Phreedom chat support.</p>
+            <p>Privacy-first AI, operations, and small-business systems.</p>
         </div>
     </footer>
-
-    <script>
-        const phreedomForm = document.querySelector('#phreedom-form');
-        const phreedomInput = document.querySelector('#phreedom-message');
-        const phreedomLog = document.querySelector('#phreedom-log');
-        const phreedomStatus = document.querySelector('#phreedom-status');
-
-        function addChatMessage(type, label, text) {
-            const item = document.createElement('li');
-            item.className = `message ${type}`;
-            if (label) {
-                const strong = document.createElement('strong');
-                strong.textContent = `${label}: `;
-                item.append(strong);
-            }
-            item.append(document.createTextNode(text));
-            phreedomLog.append(item);
-            return item;
-        }
-
-        function getPhreedomReply(message) {
-            const lower = message.toLowerCase();
-            if (lower.includes('timesheet') || lower.includes('hour')) {
-                return 'Open the Timesheet section first, then group entries by client, project, task, hours, and review status.';
-            }
-            if (lower.includes('dashboard') || lower.includes('report')) {
-                return 'Use the Dashboard as the home view: summarize active work, current service needs, and the next decision to review.';
-            }
-            if (lower.includes('privacy') || lower.includes('data')) {
-                return 'Start with the data involved, who can access it, and whether the AI workflow needs a privacy check before use.';
-            }
-            return 'A good next step is to name the repetitive task, the information it uses, and what a useful output should look like.';
-        }
-
-        phreedomForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-            const message = phreedomInput.value.trim();
-            if (!message) {
-                phreedomStatus.textContent = 'Enter a message before sending.';
-                phreedomInput.focus();
-                return;
-            }
-
-            addChatMessage('user', '', message);
-            addChatMessage('bot', 'Phreedom', getPhreedomReply(message));
-            phreedomStatus.textContent = 'Phreedom replied.';
-            phreedomInput.value = '';
-            phreedomInput.focus();
-        });
-    </script>
 </body>
 </html>
