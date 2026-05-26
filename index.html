@@ -1,643 +1,887 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="N-Deavour Services helps small and medium-sized businesses reduce admin burden with operational optimization, custom AI solutions, privacy consulting, and privacy management programs.">
-    <title>N-Deavour Services | Practical AI, Operations & Privacy Support</title>
-    <style>
-        :root {
-            --ink: #170431;
-            --purple: #372757;
-            --muted: #5f527c;
-            --line: #e8e2f2;
-            --soft: #fbf9ff;
-            --white: #ffffff;
-            --gold: #f6c763;
-            --shadow: 0 18px 60px rgba(23, 4, 49, 0.08);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            min-width: 320px;
-            color: var(--ink);
-            background: var(--white);
-            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            font-size: 16px;
-            line-height: 1.68;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        img {
-            display: block;
-            max-width: 100%;
-        }
-
-        :focus-visible {
-            outline: 3px solid var(--gold);
-            outline-offset: 4px;
-        }
-
-        .skip-link {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            z-index: 1000;
-            transform: translateY(-160%);
-            padding: 12px 16px;
-            border-radius: 999px;
-            background: var(--ink);
-            color: var(--white);
-            font-weight: 800;
-            transition: transform 180ms ease;
-        }
-
-        .skip-link:focus-visible {
-            transform: translateY(0);
-        }
-
-        .container {
-            width: min(1080px, calc(100% - 40px));
-            margin: 0 auto;
-        }
-
-        .site-header {
-            position: sticky;
-            top: 0;
-            z-index: 20;
-            background: rgba(255, 255, 255, 0.92);
-            border-bottom: 1px solid var(--line);
-            backdrop-filter: blur(16px);
-        }
-
-        .nav {
-            min-height: 78px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 28px;
-        }
-
-        .logo-link img {
-            width: min(220px, 50vw);
-            height: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--purple);
-            font-size: 0.9rem;
-            font-weight: 750;
-        }
-
-        .nav-links a {
-            min-height: 44px;
-            display: inline-flex;
-            align-items: center;
-            padding: 0 10px;
-            border-radius: 999px;
-        }
-
-        .nav-links a:hover,
-        .nav-links a:focus-visible {
-            background: var(--soft);
-            color: var(--ink);
-        }
-
-        .button {
-            min-height: 46px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 18px;
-            border: 1px solid var(--ink);
-            border-radius: 999px;
-            background: var(--ink);
-            color: var(--white);
-            font-size: 0.92rem;
-            font-weight: 850;
-        }
-
-        .button.secondary {
-            border-color: var(--line);
-            background: var(--white);
-            color: var(--ink);
-        }
-
-        main {
-            background: linear-gradient(180deg, var(--soft) 0, var(--white) 380px);
-        }
-
-        section {
-            padding: 78px 0;
-            scroll-margin-top: 96px;
-        }
-
-        .hero {
-            padding: 94px 0 72px;
-        }
-
-        .section-header {
-            max-width: 690px;
-            margin-bottom: 30px;
-        }
-
-        .eyebrow {
-            display: inline-flex;
-            margin-bottom: 14px;
-            color: var(--muted);
-            font-size: 0.76rem;
-            font-weight: 900;
-            letter-spacing: 0.09em;
-            text-transform: uppercase;
-        }
-
-        h1,
-        h2,
-        h3 {
-            color: var(--ink);
-            line-height: 1.17;
-            letter-spacing: -0.025em;
-        }
-
-        h1 {
-            max-width: 760px;
-            font-size: clamp(2.15rem, 5vw, 3.5rem);
-        }
-
-        h2 {
-            font-size: clamp(1.55rem, 3vw, 2.25rem);
-        }
-
-        h3 {
-            font-size: 1.05rem;
-        }
-
-        p,
-        li {
-            color: var(--muted);
-        }
-
-        .lead {
-            max-width: 660px;
-            margin-top: 18px;
-            color: var(--purple);
-            font-size: clamp(1rem, 1.5vw, 1.12rem);
-        }
-
-        .actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 28px;
-        }
-
-        .grid {
-            display: grid;
-            gap: 18px;
-        }
-
-        .hero-grid {
-            grid-template-columns: minmax(0, 1fr) 320px;
-            align-items: stretch;
-            gap: 40px;
-        }
-
-        .service-grid,
-        .pricing-grid {
-            grid-template-columns: repeat(4, 1fr);
-        }
-
-        .process-grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        .card {
-            padding: 24px;
-            border: 1px solid var(--line);
-            border-radius: 26px;
-            background: var(--white);
-            box-shadow: 0 12px 42px rgba(23, 4, 49, 0.05);
-        }
-
-        .card p {
-            margin-top: 10px;
-        }
-
-        .metric-list {
-            display: grid;
-            gap: 12px;
-            list-style: none;
-        }
-
-        .metric-list li {
-            padding: 14px;
-            border: 1px solid var(--line);
-            border-radius: 18px;
-            background: var(--soft);
-        }
-
-        .metric-list strong {
-            display: block;
-            color: var(--ink);
-            font-size: 1.2rem;
-            line-height: 1;
-        }
-
-        .metric-list span {
-            display: block;
-            margin-top: 6px;
-            color: var(--muted);
-            font-size: 0.88rem;
-            font-weight: 700;
-        }
-
-        .solution-card {
-            display: grid;
-            grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
-            gap: 22px;
-            padding: 28px;
-            border: 1px solid var(--line);
-            border-radius: 32px;
-            background: var(--white);
-            box-shadow: var(--shadow);
-        }
-
-        .solution-copy {
-            display: grid;
-            gap: 14px;
-        }
-
-        .solution-step {
-            padding: 18px;
-            border: 1px solid var(--line);
-            border-radius: 20px;
-            background: var(--soft);
-        }
-
-        .solution-step span {
-            display: block;
-            margin-bottom: 6px;
-            color: var(--purple);
-            font-size: 0.78rem;
-            font-weight: 900;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .planner-preview {
-            display: grid;
-            gap: 14px;
-            padding: 20px;
-            border: 1px solid var(--line);
-            border-radius: 24px;
-            background: #fcfbff;
-        }
-
-        .preview-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            padding-bottom: 14px;
-            border-bottom: 1px solid var(--line);
-        }
-
-        .preview-header strong {
-            color: var(--ink);
-        }
-
-        .preview-header span,
-        .preview-row span {
-            color: var(--muted);
-            font-size: 0.88rem;
-            font-weight: 750;
-        }
-
-        .preview-row {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 18px;
-            padding: 14px 0;
-            border-bottom: 1px solid var(--line);
-        }
-
-        .preview-row:last-child {
-            border-bottom: 0;
-        }
-
-        .preview-row strong {
-            color: var(--ink);
-            font-size: 0.96rem;
-        }
-
-        .price {
-            margin-top: 12px;
-            color: var(--ink);
-            font-size: 1.35rem;
-            font-weight: 900;
-        }
-
-        .price small {
-            color: var(--muted);
-            font-size: 0.86rem;
-        }
-
-        .cta {
-            padding: 42px;
-            border: 1px solid var(--line);
-            border-radius: 32px;
-            background: var(--ink);
-            color: var(--white);
-            text-align: center;
-        }
-
-        .cta p {
-            max-width: 660px;
-            margin: 14px auto 0;
-            color: rgba(255, 255, 255, 0.82);
-        }
-
-        .cta .eyebrow,
-        .cta h2 {
-            color: var(--white);
-        }
-
-        .cta .actions {
-            justify-content: center;
-        }
-
-        footer {
-            padding: 34px 0;
-            border-top: 1px solid var(--line);
-            color: var(--muted);
-        }
-
-        .footer-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 24px;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                scroll-behavior: auto !important;
-                transition-duration: 0.01ms !important;
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-            }
-        }
-
-        @media (max-width: 980px) {
-            .hero-grid,
-            .solution-card {
-                grid-template-columns: 1fr;
-            }
-
-            .service-grid,
-            .pricing-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 720px) {
-            .container {
-                width: min(100% - 28px, 1080px);
-            }
-
-            .nav {
-                align-items: flex-start;
-                flex-direction: column;
-                padding: 16px 0;
-                gap: 12px;
-            }
-
-            .nav-links {
-                flex-wrap: wrap;
-            }
-
-            section,
-            .hero {
-                padding: 56px 0;
-            }
-
-            .service-grid,
-            .pricing-grid,
-            .process-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .card,
-            .solution-card,
-            .cta {
-                padding: 22px;
-                border-radius: 24px;
-            }
-
-            .preview-row,
-            .preview-header {
-                grid-template-columns: 1fr;
-                align-items: start;
-            }
-
-            .footer-row {
-                flex-direction: column;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="N-Deavour Services delivers practical AI automation, privacy consulting, and emotional support debriefing for small and medium-sized businesses that want advanced technology without enterprise complexity.">
+  <title>N-Deavour Services | Practical AI, Operations &amp; Privacy Support</title>
+  <style>
+    /* --- Tokens ----------------------------------------------- */
+    :root {
+      --ink:         #111118;
+      --accent:      #3d2c6e;
+      --muted:       #5c5474;
+      --white:       #ffffff;
+      --soft:        #f8f7fc;
+      --line:        #e4e0ef;
+      --focus-ring:  #9e6500;
+      --ease:        200ms ease-in-out;
+    }
+
+    /* --- Reset ------------------------------------------------ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-width: 320px;
+      color: var(--ink);
+      background: var(--white);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    /* --- Focus ------------------------------------------------ */
+    :focus-visible {
+      outline: 3px solid var(--focus-ring);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
+    /* --- Accessibility helpers -------------------------------- */
+    .skip-link {
+      position: absolute;
+      inset-block-start: 14px;
+      inset-inline-start: 14px;
+      z-index: 9999;
+      padding: 12px 18px;
+      border-radius: 6px;
+      background: var(--accent);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.875rem;
+      transform: translateY(-200%);
+      transition: transform var(--ease);
+    }
+    .skip-link:focus-visible { transform: translateY(0); }
+
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* --- Typography ------------------------------------------- */
+    h1, h2, h3 {
+      color: var(--ink);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    h1 { font-size: clamp(2.25rem, 5.5vw, 3.75rem); }
+    h2 { font-size: clamp(1.65rem, 3.5vw, 2.5rem); }
+    h3 { font-size: 1.1rem; font-weight: 700; }
+
+    p { color: var(--muted); line-height: 1.7; }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { display: block; max-width: 100%; }
+
+    /* --- Layout primitives ------------------------------------ */
+    .container {
+      width: min(1080px, 100% - 40px);
+      margin-inline: auto;
+    }
+
+    section { padding-block: 96px; }
+
+    .section-label {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* --- Buttons ---------------------------------------------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      min-width: 48px;
+      padding: 0 24px;
+      border: 2px solid transparent;
+      border-radius: 6px;
+      font: inherit;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background var(--ease), color var(--ease), border-color var(--ease);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      border-color: var(--accent);
+    }
+    .btn-primary:hover { background: #2e2054; border-color: #2e2054; }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+    .btn-ghost:hover { background: var(--soft); }
+
+    /* --- Header ----------------------------------------------- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 80px;
+    }
+
+    .logo-link img {
+      width: min(210px, 48vw);
+      height: auto;
+    }
+
+    .site-nav { display: flex; align-items: center; gap: 4px; }
+
+    .site-nav a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 12px;
+      border-radius: 6px;
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 700;
+      transition: background var(--ease), color var(--ease);
+    }
+    .site-nav a:hover { background: var(--soft); color: var(--ink); }
+
+    /* --- Hero ------------------------------------------------- */
+    .hero {
+      padding-block: 112px 96px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      padding: 6px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .hero h1 { max-width: 660px; margin-bottom: 24px; }
+
+    .hero-lead {
+      max-width: 580px;
+      font-size: 1.125rem;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .hero-aside {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .stat-item {
+      padding: 20px 28px;
+      border-top: 1px solid var(--line);
+    }
+    .stat-item:last-child { border-bottom: 1px solid var(--line); }
+
+    .stat-value {
+      display: block;
+      color: var(--accent);
+      font-size: 1.5rem;
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-label {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    /* --- Pillars ---------------------------------------------- */
+    .pillars { background: var(--soft); }
+
+    .pillars-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 56px;
+    }
+
+    .pillars-intro p { font-size: 1.05rem; }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .pillar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 36px 32px;
+      background: var(--white);
+    }
+
+    .pillar-number {
+      color: var(--line);
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .pillar h3 { color: var(--ink); font-size: 1.2rem; line-height: 1.3; }
+
+    .pillar-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      list-style: none;
+      margin-top: auto;
+    }
+
+    .pillar-tags li {
+      padding: 4px 10px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    /* --- About / Philosophy ----------------------------------- */
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-copy h2 { margin-bottom: 20px; }
+
+    .about-copy p + p { margin-top: 18px; }
+
+    .about-values {
+      display: grid;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .value-item {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+    .value-item:first-child { padding-top: 0; border-top: 0; }
+
+    .value-marker {
+      width: 6px;
+      height: 6px;
+      margin-top: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .value-item h3 { margin-bottom: 6px; }
+
+    /* --- Contact ---------------------------------------------- */
+    .contact { background: var(--soft); border-top: 1px solid var(--line); }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-copy h2 { margin-bottom: 16px; }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 32px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .contact-detail-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+    }
+
+    /* --- Form ------------------------------------------------- */
+    .inquiry-form { display: grid; gap: 20px; }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .field label {
+      color: var(--ink);
+      font-size: 0.875rem;
+      font-weight: 700;
+    }
+
+    .field-hint {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 0 14px;
+      height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--white);
+      color: var(--ink);
+      font: inherit;
+      font-size: 0.95rem;
+      transition: border-color var(--ease);
+    }
+
+    .field textarea {
+      height: auto;
+      min-height: 112px;
+      padding: 14px;
+      resize: vertical;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder { color: var(--muted); opacity: 0.7; }
+
+    .field input:focus-visible,
+    .field select:focus-visible,
+    .field textarea:focus-visible {
+      outline: 3px solid var(--focus-ring);
+      outline-offset: 2px;
+      border-color: var(--accent);
+    }
+
+    .field input:hover,
+    .field select:hover,
+    .field textarea:hover { border-color: var(--accent); }
+
+    .field select { appearance: none; padding-inline-end: 36px; cursor: pointer; }
+
+    .select-wrap { position: relative; }
+
+    .select-arrow {
+      position: absolute;
+      inset-block-start: 50%;
+      inset-inline-end: 14px;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: var(--muted);
+    }
+
+    .required-mark { color: var(--accent); margin-inline-start: 2px; }
+
+    .form-note {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    /* --- Footer ----------------------------------------------- */
+    footer {
+      padding-block: 36px;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    footer p { font-size: 0.875rem; }
+
+    /* --- Reduced motion --------------------------------------- */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+
+    /* --- Responsive ------------------------------------------- */
+    @media (max-width: 860px) {
+      section { padding-block: 72px; }
+
+      .hero { padding-block: 72px; }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .hero-aside {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .stat-item {
+        flex: 1;
+        min-width: 150px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+      .stat-item:last-child { border: 1px solid var(--line); }
+
+      .pillars-intro,
+      .about-inner,
+      .contact-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .pillars-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .container { width: min(100%, 100% - 32px); }
+
+      section { padding-block: 56px; }
+      .hero { padding-block: 56px; }
+
+      .site-nav { display: none; }
+
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { width: 100%; justify-content: center; }
+
+      .footer-inner { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
 </head>
 <body>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
-    <header class="site-header">
-        <div class="container nav">
-            <a class="logo-link" href="#top" aria-label="N-Deavour Services home">
-                <img src="logo.png" alt="N-Deavour Services Logo">
-            </a>
-            <nav class="nav-links" aria-label="Primary navigation">
-                <a href="#services">Services</a>
-                <a href="#solutions">Example</a>
-                <a href="#process">Process</a>
-                <a href="#pricing">Pricing</a>
-                <a href="#contact">Contact</a>
-            </nav>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- --- Header ------------------------------------------- -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo-link" href="#top" aria-label="N-Deavour Services -- return to top">
+        <img src="logo.png" alt="N-Deavour Services wordmark">
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#pillars">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- --- Main --------------------------------------------- -->
+  <main id="main-content" tabindex="-1">
+
+    <!-- Hero -->
+    <section id="top" class="hero" aria-labelledby="hero-h1">
+      <div class="container hero-inner">
+
+        <div>
+          <div class="hero-eyebrow" aria-hidden="true">
+            <span class="hero-eyebrow-dot"></span>
+            Privacy-first . AI-practical . Human-centred
+          </div>
+          <h1 id="hero-h1">
+            Advanced technology.<br>
+            No enterprise budget required.
+          </h1>
+          <p class="hero-lead">
+            N-Deavour Services brings practical AI automation, privacy governance,
+            and human support consulting to small and medium-sized businesses that
+            are ready to reduce administrative friction and protect what matters.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Start a conversation</a>
+            <a class="btn btn-ghost"   href="#pillars">Explore services</a>
+          </div>
         </div>
-    </header>
 
-    <main id="main-content" tabindex="-1">
-        <section id="top" class="hero" aria-labelledby="hero-heading">
-            <div class="container grid hero-grid">
-                <div>
-                    <span class="eyebrow">Privacy-first AI and operations support</span>
-                    <h1 id="hero-heading">Practical systems for small businesses with too much admin.</h1>
-                    <p class="lead">N-Deavour Services helps local entrepreneurs and established owners simplify operations, protect sensitive information, and build useful AI workflows without enterprise-level complexity.</p>
-                    <div class="actions">
-                        <a class="button" href="#services">View services</a>
-                        <a class="button secondary" href="#solutions">See example solution</a>
-                    </div>
-                </div>
-                <aside class="card" aria-label="N-Deavour Services overview">
-                    <h2>What changes</h2>
-                    <ul class="metric-list">
-                        <li><strong>Less admin</strong><span>Simpler workflows and fewer repeated tasks</span></li>
-                        <li><strong>Safer AI</strong><span>Useful automation with privacy in mind</span></li>
-                        <li><strong>Clear next steps</strong><span>Small improvements that match your business</span></li>
-                    </ul>
-                </aside>
-            </div>
-        </section>
+        <aside aria-label="At a glance">
+          <div class="stat-item">
+            <span class="stat-value">$80/hr</span>
+            <span class="stat-label">Consulting engagements</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">4 pillars</span>
+            <span class="stat-label">Core service areas</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">Privacy-in</span>
+            <span class="stat-label">Designed from day one</span>
+          </div>
+        </aside>
 
-        <section id="services" aria-labelledby="services-heading">
-            <div class="container">
-                <div class="section-header">
-                    <span class="eyebrow">Services</span>
-                    <h2 id="services-heading">Four focused ways to work together.</h2>
-                    <p>Each service is scoped around the actual workflow, data sensitivity, and level of support needed.</p>
-                </div>
-                <div class="grid service-grid">
-                    <article class="card">
-                        <h3>Operational optimization</h3>
-                        <p>Map workflows, reduce paperwork, and simplify repeatable business administration.</p>
-                    </article>
-                    <article class="card">
-                        <h3>Custom AI solutions</h3>
-                        <p>Build focused tools for planning, intake, reporting, drafting, and automation.</p>
-                    </article>
-                    <article class="card">
-                        <h3>Privacy consulting</h3>
-                        <p>Review how sensitive data moves through your business and identify safer practices.</p>
-                    </article>
-                    <article class="card">
-                        <h3>Privacy management program</h3>
-                        <p>Create policies, roles, procedures, and review routines that fit your size and risk.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
+      </div>
+    </section>
 
-        <section id="solutions" aria-labelledby="solutions-heading">
-            <div class="container">
-                <div class="section-header">
-                    <span class="eyebrow">Example solution</span>
-                    <h2 id="solutions-heading">Financial Planner AI, formatted as a clear decision tool.</h2>
-                    <p>This is one example of a custom AI workflow. It supports planning and administration; it is not regulated financial advice.</p>
-                </div>
-                <article class="solution-card">
-                    <div class="solution-copy">
-                        <div class="solution-step">
-                            <span>Problem</span>
-                            <p>Owners need fast budget and cash-flow context without rebuilding spreadsheets or losing track of assumptions.</p>
-                        </div>
-                        <div class="solution-step">
-                            <span>Workflow</span>
-                            <p>The assistant organizes inputs, highlights missing information, and turns business details into review-ready scenarios.</p>
-                        </div>
-                        <div class="solution-step">
-                            <span>Outcome</span>
-                            <p>The owner gets a cleaner planning conversation, a visible privacy check, and a practical next action.</p>
-                        </div>
-                    </div>
-                    <div class="planner-preview" role="img" aria-label="Financial Planner AI example dashboard with forecast, costs, scenario, privacy check, and next action.">
-                        <div class="preview-header">
-                            <strong>Financial Planner AI</strong>
-                            <span>Example dashboard</span>
-                        </div>
-                        <div class="preview-row"><strong>Revenue forecast</strong><span>$23.3K year-one target</span></div>
-                        <div class="preview-row"><strong>Recurring costs</strong><span>Tech, ecommerce, marketing</span></div>
-                        <div class="preview-row"><strong>Scenario</strong><span>What if admin time drops 20%?</span></div>
-                        <div class="preview-row"><strong>Privacy check</strong><span>Confirm sensitive inputs before use</span></div>
-                        <div class="preview-row"><strong>Next action</strong><span>Review assumptions with owner</span></div>
-                    </div>
-                </article>
-            </div>
-        </section>
+    <!-- Pillars -->
+    <section id="pillars" aria-labelledby="pillars-h2">
+      <div class="container pillars">
 
-        <section id="process" aria-labelledby="process-heading">
-            <div class="container">
-                <div class="section-header">
-                    <span class="eyebrow">Process</span>
-                    <h2 id="process-heading">Small steps before big systems.</h2>
-                </div>
-                <div class="grid process-grid">
-                    <article class="card">
-                        <h3>Discover</h3>
-                        <p>Find the workflow, admin burden, or privacy concern that is creating the most friction.</p>
-                    </article>
-                    <article class="card">
-                        <h3>Design</h3>
-                        <p>Choose the smallest useful improvement and define what success should look like.</p>
-                    </article>
-                    <article class="card">
-                        <h3>Refine</h3>
-                        <p>Test the solution against real use cases and adjust it to fit how the business works.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="pricing" aria-labelledby="pricing-heading">
-            <div class="container">
-                <div class="section-header">
-                    <span class="eyebrow">Pricing</span>
-                    <h2 id="pricing-heading">Clear starting points.</h2>
-                </div>
-                <div class="grid pricing-grid">
-                    <article class="card">
-                        <h3>Optimization</h3>
-                        <p class="price">$80 <small>/ hour</small></p>
-                    </article>
-                    <article class="card">
-                        <h3>Custom AI</h3>
-                        <p class="price">$1,000 <small>/ service</small></p>
-                    </article>
-                    <article class="card">
-                        <h3>Privacy consulting</h3>
-                        <p class="price">$80 <small>/ hour</small></p>
-                    </article>
-                    <article class="card">
-                        <h3>Privacy program</h3>
-                        <p class="price">$2,000 <small>/ service</small></p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" aria-labelledby="contact-heading">
-            <div class="container">
-                <div class="cta">
-                    <span class="eyebrow">Start simple</span>
-                    <h2 id="contact-heading">Choose one workflow to make lighter.</h2>
-                    <p>Bring the paperwork, privacy worry, or repetitive task that is slowing you down. N-Deavour Services can help shape the next practical step.</p>
-                    <div class="actions">
-                        <a class="button" href="#services">Review services</a>
-                        <a class="button secondary" href="#solutions">Review example</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container footer-row">
-            <p>&copy; 2026 N-Deavour Services.</p>
-            <p>Privacy-first AI, operations, and small-business systems.</p>
+        <div class="pillars-intro">
+          <div>
+            <span class="section-label">Services</span>
+            <h2 id="pillars-h2">Three pillars. One focused practice.</h2>
+          </div>
+          <p>
+            Each service area is designed to remove a specific category of operational friction.
+            They can be engaged individually or woven into a broader programme depending on
+            your team size, risk profile, and goals.
+          </p>
         </div>
-    </footer>
+
+        <div class="pillars-grid">
+
+          <article class="pillar">
+            <span class="pillar-number" aria-hidden="true">01</span>
+            <h3>Practical AI Automation &amp; Custom App Building</h3>
+            <p>
+              Custom AI workflows and lightweight applications that handle repeatable
+              administrative tasks -- intake, reporting, drafting, planning, and
+              data annotation -- so your team spends time on work that requires
+              human judgment.
+            </p>
+            <ul class="pillar-tags" aria-label="What this includes">
+              <li>Custom AI solutions</li>
+              <li>Process automation</li>
+              <li>Operational optimization</li>
+              <li>AI data annotation</li>
+            </ul>
+          </article>
+
+          <article class="pillar">
+            <span class="pillar-number" aria-hidden="true">02</span>
+            <h3>Privacy Consulting</h3>
+            <p>
+              Structured privacy reviews and governance programmes aligned with
+              CIPP/C and CIPM frameworks. From identifying data risks to building
+              practical policies, roles, and review routines that fit your size
+              and regulatory exposure.
+            </p>
+            <ul class="pillar-tags" aria-label="What this includes">
+              <li>Privacy risk reviews</li>
+              <li>CIPP/C . CIPM alignment</li>
+              <li>Data handling practices</li>
+              <li>Privacy management programs</li>
+            </ul>
+          </article>
+
+          <article class="pillar">
+            <span class="pillar-number" aria-hidden="true">03</span>
+            <h3>Emotional Support Consulting &amp; Debriefing</h3>
+            <p>
+              Post-incident and ongoing debriefing support for individuals and
+              teams navigating high-stress, high-stakes, or emotionally demanding
+              work environments -- reducing burnout and restoring clarity before
+              it becomes a systemic problem.
+            </p>
+            <ul class="pillar-tags" aria-label="What this includes">
+              <li>Post-incident debriefing</li>
+              <li>Burnout prevention</li>
+              <li>Team resilience support</li>
+              <li>Freelance emotional support</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- About / Philosophy -->
+    <section id="about" aria-labelledby="about-h2">
+      <div class="container about-inner">
+
+        <div class="about-copy">
+          <span class="section-label">About</span>
+          <h2 id="about-h2">Built by someone who cleared the paperwork so others could focus on patients.</h2>
+          <p>
+            N-Deavour Services was founded by Ninian Dougall. The name is a deliberate play
+            on the initials N.D. -- a constant reminder that the work is personal, not just
+            professional.
+          </p>
+          <p>
+            The practice started in healthcare safety, finding ways to remove administrative
+            clutter from staff workflows so they could direct attention back to the people
+            in their care. That same instinct -- reduce the friction, protect the sensitive,
+            and trust the humans -- shapes every engagement today.
+          </p>
+          <p>
+            The vision is simple: technological excellence should not require an enterprise
+            budget. Small and medium-sized businesses deserve equal access to advanced, secure,
+            and ethical innovation.
+          </p>
+        </div>
+
+        <ul class="about-values" aria-label="Operating principles">
+          <li class="value-item">
+            <span class="value-marker" aria-hidden="true"></span>
+            <div>
+              <h3>Privacy is not an afterthought</h3>
+              <p>Every engagement considers how sensitive information moves and where it is at risk, before building anything.</p>
+            </div>
+          </li>
+          <li class="value-item">
+            <span class="value-marker" aria-hidden="true"></span>
+            <div>
+              <h3>The smallest useful improvement first</h3>
+              <p>Complexity compounds fast. The most valuable step is usually the narrowest one that creates real relief.</p>
+            </div>
+          </li>
+          <li class="value-item">
+            <span class="value-marker" aria-hidden="true"></span>
+            <div>
+              <h3>AI is a tool, not a replacement</h3>
+              <p>Automation handles the repetitive. People handle the judgment calls. That boundary is always respected.</p>
+            </div>
+          </li>
+          <li class="value-item">
+            <span class="value-marker" aria-hidden="true"></span>
+            <div>
+              <h3>Human support is part of operations</h3>
+              <p>Burnout and emotional overload are operational problems. Debriefing and support belong in the toolkit alongside process work.</p>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact" aria-labelledby="contact-h2">
+      <div class="container contact-inner">
+
+        <div class="contact-copy">
+          <span class="section-label">Contact</span>
+          <h2 id="contact-h2">Tell me what is slowing you down.</h2>
+          <p>
+            No obligation, no sales process. Describe the friction point and
+            we can decide together whether there is a practical next step
+            worth taking.
+          </p>
+          <div class="contact-detail">
+            <span class="contact-detail-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+                <path d="M2 4l6 5 6-5M2 4h12v9H2V4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Replies via your preferred channel within two business days.
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+                <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M8 5v4l2.5 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </span>
+            Based in Canada. Available remotely across time zones.
+          </div>
+        </div>
+
+        <form class="inquiry-form" id="inquiry-form" novalidate aria-label="Inquiry form">
+
+          <div class="field">
+            <label for="name">Full name <span class="required-mark" aria-hidden="true">*</span></label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              placeholder="Your full name"
+              required
+              aria-required="true"
+              aria-describedby="name-hint"
+            >
+            <span id="name-hint" class="field-hint">Used only to address your reply.</span>
+          </div>
+
+          <div class="field">
+            <label for="email">Email address <span class="required-mark" aria-hidden="true">*</span></label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              placeholder="you@example.com"
+              required
+              aria-required="true"
+            >
+          </div>
+
+          <div class="field">
+            <label for="service">Service interest</label>
+            <div class="select-wrap">
+              <select id="service" name="service" aria-label="Select area of interest">
+                <option value="">Select an area (optional)</option>
+                <option value="ai">AI Automation &amp; Custom App Building</option>
+                <option value="privacy-consult">Privacy Consulting</option>
+                <option value="privacy-program">Privacy Management Program</option>
+                <option value="emotional">Emotional Support &amp; Debriefing</option>
+                <option value="unsure">Not sure yet -- I need to talk it through</option>
+              </select>
+              <svg class="select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+                <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="message">What is the friction point? <span class="required-mark" aria-hidden="true">*</span></label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Describe the workflow, privacy concern, or support need that is taking the most time or causing the most stress."
+              required
+              aria-required="true"
+              aria-describedby="message-hint"
+            ></textarea>
+            <span id="message-hint" class="field-hint">Plain language is fine -- no need for technical detail.</span>
+          </div>
+
+          <div>
+            <button class="btn btn-primary" type="submit">Send inquiry</button>
+            <p class="form-note" style="margin-top:12px;">
+              <span class="required-mark" aria-hidden="true">*</span> Required fields.
+              Information shared here is used only to respond to your inquiry.
+            </p>
+          </div>
+
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- --- Footer ------------------------------------------- -->
+  <footer>
+    <div class="container footer-inner">
+      <p>&copy; 2026 N-Deavour Services. All rights reserved.</p>
+      <p>Privacy-first AI, operations, and human support consulting.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Inline form validation -- accessible error feedback
+    const form = document.getElementById('inquiry-form');
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        let firstError = null;
+
+        ['name', 'email', 'message'].forEach(function (id) {
+          const field = document.getElementById(id);
+          const existing = document.getElementById(id + '-error');
+          if (existing) existing.remove();
+          field.removeAttribute('aria-invalid');
+          if (!field.value.trim()) {
+            field.setAttribute('aria-invalid', 'true');
+            const err = document.createElement('span');
+            err.id = id + '-error';
+            err.setAttribute('role', 'alert');
+            err.style.cssText = 'color:#b91c1c;font-size:0.82rem;font-weight:700;display:block;margin-top:4px;';
+            err.textContent = id === 'email' ? 'A valid email address is required.' : 'This field is required.';
+            field.insertAdjacentElement('afterend', err);
+            field.setAttribute('aria-describedby', (field.getAttribute('aria-describedby') || '') + ' ' + err.id);
+            if (!firstError) firstError = field;
+          }
+        });
+
+        const emailField = document.getElementById('email');
+        if (emailField.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value.trim())) {
+          emailField.setAttribute('aria-invalid', 'true');
+          const existing = document.getElementById('email-error');
+          if (existing) existing.remove();
+          const err = document.createElement('span');
+          err.id = 'email-error';
+          err.setAttribute('role', 'alert');
+          err.style.cssText = 'color:#b91c1c;font-size:0.82rem;font-weight:700;display:block;margin-top:4px;';
+          err.textContent = 'Please enter a valid email address.';
+          emailField.insertAdjacentElement('afterend', err);
+          if (!firstError) firstError = emailField;
+        }
+
+        if (firstError) {
+          firstError.focus();
+        } else {
+          const status = document.createElement('p');
+          status.setAttribute('role', 'status');
+          status.setAttribute('aria-live', 'polite');
+          status.style.cssText = 'color:#15803d;font-weight:700;margin-top:8px;';
+          status.textContent = 'Your inquiry has been received. We will be in touch within two business days.';
+          form.appendChild(status);
+          form.reset();
+        }
+      });
+    }
+  </script>
+
 </body>
 </html>
