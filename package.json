@@ -1,0 +1,24 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NinDougall/ndeavour.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NinDougall/ndeavour/issues"
+  },
+  "homepage": "https://github.com/NinDougall/ndeavour#readme",
+  "dependencies": {
+    "@ai-sdk/google": "^3.0.80",
+    "ai": "^6.0.192"
+  }
+}
