@@ -1,509 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="scroll-smooth" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="N-Deavour Services helps small and local businesses eliminate messy paperwork and administrative overhead so you can focus on what you love - safely, affordably, and ethically.">
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>N-Deavour Services | Practical AI, Operations &amp; Privacy Support</title>
-  <style>
-    /* =========================================================
-       DESIGN TOKENS
-    ========================================================= */
-    :root {
-      --ink:        #111118;
-      --accent:     #3d2c6e;
-      --muted:      #5c5474;
-      --white:      #ffffff;
-      --soft:       #f7f6fb;
-      --line:       #e4e0ef;
-      --focus:      #9e6500;
-      --err:        #b91c1c;
-      --ok:         #15803d;
-      --ease:       200ms ease-in-out;
-      --r-sm:       6px;
-      --r-md:       10px;
+  <meta content="Ethereal Motion storefront for N-Deavour Services - Quiet luxury, custom AI automation, privacy consulting, and emotional support." name="description"/>
+  
+  <!-- Tailwind CSS v3 CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  
+  <!-- Google Fonts: Inter for sharp typography -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'nd-deep-purple': '#0a0514', // Slightly deeper void
+            'nd-lavender': '#d8b4fe',    // Soft lavender
+            'nd-indigo': '#4f46e5',
+            'nd-focus': '#9e6500',       // Accessible gold focus ring
+            'nd-error': '#ef4444',       // High-contrast error red
+            'nd-success': '#22c55e',     // High-contrast success green
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          animation: {
+            'slow-spin': 'spin 120s linear infinite',
+            'nebula-shift': 'nebula 25s ease-in-out infinite alternate',
+          },
+          keyframes: {
+            nebula: {
+              '0%': { transform: 'scale(1) translate(0%, 0%)', opacity: '0.4' },
+              '50%': { transform: 'scale(1.2) translate(5%, 2%)', opacity: '0.6' },
+              '100%': { transform: 'scale(1.1) translate(-2%, -5%)', opacity: '0.4' },
+            }
+          }
+        }
+      }
     }
-
-    /* =========================================================
-       RESET
-    ========================================================= */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
+  </script>
+  
+  <style data-purpose="custom-layout">
     body {
-      min-width: 320px;
-      color: var(--ink);
-      background: var(--white);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system,
-                   "Segoe UI", Helvetica, Arial, sans-serif;
-      font-size: 1rem;
-      line-height: 1.7;
+      background-color: #0a0514;
+      color: #ffffff;
+      overflow-x: hidden;
     }
 
-    a  { color: inherit; text-decoration: none; }
-    ul { list-style: none; }
-    img { display: block; max-width: 100%; }
-
-    /* =========================================================
-       ACCESSIBILITY
-    ========================================================= */
-    :focus-visible {
-      outline: 3px solid var(--focus);
-      outline-offset: 4px;
-      border-radius: var(--r-sm);
+    /* Fluid Nebula Background */
+    .nebula-bg {
+      position: fixed;
+      inset: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 40%, rgba(79, 70, 229, 0.12) 0%, transparent 45%),
+                  radial-gradient(circle at 70% 60%, rgba(216, 180, 254, 0.1) 0%, transparent 45%),
+                  radial-gradient(circle at 50% 50%, rgba(15, 8, 29, 1) 0%, rgba(10, 5, 20, 1) 100%);
+      z-index: -1;
     }
 
-    .skip-link {
-      position: absolute;
-      inset-block-start: 16px;
-      inset-inline-start: 16px;
-      z-index: 9999;
-      padding: 12px 20px;
-      background: var(--accent);
-      color: var(--white);
-      font-weight: 700;
-      font-size: 0.875rem;
-      border-radius: var(--r-sm);
-      transform: translateY(-200%);
-      transition: transform var(--ease);
-    }
-    .skip-link:focus-visible { transform: translateY(0); }
-
-    .sr-only {
-      position: absolute; width: 1px; height: 1px;
-      padding: 0; margin: -1px; overflow: hidden;
-      clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    /* Weightless UI Elements */
+    .btn-ethereal {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(216, 180, 254, 0.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* =========================================================
-       TYPOGRAPHY
-    ========================================================= */
-    h1 {
-      font-size: clamp(2.4rem, 5.5vw, 4rem);
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-      color: var(--ink);
+    .btn-ethereal:hover {
+      background: rgba(216, 180, 254, 0.08);
+      border-color: rgba(216, 180, 254, 0.7);
+      box-shadow: 0 0 40px rgba(216, 180, 254, 0.18);
+      transform: translateY(-2px);
     }
 
-    h2 {
-      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
-      font-weight: 600;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-    }
-
-    h3 {
-      font-size: 1.15rem;
-      font-weight: 600;
-      line-height: 1.3;
-      color: var(--ink);
-    }
-
-    p { color: var(--muted); }
-
-    /* =========================================================
-       LAYOUT PRIMITIVES
-    ========================================================= */
-    .container {
-      width: min(1080px, 100% - 40px);
-      margin-inline: auto;
-    }
-
-    .section-label {
-      display: inline-block;
-      margin-bottom: 14px;
-      color: var(--muted);
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    /* =========================================================
-       BUTTONS
-    ========================================================= */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      min-width: 48px;
-      padding: 0 28px;
-      border: 2px solid transparent;
-      border-radius: var(--r-sm);
-      font: inherit;
-      font-size: 0.95rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background var(--ease), color var(--ease), border-color var(--ease);
-      text-align: center;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: var(--white);
-      border-color: var(--accent);
-    }
-    .btn-primary:hover { background: #2e2054; border-color: #2e2054; }
-    .btn-primary:focus-visible {
-      outline-color: var(--focus);
-      outline-offset: 4px;
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--accent);
-      border-color: var(--accent);
-    }
-    .btn-outline:hover { background: var(--soft); }
-
-    /* =========================================================
-       SITE HEADER
-    ========================================================= */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.95);
-      border-bottom: 1px solid var(--line);
+    /* Translucent Glass Panels for Quiet Luxury */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 255, 255, 0.04);
       backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: all 0.4s ease-in-out;
     }
 
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      min-height: 80px;
+    .glass-card:hover {
+      border-color: rgba(216, 180, 254, 0.12);
+      background: rgba(255, 255, 255, 0.02);
     }
 
-    .logo-link img {
-      width: clamp(120px, 22vw, 160px);
-      height: auto;
+    /* High-contrast custom focus ring */
+    :focus-visible {
+      outline: 3px solid var(--nd-focus, #9e6500);
+      outline-offset: 4px;
     }
 
-    .site-nav {
-      display: flex;
-      align-items: center;
-      gap: 4px;
+    /* Precision Sculpture Styling */
+    .sculpture-container {
+      perspective: 1200px;
+    }
+    
+    .sculpture-line {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: draw 12s ease-out forwards;
     }
 
-    .site-nav a {
-      display: inline-flex;
-      align-items: center;
-      min-height: 44px;
-      padding: 0 14px;
-      border-radius: var(--r-sm);
-      color: var(--accent);
-      font-size: 0.9rem;
-      font-weight: 600;
-      transition: background var(--ease), color var(--ease);
-    }
-    .site-nav a:hover { background: var(--soft); color: var(--ink); }
-
-    /* =========================================================
-       SECTION SHELL
-    ========================================================= */
-    .section { padding-block: 104px; }
-    .section--soft { background: var(--soft); }
-    .section--dark {
-      background: var(--ink);
-      color: var(--white);
-    }
-    .section--dark h2,
-    .section--dark h3,
-    .section--dark p,
-    .section--dark .section-label { color: rgba(255,255,255,0.92); }
-    .section--dark .section-label { color: rgba(255,255,255,0.55); }
-    .section--dark p { color: rgba(255,255,255,0.75); }
-
-    /* =========================================================
-       A. HERO
-    ========================================================= */
-    .hero { padding-block: 120px 96px; }
-
-    .hero-body { max-width: 740px; }
-
-    .hero h1 { margin-bottom: 22px; }
-
-    .hero-lead {
-      max-width: 620px;
-      font-size: clamp(1rem, 1.8vw, 1.15rem);
-      margin-bottom: 36px;
+    @keyframes draw {
+      to { stroke-dashoffset: 0; }
     }
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    /* =========================================================
-       B. PHILOSOPHY
-    ========================================================= */
-    .philosophy-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    .philosophy-copy h2 { margin-bottom: 24px; }
-    .philosophy-copy p + p { margin-top: 18px; }
-
-    .philosophy-aside {
-      padding-block-start: 8px;
-    }
-
-    .journey-list {
-      display: grid;
-      gap: 0;
-    }
-
-    .journey-item {
-      display: grid;
-      grid-template-columns: 28px 1fr;
-      gap: 16px;
-      align-items: start;
-      padding-block: 24px;
-      border-bottom: 1px solid var(--line);
-    }
-    .journey-item:first-child { border-top: 1px solid var(--line); }
-
-    .journey-index {
-      padding-top: 3px;
-      color: var(--accent);
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-    }
-
-    .journey-item h3 { margin-bottom: 6px; }
-
-    /* =========================================================
-       C. SOLUTIONS MATRIX
-    ========================================================= */
-    .solutions-intro {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: end;
-      margin-bottom: 56px;
-    }
-
-    .solutions-intro p { font-size: 1.05rem; }
-
-    .solutions-list { display: grid; gap: 1px; background: var(--line); }
-
-    .solution-row {
-      display: grid;
-      grid-template-columns: 56px 1fr auto;
-      gap: 32px;
-      align-items: start;
-      padding: 36px 0;
-      background: var(--white);
-      border-bottom: 1px solid var(--line);
-    }
-    .solution-row:last-child { border-bottom: 0; }
-
-    .solution-rank {
-      padding-top: 4px;
-      color: var(--line);
-      font-size: 2rem;
-      font-weight: 900;
-      line-height: 1;
-      letter-spacing: -0.04em;
-      user-select: none;
-    }
-
-    .solution-body h3 { margin-bottom: 8px; }
-
-    .solution-weight {
-      display: inline-flex;
-      align-items: center;
-      margin-top: 10px;
-      padding: 4px 10px;
-      background: var(--soft);
-      border-radius: 4px;
-      color: var(--muted);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-    }
-
-    .solution-price {
-      text-align: right;
-      flex-shrink: 0;
-    }
-
-    .price-amount {
-      display: block;
-      color: var(--accent);
-      font-size: 1.4rem;
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-    }
-
-    .price-unit {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 0.82rem;
-      font-weight: 600;
-    }
-
-    /* =========================================================
-       D. HUMAN-CENTRIC
-    ========================================================= */
-    .humancentric-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .humancentric-inner h2 { margin-bottom: 18px; }
-    .humancentric-inner p + p { margin-top: 16px; }
-
-    .humancentric-aside {
-      display: grid;
-      gap: 24px;
-    }
-
-    .hc-point {
-      padding: 28px 0;
-      border-top: 1px solid rgba(255,255,255,0.12);
-    }
-    .hc-point:first-child { border-top: 0; padding-top: 0; }
-
-    .hc-point h3 { margin-bottom: 8px; }
-
-    /* =========================================================
-       E. INQUIRY FORM
-    ========================================================= */
-    .form-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    .form-copy h2 { margin-bottom: 16px; }
-    .form-copy p + p { margin-top: 16px; }
-
-    .inquiry-form { display: grid; gap: 22px; }
-
-    .field { display: grid; gap: 7px; }
-
-    .field label {
-      color: var(--ink);
-      font-size: 0.875rem;
-      font-weight: 700;
-    }
-
-    .required-mark { color: var(--accent); margin-inline-start: 3px; }
-
-    .field-hint {
-      color: var(--muted);
-      font-size: 0.8rem;
-    }
-
-    .field input,
-    .field select,
-    .field textarea {
-      width: 100%;
-      padding: 0 16px;
-      height: 48px;
-      border: 1px solid var(--line);
-      border-radius: var(--r-sm);
-      background: var(--white);
-      color: var(--ink);
-      font: inherit;
-      font-size: 0.95rem;
-      transition: border-color var(--ease), outline var(--ease);
-    }
-
-    .field textarea {
-      height: auto;
-      min-height: 120px;
-      padding: 14px 16px;
-      resize: vertical;
-    }
-
-    .field input::placeholder,
-    .field textarea::placeholder {
-      color: var(--muted);
-      opacity: 0.6;
-    }
-
-    .field input:hover,
-    .field select:hover,
-    .field textarea:hover { border-color: var(--accent); }
-
-    .field input:focus-visible,
-    .field select:focus-visible,
-    .field textarea:focus-visible {
-      border-color: var(--accent);
-      outline: 3px solid var(--focus);
-      outline-offset: 2px;
-    }
-
-    .field input[aria-invalid="true"],
-    .field textarea[aria-invalid="true"] {
-      border-color: var(--err);
-    }
-
-    .field-error {
-      color: var(--err);
-      font-size: 0.82rem;
-      font-weight: 700;
-    }
-
-    .select-wrap { position: relative; }
-    .field select { appearance: none; padding-inline-end: 38px; cursor: pointer; }
-    .select-caret {
-      position: absolute;
-      inset-block-start: 50%;
-      inset-inline-end: 14px;
-      transform: translateY(-50%);
-      pointer-events: none;
-      color: var(--muted);
-    }
-
-    .form-meta {
-      color: var(--muted);
-      font-size: 0.8rem;
-      margin-top: 4px;
-    }
-
-    .form-status {
-      min-height: 1.4em;
-    }
-
-    /* =========================================================
-       FOOTER
-    ========================================================= */
-    footer {
-      padding-block: 36px;
-      border-top: 1px solid var(--line);
-    }
-
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    footer p { font-size: 0.875rem; }
-
-    /* =========================================================
-       REDUCED MOTION
-    ========================================================= */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         scroll-behavior: auto !important;
@@ -513,98 +124,162 @@
       }
     }
 
-    /* =========================================================
-       RESPONSIVE BREAKPOINTS
-    ========================================================= */
-    @media (max-width: 900px) {
-      .section { padding-block: 80px; }
-      .hero { padding-block: 80px 72px; }
-
-      .philosophy-inner,
-      .solutions-intro,
-      .humancentric-inner,
-      .form-inner { grid-template-columns: 1fr; gap: 48px; }
-
-      .solution-row { grid-template-columns: 40px 1fr; }
-      .solution-price { grid-column: 2; text-align: left; }
+    .thin-stroke {
+      stroke-width: 0.15px;
     }
 
-    @media (max-width: 600px) {
-      .container { width: min(100%, 100% - 32px); }
-      .section { padding-block: 64px; }
-      .hero { padding-block: 64px 56px; }
-      .site-nav { display: none; }
-      .hero-actions { flex-direction: column; }
-      .hero-actions .btn { width: 100%; justify-content: center; }
-      .solution-row { grid-template-columns: 1fr; gap: 14px; }
-      .solution-rank { font-size: 1.4rem; }
-      .footer-inner { flex-direction: column; text-align: center; }
+    .skip-link {
+      position: absolute;
+      inset-block-start: 16px;
+      inset-inline-start: 16px;
+      z-index: 9999;
+      padding: 12px 20px;
+      background: #4f46e5;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.875rem;
+      border-radius: 999px;
+      transform: translateY(-200%);
+      transition: transform 0.2s ease-in-out;
+    }
+    .skip-link:focus-visible {
+      transform: translateY(0);
     }
 
-    @media (max-width: 360px) {
-      h1 { font-size: 2rem; }
-      h2 { font-size: 1.5rem; }
+    /* Hide default scrollbars while keeping functionality */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(10, 5, 20, 0.5);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(216, 180, 254, 0.15);
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(216, 180, 254, 0.3);
     }
   </style>
 </head>
-<body>
+<body class="font-sans antialiased selection:bg-nd-lavender/30 selection:text-white">
 
+  <!-- Skip Link -->
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <!-- =====================================================
-       HEADER
-  ====================================================== -->
-  <header class="site-header">
-    <div class="container header-inner">
+  <!-- BEGIN: Ambient Background -->
+  <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none" data-purpose="ambient-background" aria-hidden="true">
+    <div class="nebula-bg animate-nebula-shift"></div>
+    <div class="absolute inset-0 flex items-center justify-center opacity-25 sculpture-container">
+      <svg class="w-[80vh] h-[80vh] text-nd-lavender animate-slow-spin" fill="none" stroke="currentColor" viewbox="0 0 100 100">
+        <g class="thin-stroke">
+          <path class="sculpture-line" d="M50 2 L95 35 L78 90 L22 90 L5 35 Z"></path>
+          <path class="sculpture-line" d="M50 2 L50 35 L95 35"></path>
+          <path class="sculpture-line" d="M50 35 L78 90"></path>
+          <path class="sculpture-line" d="M50 35 L22 90"></path>
+          <path class="sculpture-line" d="M50 35 L5 35"></path>
+          <path class="sculpture-line" d="M50 2 L78 90"></path>
+          <path class="sculpture-line" d="M78 90 L5 35"></path>
+          <path class="sculpture-line" d="M5 35 L95 35"></path>
+          <path class="sculpture-line" d="M95 35 L22 90"></path>
+          <path class="sculpture-line" d="M22 90 L50 2"></path>
+          <circle cx="50" cy="50" r="48" stroke-dasharray="0.5 2" stroke-opacity="0.15"></circle>
+          <circle cx="50" cy="50" r="20" stroke-opacity="0.08"></circle>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <!-- END: Ambient Background -->
 
-      <a class="logo-link" href="#top" aria-label="N-Deavour Services home page">
-        <img
-          src="logo.png"
-          alt="N-Deavour Services Logo - Excellence through efficiency"
-          width="160"
-          height="auto"
-        >
+  <!-- BEGIN: Main Header -->
+  <header class="fixed w-full top-0 z-50 border-b border-white/5 bg-nd-deep-purple/20 backdrop-blur-xl" data-purpose="navigation">
+    <div class="max-w-7xl mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a class="flex items-center space-x-4 group cursor-pointer" href="#top" aria-label="N-Deavour Services home page">
+        <div class="w-8 h-8 border border-nd-lavender/40 rotate-45 flex items-center justify-center transition-transform duration-1000 group-hover:rotate-[225deg]">
+          <div class="w-4 h-4 border border-nd-lavender/40 rotate-45"></div>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-base md:text-lg font-light tracking-[0.3em] text-white uppercase leading-none">N-Deavour</span>
+          <span class="text-[8px] md:text-[9px] tracking-[0.4em] text-nd-lavender/60 uppercase leading-none mt-1">Excellence through efficiency</span>
+        </div>
       </a>
 
-      <nav class="site-nav" aria-label="Primary navigation">
-        <a href="#philosophy">About</a>
-        <a href="#solutions">Services</a>
-        <a href="#support">Support</a>
-        <a href="#contact">Contact</a>
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center space-x-8 lg:space-x-12" data-purpose="main-nav" aria-label="Primary navigation">
+        <a class="text-[10px] font-semibold text-gray-400 hover:text-nd-lavender transition-colors uppercase tracking-[0.35em] min-h-[44px] flex items-center" href="#philosophy">About</a>
+        <a class="text-[10px] font-semibold text-gray-400 hover:text-nd-lavender transition-colors uppercase tracking-[0.35em] min-h-[44px] flex items-center" href="#solutions">Services</a>
+        <a class="text-[10px] font-semibold text-gray-400 hover:text-nd-lavender transition-colors uppercase tracking-[0.35em] min-h-[44px] flex items-center" href="#support">Support</a>
+        <a class="text-[10px] font-semibold text-gray-400 hover:text-nd-lavender transition-colors uppercase tracking-[0.35em] min-h-[44px] flex items-center" href="#chat">Phreedom Chat</a>
+        <a class="px-6 py-2 border border-nd-lavender/20 rounded-full text-[10px] font-semibold text-nd-lavender hover:border-nd-lavender/60 transition-all duration-500 uppercase tracking-[0.35em] min-h-[44px] flex items-center" href="#contact">Contact</a>
       </nav>
 
+      <!-- Mobile Menu Toggle (with high-contrast states) -->
+      <button id="mobile-toggle" class="md:hidden text-nd-lavender/60 p-2 min-w-[44px] min-h-[44px]" aria-expanded="false" aria-controls="mobile-nav" aria-label="Toggle site navigation menu">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+          <path id="hamburger-icon-path" d="M4 8h16M4 16h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Nav Panel -->
+    <div id="mobile-nav" class="hidden md:hidden border-t border-white/5 bg-nd-deep-purple/95 backdrop-blur-2xl transition-all duration-300">
+      <nav class="flex flex-col p-6 space-y-4" aria-label="Mobile navigation">
+        <a class="mobile-nav-link text-xs font-semibold text-gray-300 hover:text-nd-lavender uppercase tracking-[0.3em] py-2" href="#philosophy">About</a>
+        <a class="mobile-nav-link text-xs font-semibold text-gray-300 hover:text-nd-lavender uppercase tracking-[0.3em] py-2" href="#solutions">Services</a>
+        <a class="mobile-nav-link text-xs font-semibold text-gray-300 hover:text-nd-lavender uppercase tracking-[0.3em] py-2" href="#support">Support</a>
+        <a class="mobile-nav-link text-xs font-semibold text-gray-300 hover:text-nd-lavender uppercase tracking-[0.3em] py-2" href="#chat">Phreedom Chat</a>
+        <a class="mobile-nav-link text-xs font-semibold text-nd-lavender uppercase tracking-[0.3em] py-2" href="#contact">Contact</a>
+      </nav>
     </div>
   </header>
+  <!-- END: Main Header -->
 
-  <!-- =====================================================
-       MAIN
-  ====================================================== -->
+  <!-- BEGIN: Main Content -->
   <main id="main-content" tabindex="-1">
 
     <!-- ================================================
-         A. HERO
+         A. HERO SECTION
     ================================================= -->
-    <section id="top" class="section hero" aria-labelledby="hero-heading">
-      <div class="container">
-        <div class="hero-body">
+    <section id="top" class="min-h-screen flex items-center pt-24 pb-12" aria-labelledby="hero-heading">
+      <div class="max-w-7xl mx-auto px-6 md:px-8 w-full text-center">
+        <div class="z-10 space-y-10 flex flex-col items-center" data-purpose="hero-content">
+          
+          <span class="text-[10px] uppercase tracking-[0.5em] font-semibold text-nd-lavender/80 bg-white/[0.02] px-4 py-2 rounded-full border border-white/5" aria-hidden="true">
+            Quiet Luxury &amp; Absolute Operations Safeguarding
+          </span>
 
-          <span class="section-label" aria-hidden="true">N-Deavour Services</span>
-
-          <h1 id="hero-heading">
-            Remove the paperwork.<br>
-            Protect what matters.<br>
+          <!-- Airy Title -->
+          <h1 id="hero-heading" class="text-4xl sm:text-5xl md:text-6xl font-light leading-tight text-white tracking-tight max-w-4xl">
+            Remove the paperwork. <br/>
+            <span class="text-nd-lavender font-extralight opacity-90">Protect what matters.</span> <br/>
             Get back to work.
           </h1>
 
-          <p class="hero-lead">
-            Helping small and local businesses eliminate messy paperwork and
-            administrative overhead so you can focus on what you love&mdash;safely,
-            affordably, and ethically.
+          <!-- Sophisticated Subtitle -->
+          <p class="text-sm sm:text-base md:text-lg text-gray-400 leading-relaxed font-light max-w-2xl tracking-wide opacity-80">
+            Helping small and local businesses eliminate administrative overhead so you can focus on what you love—safely, affordably, and ethically.
           </p>
 
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#contact">Streamline Your Operations</a>
-            <a class="btn btn-outline" href="#solutions">View Services</a>
+          <!-- CTA Action Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-6 w-full sm:w-auto" data-purpose="cta-group">
+            <a class="btn-ethereal px-10 py-4 rounded-full text-white text-[11px] font-semibold uppercase tracking-[0.3em] min-h-[48px] flex items-center justify-center" href="#contact">
+              Streamline Your Operations
+            </a>
+            <a class="px-10 py-4 rounded-full border border-white/5 text-gray-400 text-[11px] font-semibold uppercase tracking-[0.3em] hover:text-white hover:border-white/10 transition-colors min-h-[48px] flex items-center justify-center" href="#solutions">
+              View Services
+            </a>
+          </div>
+
+          <!-- Trust Indicator -->
+          <div class="pt-16 flex flex-col items-center space-y-4 opacity-40" data-purpose="partner-logos">
+            <span class="text-[9px] uppercase tracking-[0.5em] font-semibold text-nd-lavender">A calm path forward</span>
+            <div class="flex space-x-8 text-nd-lavender/40" aria-hidden="true">
+              <div class="w-2 h-2 rounded-full border border-current"></div>
+              <div class="w-2 h-2 rounded-full border border-current"></div>
+              <div class="w-2 h-2 rounded-full border border-current"></div>
+            </div>
           </div>
 
         </div>
@@ -612,164 +287,160 @@
     </section>
 
     <!-- ================================================
-         B. PHILOSOPHY
+         B. FOUNDATIONAL PHILOSOPHY (The Founder's Journey)
     ================================================= -->
-    <section id="philosophy" class="section section--soft" aria-labelledby="philosophy-heading">
-      <div class="container">
-        <div class="philosophy-inner">
-
-          <div class="philosophy-copy">
-            <span class="section-label">About the founder</span>
-            <h2 id="philosophy-heading">
+    <section id="philosophy" class="section border-t border-white/5 py-24" aria-labelledby="philosophy-heading">
+      <div class="max-w-7xl mx-auto px-6 md:px-8">
+        <div class="philosophy-inner grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          
+          <div class="philosophy-copy space-y-8">
+            <span class="section-label">Foundational Philosophy</span>
+            <h2 id="philosophy-heading" class="text-3xl md:text-4xl font-light text-white leading-snug tracking-tight">
               Advanced, secure AI shouldn&rsquo;t only be available to giant corporations.
             </h2>
-            <p>
-              N-Deavour was founded by Ninian Dougall&mdash;a play on the initials N.D.,
-              and a commitment to constantly endeavouring to improve. The practice grew
-              from a simple frustration: the most useful technology keeps getting locked
-              behind enterprise budgets, leaving smaller businesses to manage with
-              outdated processes and real privacy risk.
+            <p class="text-gray-400 font-light leading-relaxed">
+              N-Deavour was founded by Ninian Dougall&mdash;a play on the initials N.D., and a commitment to constantly endeavouring to improve. The practice grew from a simple frustration: the most useful technology keeps getting locked behind enterprise budgets, leaving smaller businesses to manage with outdated processes and real privacy risk.
             </p>
-            <p>
+            <p class="text-gray-400 font-light leading-relaxed">
               The name is personal by design. The work is, too.
             </p>
           </div>
 
-          <ol class="journey-list" aria-label="Founder journey">
+          <div class="philosophy-aside">
+            <ol class="journey-list space-y-2" aria-label="Founder journey">
+              
+              <li class="journey-item glass-card rounded-2xl p-6 md:p-8 flex gap-6 items-start">
+                <span class="journey-index text-lg font-light text-nd-lavender/40 tracking-[0.2em]" aria-hidden="true">01</span>
+                <div class="space-y-2">
+                  <h3 class="text-base font-semibold text-white tracking-wide">Healthcare safety &amp; records privacy</h3>
+                  <p class="text-sm text-gray-400 font-light leading-relaxed">
+                    Started at a local hospice clearing out manual paperwork so frontline staff could focus on patients, while keeping sensitive medical records completely private. The first lesson: removing administrative friction is an act of care.
+                  </p>
+                </div>
+              </li>
 
-            <li class="journey-item">
-              <span class="journey-index" aria-hidden="true">01</span>
-              <div>
-                <h3>Healthcare safety &amp; records privacy</h3>
-                <p>
-                  Started at a local hospice clearing out manual paperwork so frontline
-                  staff could focus on patients, while keeping sensitive medical records
-                  completely private. The first lesson: removing administrative friction
-                  is an act of care.
-                </p>
-              </div>
-            </li>
+              <li class="journey-item glass-card rounded-2xl p-6 md:p-8 flex gap-6 items-start">
+                <span class="journey-index text-lg font-light text-nd-lavender/40 tracking-[0.2em]" aria-hidden="true">02</span>
+                <div class="space-y-2">
+                  <h3 class="text-base font-semibold text-white tracking-wide">AI red-teaming &amp; data privacy testing</h3>
+                  <p class="text-sm text-gray-400 font-light leading-relaxed">
+                    Moved into testing advanced AI systems&mdash;finding critical data leaks, hallucination errors, and privacy vulnerabilities before they reached real users. The second lesson: AI is only safe when someone is actively looking for what can go wrong.
+                  </p>
+                </div>
+              </li>
 
-            <li class="journey-item">
-              <span class="journey-index" aria-hidden="true">02</span>
-              <div>
-                <h3>AI red-teaming &amp; data privacy testing</h3>
-                <p>
-                  Moved into testing advanced AI systems&mdash;finding critical data
-                  leaks, hallucination errors, and privacy vulnerabilities before they
-                  reached real users. The second lesson: AI is only safe when someone
-                  is actively looking for what can go wrong.
-                </p>
-              </div>
-            </li>
+              <li class="journey-item glass-card rounded-2xl p-6 md:p-8 flex gap-6 items-start">
+                <span class="journey-index text-lg font-light text-nd-lavender/40 tracking-[0.2em]" aria-hidden="true">03</span>
+                <div class="space-y-2">
+                  <h3 class="text-base font-semibold text-white tracking-wide">Bringing it to small businesses</h3>
+                  <p class="text-sm text-gray-400 font-light leading-relaxed">
+                    Both threads converged into one practice. AI is simply a practical tool for handling repetitive tasks and safeguarding business data. Small businesses deserve the same access to it that enterprise teams have always had.
+                  </p>
+                </div>
+              </li>
 
-            <li class="journey-item">
-              <span class="journey-index" aria-hidden="true">03</span>
-              <div>
-                <h3>Bringing it to small businesses</h3>
-                <p>
-                  Both threads converged into one practice. AI is simply a practical
-                  tool for handling repetitive tasks and safeguarding business data.
-                  Small businesses deserve the same access to it that enterprise
-                  teams have always had.
-                </p>
-              </div>
-            </li>
-
-          </ol>
+            </ol>
+          </div>
 
         </div>
       </div>
     </section>
 
     <!-- ================================================
-         C. SOLUTIONS MATRIX
+         C. THE SOLUTIONS MATRIX
     ================================================= -->
-    <section id="solutions" class="section" aria-labelledby="solutions-heading">
-      <div class="container">
-
-        <div class="solutions-intro">
-          <div>
-            <span class="section-label">Services</span>
-            <h2 id="solutions-heading">Four practical services. Transparent pricing.</h2>
+    <section id="solutions" class="section border-t border-white/5 py-24" aria-labelledby="solutions-heading">
+      <div class="max-w-7xl mx-auto px-6 md:px-8">
+        
+        <div class="solutions-intro grid grid-cols-1 lg:grid-cols-2 gap-12 items-end mb-16">
+          <div class="space-y-4">
+            <span class="section-label">Solutions Matrix</span>
+            <h2 id="solutions-heading" class="text-3xl md:text-4xl font-light text-white leading-snug tracking-tight">Four practical services. <br class="hidden md:inline"/>Transparent pricing structures.</h2>
           </div>
-          <p>
-            Each service targets a distinct category of operational friction.
-            Engagements are scoped around your actual workflow, data sensitivity,
-            and business size&mdash;not a one-size package.
+          <p class="text-gray-400 font-light leading-relaxed max-w-xl">
+            Each service targets a distinct category of operational friction. Engagements are scoped around your actual workflow, data sensitivity, and business size&mdash;not a one-size package.
           </p>
         </div>
 
-        <ol class="solutions-list" aria-label="Services ordered by revenue priority">
+        <ol class="solutions-list space-y-4" aria-label="Services ordered by revenue priority">
 
-          <li class="solution-row">
-            <span class="solution-rank" aria-hidden="true">01</span>
-            <div class="solution-body">
-              <h3>Custom AI Solutions</h3>
-              <p>
-                Purpose-built AI tools and lightweight applications that automate the
-                repetitive administrative tasks draining your team&rsquo;s time&mdash;intake,
-                reporting, drafting, planning, and data workflows&mdash;without
-                requiring any technical complexity on your end.
-              </p>
-              <span class="solution-weight" aria-label="40 percent of annual revenue mix">40% revenue mix</span>
+          <!-- Pillar 1 -->
+          <li class="solution-row glass-card rounded-2xl p-8 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
+            <div class="flex items-start gap-6 md:gap-8 flex-1">
+              <span class="solution-rank text-3xl md:text-4xl font-extralight text-nd-lavender/20 leading-none mt-1 select-none" aria-hidden="true">01</span>
+              <div class="space-y-3">
+                <h3 class="text-lg font-semibold text-white tracking-wide">Custom AI Solutions</h3>
+                <p class="text-sm text-gray-400 font-light leading-relaxed max-w-2xl">
+                  Purpose-built AI tools and lightweight applications that automate the repetitive administrative tasks draining your team&rsquo;s time&mdash;intake, reporting, drafting, planning, and data workflows&mdash;without requiring any technical complexity on your end.
+                </p>
+                <div class="inline-flex items-center px-3 py-1 bg-white/5 rounded-full border border-white/5 text-[10px] font-semibold text-nd-lavender uppercase tracking-wider" aria-label="40 percent of annual revenue mix">
+                  40% revenue mix
+                </div>
+              </div>
             </div>
-            <div class="solution-price">
-              <span class="price-amount">$1,000</span>
-              <span class="price-unit">flat-rate</span>
+            <div class="solution-price flex flex-col md:items-end flex-shrink-0 border-t border-white/5 md:border-t-0 pt-4 md:pt-0">
+              <span class="price-amount text-2xl font-light text-white">$1,000</span>
+              <span class="price-unit text-xs text-nd-lavender/60 tracking-wider uppercase mt-1">flat-rate</span>
             </div>
           </li>
 
-          <li class="solution-row">
-            <span class="solution-rank" aria-hidden="true">02</span>
-            <div class="solution-body">
-              <h3>Operational Optimization Consulting</h3>
-              <p>
-                Hands-on consulting to map your current workflows, identify system
-                bottlenecks, and clean up redundant paperwork so your team&rsquo;s
-                attention returns to the work that actually matters.
-              </p>
-              <span class="solution-weight" aria-label="25 percent of annual revenue mix">25% revenue mix</span>
+          <!-- Pillar 2 -->
+          <li class="solution-row glass-card rounded-2xl p-8 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
+            <div class="flex items-start gap-6 md:gap-8 flex-1">
+              <span class="solution-rank text-3xl md:text-4xl font-extralight text-nd-lavender/20 leading-none mt-1 select-none" aria-hidden="true">02</span>
+              <div class="space-y-3">
+                <h3 class="text-lg font-semibold text-white tracking-wide">Operational Optimization Consulting</h3>
+                <p class="text-sm text-gray-400 font-light leading-relaxed max-w-2xl">
+                  Hands-on consulting to map your current workflows, identify system bottlenecks, and clean up redundant paperwork so your team&rsquo;s attention returns to the work that actually matters.
+                </p>
+                <div class="inline-flex items-center px-3 py-1 bg-white/5 rounded-full border border-white/5 text-[10px] font-semibold text-nd-lavender uppercase tracking-wider" aria-label="25 percent of annual revenue mix">
+                  25% revenue mix
+                </div>
+              </div>
             </div>
-            <div class="solution-price">
-              <span class="price-amount">$80</span>
-              <span class="price-unit">per hour</span>
-            </div>
-          </li>
-
-          <li class="solution-row">
-            <span class="solution-rank" aria-hidden="true">03</span>
-            <div class="solution-body">
-              <h3>Privacy Consulting</h3>
-              <p>
-                Practical digital privacy consulting aligned with CIPP/C and CIPM
-                frameworks&mdash;reviewing how sensitive data moves through your
-                business and identifying specific, actionable improvements to keep
-                customer and operational records safe and compliant.
-              </p>
-              <span class="solution-weight" aria-label="20 percent of annual revenue mix">20% revenue mix</span>
-            </div>
-            <div class="solution-price">
-              <span class="price-amount">$80</span>
-              <span class="price-unit">per hour</span>
+            <div class="solution-price flex flex-col md:items-end flex-shrink-0 border-t border-white/5 md:border-t-0 pt-4 md:pt-0">
+              <span class="price-amount text-2xl font-light text-white">$80</span>
+              <span class="price-unit text-xs text-nd-lavender/60 tracking-wider uppercase mt-1">per hour</span>
             </div>
           </li>
 
-          <li class="solution-row">
-            <span class="solution-rank" aria-hidden="true">04</span>
-            <div class="solution-body">
-              <h3>Custom Privacy Management Programs</h3>
-              <p>
-                A comprehensive, end-to-end privacy governance framework built
-                explicitly for your small business&mdash;policies, roles, procedures,
-                and review routines that secure your infrastructure against structural
-                data leaks and evolving compliance risks.
-              </p>
-              <span class="solution-weight" aria-label="15 percent of annual revenue mix">15% revenue mix</span>
+          <!-- Pillar 3 -->
+          <li class="solution-row glass-card rounded-2xl p-8 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
+            <div class="flex items-start gap-6 md:gap-8 flex-1">
+              <span class="solution-rank text-3xl md:text-4xl font-extralight text-nd-lavender/20 leading-none mt-1 select-none" aria-hidden="true">03</span>
+              <div class="space-y-3">
+                <h3 class="text-lg font-semibold text-white tracking-wide">Privacy Consulting</h3>
+                <p class="text-sm text-gray-400 font-light leading-relaxed max-w-2xl">
+                  Practical digital privacy consulting aligned with CIPP/C and CIPM frameworks&mdash;reviewing how sensitive data moves through your business and identifying specific, actionable improvements to keep customer and operational records safe and compliant.
+                </p>
+                <div class="inline-flex items-center px-3 py-1 bg-white/5 rounded-full border border-white/5 text-[10px] font-semibold text-nd-lavender uppercase tracking-wider" aria-label="20 percent of annual revenue mix">
+                  20% revenue mix
+                </div>
+              </div>
             </div>
-            <div class="solution-price">
-              <span class="price-amount">$2,000</span>
-              <span class="price-unit">flat-rate</span>
+            <div class="solution-price flex flex-col md:items-end flex-shrink-0 border-t border-white/5 md:border-t-0 pt-4 md:pt-0">
+              <span class="price-amount text-2xl font-light text-white">$80</span>
+              <span class="price-unit text-xs text-nd-lavender/60 tracking-wider uppercase mt-1">per hour</span>
+            </div>
+          </li>
+
+          <!-- Pillar 4 -->
+          <li class="solution-row glass-card rounded-2xl p-8 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
+            <div class="flex items-start gap-6 md:gap-8 flex-1">
+              <span class="solution-rank text-3xl md:text-4xl font-extralight text-nd-lavender/20 leading-none mt-1 select-none" aria-hidden="true">04</span>
+              <div class="space-y-3">
+                <h3 class="text-lg font-semibold text-white tracking-wide">Custom Privacy Management Programs</h3>
+                <p class="text-sm text-gray-400 font-light leading-relaxed max-w-2xl">
+                  A comprehensive, end-to-end privacy governance framework built explicitly for your small business&mdash;policies, roles, procedures, and review routines that secure your infrastructure against structural data leaks and evolving compliance risks.
+                </p>
+                <div class="inline-flex items-center px-3 py-1 bg-white/5 rounded-full border border-white/5 text-[10px] font-semibold text-nd-lavender uppercase tracking-wider" aria-label="15 percent of annual revenue mix">
+                  15% revenue mix
+                </div>
+              </div>
+            </div>
+            <div class="solution-price flex flex-col md:items-end flex-shrink-0 border-t border-white/5 md:border-t-0 pt-4 md:pt-0">
+              <span class="price-amount text-2xl font-light text-white">$2,000</span>
+              <span class="price-unit text-xs text-nd-lavender/60 tracking-wider uppercase mt-1">flat-rate</span>
             </div>
           </li>
 
@@ -778,55 +449,45 @@
     </section>
 
     <!-- ================================================
-         D. HUMAN-CENTRIC
+         D. HUMAN-CENTRIC INTEGRATION
     ================================================= -->
-    <section id="support" class="section section--dark" aria-labelledby="support-heading">
-      <div class="container">
-        <div class="humancentric-inner">
+    <section id="support" class="section border-t border-white/5 py-24" aria-labelledby="support-heading">
+      <div class="max-w-7xl mx-auto px-6 md:px-8">
+        <div class="humancentric-inner grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
 
-          <div>
+          <div class="space-y-6">
             <span class="section-label">Human-centric layer</span>
-            <h2 id="support-heading">
+            <h2 id="support-heading" class="text-3xl md:text-4xl font-light text-white leading-snug tracking-tight">
               Operational change is hard on people. That deserves a dedicated service.
             </h2>
-            <p>
-              Restructuring workflows, adopting new technology, or navigating a major
-              operational shift creates human friction. Burnout, decision fatigue, and
-              unprocessed stress do not fix themselves when you deploy a new tool.
+            <p class="text-gray-400 font-light leading-relaxed">
+              Restructuring workflows, adopting new technology, or navigating a major operational shift creates human friction. Burnout, decision fatigue, and unprocessed stress do not fix themselves when you deploy a new tool.
             </p>
-            <p>
-              Emotional Support Consulting and Debriefing is a structured, confidential
-              service for individuals and teams working through high-pressure transitions.
-              It belongs in the operational toolkit alongside process improvement.
+            <p class="text-gray-400 font-light leading-relaxed">
+              Emotional Support Consulting and Debriefing is a structured, confidential service for individuals and teams working through high-pressure transitions. It belongs in the operational toolkit alongside process improvement.
             </p>
           </div>
 
-          <div class="humancentric-aside" aria-label="What emotional support consulting includes">
+          <div class="humancentric-aside space-y-4" aria-label="What emotional support consulting includes">
 
-            <div class="hc-point">
-              <h3>Post-transition debriefing</h3>
-              <p>
-                Structured sessions following significant operational changes, technology
-                adoptions, or difficult workplace events to restore clarity and reduce
-                residual friction.
+            <div class="hc-point glass-card rounded-2xl p-6 md:p-8 space-y-3">
+              <h3 class="text-base font-semibold text-white tracking-wide">Post-transition debriefing</h3>
+              <p class="text-sm text-gray-400 font-light leading-relaxed">
+                Structured sessions following significant operational changes, technology adoptions, or difficult workplace events to restore clarity and reduce residual friction.
               </p>
             </div>
 
-            <div class="hc-point">
-              <h3>Burnout prevention &amp; resilience support</h3>
-              <p>
-                Ongoing support for owners and team members navigating sustained
-                high-pressure environments&mdash;identifying early signals and creating
-                practical routines before burnout compounds.
+            <div class="hc-point glass-card rounded-2xl p-6 md:p-8 space-y-3">
+              <h3 class="text-base font-semibold text-white tracking-wide">Burnout prevention &amp; resilience support</h3>
+              <p class="text-sm text-gray-400 font-light leading-relaxed">
+                Ongoing support for owners and team members navigating sustained high-pressure environments&mdash;identifying early signals and creating practical routines before burnout compounds.
               </p>
             </div>
 
-            <div class="hc-point">
-              <h3>Freelance emotional support debriefing</h3>
-              <p>
-                Confidential one-to-one debriefing for individuals working in demanding
-                or emotionally intensive roles who need a structured space to process
-                and reset.
+            <div class="hc-point glass-card rounded-2xl p-6 md:p-8 space-y-3">
+              <h3 class="text-base font-semibold text-white tracking-wide">Freelance emotional support debriefing</h3>
+              <p class="text-sm text-gray-400 font-light leading-relaxed">
+                Confidential one-to-one debriefing for individuals working in demanding or emotionally intensive roles who need a structured space to process and reset.
               </p>
             </div>
 
@@ -837,36 +498,107 @@
     </section>
 
     <!-- ================================================
-         E. INQUIRY FORM
+         NEW: Phreedom Chat (Vercel Streaming AI Assistant)
     ================================================= -->
-    <section id="contact" class="section section--soft" aria-labelledby="form-heading">
-      <div class="container">
-        <div class="form-inner">
-
-          <div class="form-copy">
-            <span class="section-label">Get in touch</span>
-            <h2 id="form-heading">Tell me what is slowing your business down.</h2>
-            <p>
-              No sales script, no obligation. Describe the friction point and we can
-              figure out together whether there is a practical next step worth taking.
+    <section id="chat" class="section border-t border-white/5 py-24" aria-labelledby="chat-heading">
+      <div class="max-w-7xl mx-auto px-6 md:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+          
+          <div class="lg:col-span-5 space-y-6">
+            <span class="section-label">Interactive Agent</span>
+            <h2 id="chat-heading" class="text-3xl md:text-4xl font-light text-white leading-snug tracking-tight">
+              Interact with Phreedom.
+            </h2>
+            <p class="text-gray-400 font-light leading-relaxed">
+              Phreedom is our custom, secure, and privacy-aware operations bot. It is configured as an example of N-Deavour&rsquo;s Edge-based AI solutions.
             </p>
-            <p>
-              Responses within two business days via your preferred channel. Based in
-              Canada; available remotely across time zones.
+            <p class="text-gray-400 font-light leading-relaxed">
+              Ask Phreedom about reducing administrative overhead, auditing data privacy gaps, aligning with CIPP/C guidelines, or managing structural transition burnout.
+            </p>
+            
+            <div class="hidden lg:block pt-4 text-xs text-nd-lavender/50 tracking-wider space-y-2">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-nd-success animate-ping"></span>
+                <span>Vercel Edge Runtime Active</span>
+              </div>
+              <div>Model: gemini-1.5-pro via streamText</div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 w-full">
+            <div class="glass-card rounded-2xl border border-white/5 p-6 md:p-8 flex flex-col h-[520px]" aria-label="Phreedom Chat Window">
+              <!-- Chat Logs -->
+              <div id="phreedom-chat-log" class="flex-1 overflow-y-auto space-y-6 pr-2 mb-6" role="log" aria-live="polite" aria-relevant="additions">
+                <!-- Initial Welcome -->
+                <div class="chat-message bot flex items-start space-x-4 max-w-[85%]">
+                  <div class="w-8 h-8 rounded-full border border-nd-lavender/40 flex-shrink-0 flex items-center justify-center text-[10px] font-semibold text-nd-lavender tracking-wider" aria-hidden="true">
+                    ND
+                  </div>
+                  <div class="bg-white/[0.03] border border-white/5 rounded-2xl rounded-tl-none p-4 space-y-1">
+                    <span class="block text-[10px] uppercase tracking-wider font-semibold text-nd-lavender/60">Phreedom</span>
+                    <p class="text-sm text-gray-300 font-light leading-relaxed">
+                      Hello. I am Phreedom. What operational or privacy friction can we streamline for your business today?
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Input Status Area -->
+              <div id="phreedom-status" class="text-xs text-nd-lavender/60 mb-2 h-4 tracking-wide" role="status" aria-live="polite"></div>
+
+              <!-- Chat Compose Form -->
+              <form id="phreedom-form" class="flex gap-3 pt-4 border-t border-white/5" aria-label="Chat input compose">
+                <label for="phreedom-input" class="sr-only">Type a message to Phreedom</label>
+                <input
+                  id="phreedom-input"
+                  type="text"
+                  autocomplete="off"
+                  placeholder="Ask about automation, privacy frameworks..."
+                  class="flex-1 bg-white/[0.02] border border-white/5 rounded-full px-6 h-12 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-nd-lavender focus:ring-1 focus:ring-nd-lavender/40"
+                  required
+                />
+                <button type="submit" class="btn-ethereal rounded-full px-6 h-12 flex items-center justify-center text-xs font-semibold text-nd-lavender tracking-wider uppercase">
+                  Send
+                </button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         E. HIGH-INTENT INQUIRY FORM
+    ================================================= -->
+    <section id="contact" class="section border-t border-white/5 py-24" aria-labelledby="form-heading">
+      <div class="max-w-7xl mx-auto px-6 md:px-8">
+        <div class="form-inner grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+
+          <div class="form-copy space-y-6">
+            <span class="section-label">Get in touch</span>
+            <h2 id="form-heading" class="text-3xl md:text-4xl font-light text-white leading-snug tracking-tight">
+              Tell me what is slowing your business down.
+            </h2>
+            <p class="text-gray-400 font-light leading-relaxed">
+              No sales script, no obligation. Describe the friction point and we can figure out together whether there is a practical next step worth taking.
+            </p>
+            <p class="text-gray-400 font-light leading-relaxed">
+              Responses within two business days via your preferred channel. Based in Canada; available remotely across time zones.
             </p>
           </div>
 
           <form
-            class="inquiry-form"
+            class="inquiry-form glass-card rounded-2xl p-8 border border-white/5 space-y-6"
             id="inquiry-form"
             novalidate
             aria-label="Business inquiry form"
           >
 
             <div class="field">
-              <label for="full-name">
+              <label for="full-name" class="block text-xs font-semibold uppercase tracking-wider text-gray-300">
                 Full name
-                <span class="required-mark" aria-hidden="true">*</span>
+                <span class="required-mark text-nd-lavender" aria-hidden="true">*</span>
               </label>
               <input
                 id="full-name"
@@ -877,16 +609,17 @@
                 required
                 aria-required="true"
                 aria-describedby="full-name-hint"
+                class="mt-2 block w-full bg-white/[0.02] border border-white/5 rounded-xl h-12 px-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-nd-lavender focus:ring-1 focus:ring-nd-lavender/40 transition-all duration-300"
               >
-              <span id="full-name-hint" class="field-hint">
+              <span id="full-name-hint" class="field-hint text-[11px] text-gray-500 font-light mt-1.5 block">
                 Used only to address your reply.
               </span>
             </div>
 
             <div class="field">
-              <label for="biz-email">
+              <label for="biz-email" class="block text-xs font-semibold uppercase tracking-wider text-gray-300">
                 Business email
-                <span class="required-mark" aria-hidden="true">*</span>
+                <span class="required-mark text-nd-lavender" aria-hidden="true">*</span>
               </label>
               <input
                 id="biz-email"
@@ -896,13 +629,14 @@
                 placeholder="you@yourbusiness.com"
                 required
                 aria-required="true"
+                class="mt-2 block w-full bg-white/[0.02] border border-white/5 rounded-xl h-12 px-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-nd-lavender focus:ring-1 focus:ring-nd-lavender/40 transition-all duration-300"
               >
             </div>
 
             <div class="field">
-              <label for="service-interest">Area of interest</label>
-              <div class="select-wrap">
-                <select id="service-interest" name="service_interest">
+              <label for="service-interest" class="block text-xs font-semibold uppercase tracking-wider text-gray-300">Area of interest</label>
+              <div class="select-wrap mt-2">
+                <select id="service-interest" name="service_interest" class="block w-full bg-[#0d091a] border border-white/5 rounded-xl h-12 px-4 text-sm text-white focus:outline-none focus:border-nd-lavender focus:ring-1 focus:ring-nd-lavender/40 transition-all duration-300">
                   <option value="">Select a service (optional)</option>
                   <option value="ai">Custom AI Solutions</option>
                   <option value="ops">Operational Optimization</option>
@@ -911,24 +645,13 @@
                   <option value="support">Emotional Support &amp; Debriefing</option>
                   <option value="unsure">Not sure yet</option>
                 </select>
-                <svg
-                  class="select-caret"
-                  width="16" height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6"
-                        stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
               </div>
             </div>
 
             <div class="field">
-              <label for="bottleneck">
+              <label for="bottleneck" class="block text-xs font-semibold uppercase tracking-wider text-gray-300">
                 Describe your operation bottleneck
-                <span class="required-mark" aria-hidden="true">*</span>
+                <span class="required-mark text-nd-lavender" aria-hidden="true">*</span>
               </label>
               <textarea
                 id="bottleneck"
@@ -937,25 +660,25 @@
                 required
                 aria-required="true"
                 aria-describedby="bottleneck-hint"
+                class="mt-2 block w-full bg-white/[0.02] border border-white/5 rounded-xl min-h-[120px] p-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-nd-lavender focus:ring-1 focus:ring-nd-lavender/40 transition-all duration-300"
               ></textarea>
-              <span id="bottleneck-hint" class="field-hint">
+              <span id="bottleneck-hint" class="field-hint text-[11px] text-gray-500 font-light mt-1.5 block">
                 Plain language is fine. No technical detail required.
               </span>
             </div>
 
-            <div>
-              <button class="btn btn-primary" type="submit">
+            <div class="pt-2">
+              <button class="btn-ethereal rounded-full w-full py-4 text-white text-[11px] font-semibold uppercase tracking-[0.3em] min-h-[48px] flex items-center justify-center" type="submit">
                 Send Inquiry
               </button>
-              <p class="form-meta" style="margin-top: 12px;">
-                <span aria-hidden="true"><span class="required-mark">*</span></span>
-                Required fields. Information shared here is used solely to respond to your inquiry.
+              <p class="form-meta text-[10px] text-gray-500 font-light mt-4 text-center">
+                <span class="required-mark text-nd-lavender" aria-hidden="true">*</span> Required fields. Information shared here is used solely to respond to your inquiry.
               </p>
             </div>
 
             <div
               id="form-status"
-              class="form-status"
+              class="form-status text-xs text-center font-semibold h-4 tracking-wide"
               role="status"
               aria-live="polite"
               aria-atomic="true"
@@ -968,21 +691,72 @@
     </section>
 
   </main>
+  <!-- END: Main Content -->
 
-  <!-- =====================================================
-       FOOTER
-  ====================================================== -->
-  <footer>
-    <div class="container footer-inner">
-      <p>&copy; 2026 N-Deavour Services. All rights reserved.</p>
-      <p>Privacy-first AI &amp; operations consulting for small business.</p>
+  <!-- BEGIN: Footer -->
+  <footer class="border-t border-white/5 py-12 bg-nd-deep-purple/40 backdrop-blur-md" data-purpose="simple-footer">
+    <div class="max-w-7xl mx-auto px-6 md:px-8 flex flex-col md:flex-row justify-between items-center text-[9px] tracking-[0.4em] text-gray-500 uppercase font-light gap-6">
+      <div>&copy; 2026 N-Deavour Services. All rights reserved.</div>
+      <div class="flex space-x-10 mt-6 md:mt-0">
+        <a class="hover:text-nd-lavender transition-colors min-h-[44px] flex items-center" href="#">Privacy</a>
+        <a class="hover:text-nd-lavender transition-colors min-h-[44px] flex items-center" href="#">Terms</a>
+        <a class="hover:text-nd-lavender transition-colors min-h-[44px] flex items-center" href="#">Cookies</a>
+      </div>
     </div>
   </footer>
+  <!-- END: Footer -->
 
-  <!-- =====================================================
-       FORM VALIDATION
-  ====================================================== -->
+  <!-- Subtle mouse interaction script for parallax ethereal feel -->
   <script>
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth) - 0.5;
+      const y = (e.clientY / window.innerHeight) - 0.5;
+      
+      // Move the nebula slightly opposite to mouse
+      const nebula = document.querySelector('.nebula-bg');
+      if (nebula) {
+        nebula.style.transform = `scale(1.15) translate(${x * -2}%, ${y * -2}%)`;
+      }
+      
+      // Move sculpture slightly with mouse
+      const sculpture = document.querySelector('.sculpture-container');
+      if (sculpture) {
+        sculpture.style.transform = `translate(${x * 15}px, ${y * 15}px)`;
+      }
+    });
+
+    // Mobile Menu Toggle
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+    const hamburgerIconPath = document.getElementById('hamburger-icon-path');
+
+    if (mobileToggle && mobileNav) {
+      mobileToggle.addEventListener('click', () => {
+        const expanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+        mobileToggle.setAttribute('aria-expanded', !expanded);
+        mobileNav.classList.toggle('hidden');
+        
+        if (!expanded) {
+          // Change SVG to X icon
+          hamburgerIconPath.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+        } else {
+          // Change back to Hamburger lines
+          hamburgerIconPath.setAttribute('d', 'M4 8h16M4 16h16');
+        }
+      });
+
+      // Close menu when a link is clicked
+      const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileToggle.setAttribute('aria-expanded', 'false');
+          mobileNav.classList.add('hidden');
+          hamburgerIconPath.setAttribute('d', 'M4 8h16M4 16h16');
+        });
+      });
+    }
+
+    // FORM VALIDATION & INTERACTIVE FEEDBACK
     (function () {
       var form    = document.getElementById('inquiry-form');
       var status  = document.getElementById('form-status');
@@ -1012,13 +786,12 @@
         field.setAttribute('aria-invalid', 'true');
         var err   = document.createElement('span');
         err.id    = id + '-err';
-        err.className = 'field-error';
+        err.className = 'field-error block text-xs font-semibold text-nd-error mt-1.5';
         err.setAttribute('role', 'alert');
         err.textContent = message;
         field.insertAdjacentElement('afterend', err);
         var existing = field.getAttribute('aria-describedby') || '';
-        field.setAttribute('aria-describedby',
-          (existing + ' ' + err.id).trim());
+        field.setAttribute('aria-describedby', (existing + ' ' + err.id).trim());
       }
 
       function isValidEmail(v) {
@@ -1028,33 +801,26 @@
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         status.textContent = '';
-
-        var fields = [
-          { id: 'full-name',   msg: 'Please enter your full name.' },
-          { id: 'biz-email',   msg: '' },
-          { id: 'bottleneck',  msg: 'Please describe your operation bottleneck.' },
-        ];
+        status.className = 'form-status text-xs text-center font-semibold h-4 tracking-wide';
 
         var firstInvalid = null;
 
-        fields.forEach(function (f) {
-          clearError(f.id);
-        });
-
         // Required text fields
         ['full-name', 'bottleneck'].forEach(function (id) {
+          clearError(id);
           var el = document.getElementById(id);
           if (!el || !el.value.trim()) {
             setError(id, id === 'full-name'
               ? 'Please enter your full name.'
               : 'Please describe your operation bottleneck.');
-            if (!firstInvalid) firstInvalid = document.getElementById(id);
+            if (!firstInvalid) firstInvalid = el;
           }
         });
 
         // Email validation
         var emailEl = document.getElementById('biz-email');
         if (emailEl) {
+          clearError('biz-email');
           var ev = emailEl.value.trim();
           if (!ev) {
             setError('biz-email', 'A business email address is required.');
@@ -1070,10 +836,126 @@
           return;
         }
 
-        // Success
+        // Success simulation
         form.reset();
-        status.textContent =
-          'Your inquiry has been received. We will be in touch within two business days.';
+        status.className = 'form-status text-xs text-center font-semibold h-4 tracking-wide text-nd-success';
+        status.textContent = 'Your inquiry has been received. We will be in touch within two business days.';
+      });
+    }());
+
+    // STREAMING AI CHAT WITH PHREEDOM (VERCEL EDGE CONNECTED)
+    (function () {
+      const chatForm = document.getElementById('phreedom-form');
+      const chatInput = document.getElementById('phreedom-input');
+      const chatLog = document.getElementById('phreedom-chat-log');
+      const chatStatus = document.getElementById('phreedom-status');
+
+      if (!chatForm || !chatInput || !chatLog) return;
+
+      function appendMessage(sender, text, isBot) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `chat-message ${isBot ? 'bot' : 'user'} flex items-start space-x-4 max-w-[85%] ${isBot ? '' : 'self-end ml-auto flex-row-reverse space-x-reverse'}`;
+        
+        // Avatar element
+        const avatar = document.createElement('div');
+        avatar.className = `w-8 h-8 rounded-full border border-nd-lavender/40 flex-shrink-0 flex items-center justify-center text-[10px] font-semibold text-nd-lavender tracking-wider`;
+        avatar.textContent = isBot ? 'ND' : 'U';
+        avatar.setAttribute('aria-hidden', 'true');
+
+        // Content box
+        const box = document.createElement('div');
+        box.className = `${isBot ? 'bg-white/[0.03] border border-white/5' : 'bg-nd-indigo/20 border border-nd-indigo/35'} rounded-2xl p-4 space-y-1 ${isBot ? 'rounded-tl-none' : 'rounded-tr-none'}`;
+        
+        const label = document.createElement('span');
+        label.className = 'block text-[10px] uppercase tracking-wider font-semibold text-nd-lavender/60';
+        label.textContent = sender;
+
+        const body = document.createElement('p');
+        body.className = 'text-sm text-gray-300 font-light leading-relaxed whitespace-pre-wrap';
+        body.textContent = text;
+
+        box.appendChild(label);
+        box.appendChild(body);
+        msgDiv.appendChild(avatar);
+        msgDiv.appendChild(box);
+        chatLog.appendChild(msgDiv);
+        
+        // Smooth scroll to bottom
+        chatLog.scrollTop = chatLog.scrollHeight;
+        return body;
+      }
+
+      chatForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const query = chatInput.value.trim();
+        if (!query) return;
+
+        // Clean input field
+        chatInput.value = '';
+        appendMessage('You', query, false);
+
+        chatStatus.textContent = 'Phreedom is thinking...';
+
+        // Add a placeholder bot response element to stream into
+        const botResponsePara = appendMessage('Phreedom', '', true);
+
+        try {
+          // Payload with single message. We can persist history in sessionStorage if desired.
+          const messages = [{ role: 'user', content: query }];
+          
+          const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ messages }),
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          chatStatus.textContent = 'Phreedom is writing...';
+
+          const reader = response.body.getReader();
+          const decoder = new TextDecoder();
+          let buffer = '';
+          let accumulatedText = '';
+
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split('\n');
+            buffer = lines.pop() || ''; // Hold onto incomplete line
+
+            for (const line of lines) {
+              if (line.startsWith('0:')) {
+                // Vercel AI SDK text protocol chunk
+                try {
+                  const textChunk = JSON.parse(line.slice(2));
+                  accumulatedText += textChunk;
+                  botResponsePara.textContent = accumulatedText;
+                  chatLog.scrollTop = chatLog.scrollHeight;
+                } catch (err) {
+                  // Fallback if parsing fails
+                }
+              } else if (!line.startsWith('0:') && line.trim()) {
+                // Support raw serverless streams if not using the custom v3 protocol
+                if (line.match(/^[\d]+:/)) continue; // skip other control messages
+                accumulatedText += line;
+                botResponsePara.textContent = accumulatedText;
+                chatLog.scrollTop = chatLog.scrollHeight;
+              }
+            }
+          }
+          chatStatus.textContent = 'Message completed.';
+        } catch (error) {
+          console.error('Error fetching stream:', error);
+          botResponsePara.textContent = 'Phreedom experienced a connection error. Please verify GEMINI_API_KEY environment variable is active on your Vercel Dashboard.';
+          chatStatus.textContent = 'Connection error.';
+        }
       });
     }());
   </script>
