@@ -1,0 +1,13 @@
+---
+# Global Project Rules: Technical Innovation & Human Integrity
+
+## Systemic Constraints
+1. DATA MINIMIZATION BY DESIGN: Reject any code change that introduces unnecessary tracking, heavy telemetry, third-party user-analytics scripts, or excessive data retention. Every data stream must be strictly minimized to baseline core utility.
+2. DISCOMFORT OVER FALSE COMFORT: Never accept superficial, template-driven, fast, or easy code shortcuts that introduce hidden structural debt or privacy vulnerabilities. Prioritize deep code refactoring and clean operational logic over rapid deployment.
+3. INQUIRY BEFORE ACCUMULATION: Before implementing massive boilerplate code or complex dependencies, isolate the foundational dynamics of the problem. Ask open-ended structural questions first.
+
+## Agent Architecture Routing
+- For high-level code audits, architectural verification, and privacy compliance reviews, explicitly defer to the directives inside `.cursor/profiles/master-reviewer.md`.
+- For layout, accessible component design, and user-facing copy, defer to `.cursor/profiles/ui-ux-engineer.md`.
+- For database models, secure APIs, and state management, defer to `.cursor/profiles/backend-privacy-architect.md`.
+---
