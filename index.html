@@ -160,6 +160,91 @@
     ::-webkit-scrollbar-thumb:hover {
       background: rgba(216, 180, 254, 0.3);
     }
+
+    /* Section label typography */
+    .section-label {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(216, 180, 254, 0.7);
+      margin-bottom: 1rem;
+    }
+
+    /* Emphasis blockquote for foundational purpose */
+    .emphasis-quote {
+      border-left: 2px solid rgba(216, 180, 254, 0.35);
+      padding: 1.25rem 1.5rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 0 1rem 1rem 0;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.92);
+      line-height: 1.7;
+    }
+
+    /* Sequential process formula */
+    .formula-flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem 0.75rem;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 1rem;
+      font-size: 0.875rem;
+      color: rgba(216, 180, 254, 0.9);
+      letter-spacing: 0.05em;
+    }
+
+    .formula-flow .formula-step {
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    .formula-flow .formula-arrow {
+      color: rgba(216, 180, 254, 0.5);
+      font-size: 1.1rem;
+    }
+
+    /* Statistics / proof point cards */
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 200;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+
+    /* Accessible expandable values blocks */
+    .values-details summary {
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .values-details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .values-details summary::after {
+      content: "+";
+      float: right;
+      color: rgba(216, 180, 254, 0.6);
+      font-weight: 300;
+      font-size: 1.25rem;
+    }
+
+    .values-details[open] summary::after {
+      content: "2";
+    }
+
+    .values-details summary:focus-visible {
+      outline: 3px solid #9e6500;
+      outline-offset: 4px;
+      border-radius: 0.5rem;
+    }
+
   </style>
 </head>
 <body class="font-sans antialiased selection:bg-nd-lavender/30 selection:text-white">
@@ -208,7 +293,8 @@
 
       <!-- Navigation Links -->
       <nav class="hidden md:flex items-center space-x-8 lg:space-x-12" data-purpose="main-nav" aria-label="Primary navigation">
-        <a class="text-[10px] font-semibold text-gray-400 hover:text-nd-lavender transition-colors uppercase tracking-[0.35em] min-h-[44px] flex items-center" href="#philosophy">About</a>
+        <a class="text-[10px] font-semibold text-gray-400 hover:text-nd-lavender transition-colors uppercase tracking-[0.35em] min-h-[44px] flex items-center" href="#foundation">About</a>
+        <a class="text-[10px] font-semibold text-gray-400 hover:text-nd-lavender transition-colors uppercase tracking-[0.35em] min-h-[44px] flex items-center" href="#align">Methodology</a>
         <a class="text-[10px] font-semibold text-gray-400 hover:text-nd-lavender transition-colors uppercase tracking-[0.35em] min-h-[44px] flex items-center" href="#solutions">Services</a>
         <a class="text-[10px] font-semibold text-gray-400 hover:text-nd-lavender transition-colors uppercase tracking-[0.35em] min-h-[44px] flex items-center" href="#support">Support</a>
         <a class="text-[10px] font-semibold text-gray-400 hover:text-nd-lavender transition-colors uppercase tracking-[0.35em] min-h-[44px] flex items-center" href="#chat">Phreedom Chat</a>
@@ -226,11 +312,12 @@
     <!-- Mobile Nav Panel -->
     <div id="mobile-nav" class="hidden md:hidden border-t border-white/5 bg-nd-deep-purple/95 backdrop-blur-2xl transition-all duration-300">
       <nav class="flex flex-col p-6 space-y-4" aria-label="Mobile navigation">
-        <a class="mobile-nav-link text-xs font-semibold text-gray-300 hover:text-nd-lavender uppercase tracking-[0.3em] py-2" href="#philosophy">About</a>
-        <a class="mobile-nav-link text-xs font-semibold text-gray-300 hover:text-nd-lavender uppercase tracking-[0.3em] py-2" href="#solutions">Services</a>
-        <a class="mobile-nav-link text-xs font-semibold text-gray-300 hover:text-nd-lavender uppercase tracking-[0.3em] py-2" href="#support">Support</a>
-        <a class="mobile-nav-link text-xs font-semibold text-gray-300 hover:text-nd-lavender uppercase tracking-[0.3em] py-2" href="#chat">Phreedom Chat</a>
-        <a class="mobile-nav-link text-xs font-semibold text-nd-lavender uppercase tracking-[0.3em] py-2" href="#contact">Contact</a>
+        <a class="mobile-nav-link text-xs font-semibold text-gray-300 hover:text-nd-lavender uppercase tracking-[0.3em] py-2 min-h-[44px] flex items-center" href="#foundation">About</a>
+        <a class="mobile-nav-link text-xs font-semibold text-gray-300 hover:text-nd-lavender uppercase tracking-[0.3em] py-2 min-h-[44px] flex items-center" href="#align">Methodology</a>
+        <a class="mobile-nav-link text-xs font-semibold text-gray-300 hover:text-nd-lavender uppercase tracking-[0.3em] py-2 min-h-[44px] flex items-center" href="#solutions">Services</a>
+        <a class="mobile-nav-link text-xs font-semibold text-gray-300 hover:text-nd-lavender uppercase tracking-[0.3em] py-2 min-h-[44px] flex items-center" href="#support">Support</a>
+        <a class="mobile-nav-link text-xs font-semibold text-gray-300 hover:text-nd-lavender uppercase tracking-[0.3em] py-2 min-h-[44px] flex items-center" href="#chat">Phreedom Chat</a>
+        <a class="mobile-nav-link text-xs font-semibold text-nd-lavender uppercase tracking-[0.3em] py-2 min-h-[44px] flex items-center" href="#contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -280,6 +367,39 @@
               <div class="w-2 h-2 rounded-full border border-current"></div>
               <div class="w-2 h-2 rounded-full border border-current"></div>
             </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         A2. FOUNDATIONAL WHY & STRATEGIC HORIZONS
+    ================================================= -->
+    <section id="foundation" class="section border-t border-white/5 py-24" aria-labelledby="foundation-heading">
+      <div class="max-w-7xl mx-auto px-6 md:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+
+          <div class="space-y-8">
+            <span class="section-label">The Foundational Why</span>
+            <h2 id="foundation-heading" class="text-3xl md:text-4xl font-light text-white leading-snug tracking-tight">
+              Align daily systems with your deepest convictions.
+            </h2>
+            <blockquote class="emphasis-quote text-base md:text-lg font-light">
+              &ldquo;To support people and their businesses in aligning their actions with their ideals, so that their daily systems and actions reflect their deepest convictions, empowering communities to authentically thrive.&rdquo;
+            </blockquote>
+          </div>
+
+          <div class="space-y-8" aria-labelledby="strategic-horizons-heading">
+            <span class="section-label">Strategic Horizons</span>
+            <h3 id="strategic-horizons-heading" class="text-xl font-semibold text-white tracking-wide">Vision Statement</h3>
+            <p class="text-gray-400 font-light leading-relaxed">
+              To build a future where technical innovation and human integrity operate in perfect harmony&mdash;safeguarding ethical data privacy while creating strong, compassionate community structures that prevent isolation and cultivate universal health.
+            </p>
+            <h3 class="text-xl font-semibold text-white tracking-wide">Mission Statement</h3>
+            <p class="text-gray-400 font-light leading-relaxed">
+              We provide a reliable, technical and psychological bridge that helps small enterprises and individuals build resilient digital tools and intentional support spaces. By translating operational efficiency, user experiences, and rigorous compliance methodologies into real-world action, we ensure technology and daily actions sustainably serve human potential.
+            </p>
           </div>
 
         </div>
@@ -340,6 +460,316 @@
               </li>
 
             </ol>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         B2. OPERATIONALIZING CORPORATE VALUES
+    ================================================= -->
+    <section id="values" class="section border-t border-white/5 py-24" aria-labelledby="values-heading">
+      <div class="max-w-7xl mx-auto px-6 md:px-8">
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end mb-16">
+          <div class="space-y-4">
+            <span class="section-label">Ethical Guardrails</span>
+            <h2 id="values-heading" class="text-3xl md:text-4xl font-light text-white leading-snug tracking-tight">
+              Operationalizing corporate values into daily action.
+            </h2>
+          </div>
+          <p class="text-gray-400 font-light leading-relaxed max-w-xl">
+            Values are not slogans on a wall. They are decision filters applied before every contract, deployment, and conversation.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" role="list" aria-label="Corporate values in practice">
+
+          <details class="values-details glass-card rounded-2xl p-6 md:p-8 space-y-4" role="listitem">
+            <summary class="text-base font-semibold text-white tracking-wide min-h-[44px] flex items-center">
+              Integrity (The Value-Action Bridge)
+            </summary>
+            <div class="space-y-4 pt-4 border-t border-white/5">
+              <p class="text-sm text-gray-400 font-light leading-relaxed">
+                Choosing courage over comfort; choosing what is right over what is fun, fast, or easy; and practicing our values rather than simply professing them.
+              </p>
+              <div class="space-y-3">
+                <p class="text-sm font-semibold text-nd-lavender tracking-wide">Go-No-Go Alignment Check</p>
+                <p class="text-sm text-gray-400 font-light leading-relaxed">
+                  We decline any contract&mdash;whether data annotation, a privacy audit, or a community support shift&mdash;if an entity exploits or compromises human sovereignty or conflicts with collective community well-being.
+                </p>
+              </div>
+              <div class="space-y-3">
+                <p class="text-sm font-semibold text-nd-lavender tracking-wide">Discomfort over False Comfort Rule</p>
+                <p class="text-sm text-gray-400 font-light leading-relaxed">
+                  Choosing short-term discomfort of hard conversations or deep code refactors over the fake comfort of a broken, unaligned process.
+                </p>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div class="space-y-2">
+                  <p class="text-xs font-semibold text-white uppercase tracking-wider">Daring Leadership</p>
+                  <ul class="text-sm text-gray-400 font-light leading-relaxed space-y-1 list-disc list-inside">
+                    <li>Halting deployments to address security, bias, or privacy vulnerabilities</li>
+                    <li>Data minimization by choice, not convenience</li>
+                  </ul>
+                </div>
+                <div class="space-y-2">
+                  <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Armored Leadership (Stopped)</p>
+                  <ul class="text-sm text-gray-400 font-light leading-relaxed space-y-1 list-disc list-inside">
+                    <li>Taking &ldquo;easy money&rdquo; contracts that train models causing systemic friction or bias</li>
+                    <li>Letting systems slide into chaos because realignment feels tedious</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="values-details glass-card rounded-2xl p-6 md:p-8 space-y-4" role="listitem">
+            <summary class="text-base font-semibold text-white tracking-wide min-h-[44px] flex items-center">
+              Curiosity (The Grounded Inquiry)
+            </summary>
+            <div class="space-y-4 pt-4 border-t border-white/5">
+              <p class="text-sm text-gray-400 font-light leading-relaxed">
+                Leaning into the unknown with absolute presence and refusing to rush to surface answers.
+              </p>
+              <div class="space-y-3">
+                <p class="text-sm font-semibold text-nd-lavender tracking-wide">&ldquo;Stay Curious Longer&rdquo; Rule</p>
+                <p class="text-sm text-gray-400 font-light leading-relaxed">
+                  Asking at least three open-ended, clarifying questions before proposing a structural change instead of rushing to superficial checklist solutions.
+                </p>
+              </div>
+              <div class="space-y-3">
+                <p class="text-sm font-semibold text-nd-lavender tracking-wide">Headless Presence Metric</p>
+                <p class="text-sm text-gray-400 font-light leading-relaxed">
+                  When on a shift for the Certified Listeners Society or conducting a support debrief, analytical dashboards are turned off to prioritize active, deep listening to human reality.
+                </p>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div class="space-y-2">
+                  <p class="text-xs font-semibold text-white uppercase tracking-wider">Daring Leadership</p>
+                  <ul class="text-sm text-gray-400 font-light leading-relaxed space-y-1 list-disc list-inside">
+                    <li>Asking &ldquo;What does this system or person need to thrive?&rdquo;</li>
+                    <li>Admitting technical edge cases and dedicating focused research time</li>
+                  </ul>
+                </div>
+                <div class="space-y-2">
+                  <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Armored Leadership (Stopped)</p>
+                  <ul class="text-sm text-gray-400 font-light leading-relaxed space-y-1 list-disc list-inside">
+                    <li>Hiding behind automated templates or clinical jargon</li>
+                    <li>Overcommitting independent hours to the point of burnout</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         B3. A.L.I.G.N. ARCHITECTURE SHOWCASE
+    ================================================= -->
+    <section id="align" class="section border-t border-white/5 py-24" aria-labelledby="align-heading">
+      <div class="max-w-7xl mx-auto px-6 md:px-8">
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end mb-16">
+          <div class="space-y-4">
+            <span class="section-label">Core Methodology</span>
+            <h2 id="align-heading" class="text-3xl md:text-4xl font-light text-white leading-snug tracking-tight">
+              The A.L.I.G.N. Architecture&trade;
+            </h2>
+            <p class="text-sm text-nd-lavender/70 font-light tracking-wide">Automated Logic &amp; Integrated Governance Network</p>
+          </div>
+          <p class="text-gray-400 font-light leading-relaxed max-w-xl">
+            Five sequential implementation phases that connect technical automation with human adoption&mdash;because systems only succeed when people embrace them.
+          </p>
+        </div>
+
+        <!-- Logic-Empathy Bridge callout -->
+        <div class="glass-card rounded-2xl p-8 md:p-10 mb-12 border border-nd-lavender/10" role="note" aria-labelledby="logic-empathy-heading">
+          <h3 id="logic-empathy-heading" class="text-lg font-semibold text-white tracking-wide mb-4">The Logic-Empathy Bridge</h3>
+          <blockquote class="emphasis-quote text-base font-light mb-4 border-l-nd-lavender/50">
+            &ldquo;Systems fail not because the technical code breaks, but because the human user disconnects.&rdquo;
+          </blockquote>
+          <p class="text-sm text-gray-400 font-light leading-relaxed max-w-3xl">
+            Sustainable enterprise optimization lives at the intersection of cold technical logic (Strict Data Governance Defenses) and warm human psychology (Zero-Friction User Onboarding).
+          </p>
+        </div>
+
+        <!-- 5 Pillars -->
+        <ol class="space-y-4 mb-12" aria-label="A.L.I.G.N. implementation phases">
+          <li class="glass-card rounded-2xl p-6 md:p-8 flex gap-6 items-start">
+            <span class="text-lg font-light text-nd-lavender/40 tracking-[0.2em] flex-shrink-0" aria-hidden="true">A</span>
+            <div class="space-y-2">
+              <h3 class="text-base font-semibold text-white tracking-wide">Pillar 1: Asset &amp; Minimization Audit</h3>
+              <p class="text-sm text-gray-400 font-light leading-relaxed">
+                Mapping data lineage from customer intake to executive reporting, identifying manual loops, and applying data minimization guidelines to drop non-essential steps and cut regulatory data footprints.
+              </p>
+            </div>
+          </li>
+          <li class="glass-card rounded-2xl p-6 md:p-8 flex gap-6 items-start">
+            <span class="text-lg font-light text-nd-lavender/40 tracking-[0.2em] flex-shrink-0" aria-hidden="true">L</span>
+            <div class="space-y-2">
+              <h3 class="text-base font-semibold text-white tracking-wide">Pillar 2: Logic Pipeline Engineering</h3>
+              <p class="text-sm text-gray-400 font-light leading-relaxed">
+                Constructing modern background data pathways (Make, n8n, custom Python scripts) to seamlessly transfer raw data between APIs, removing human intervention from transactional data entry.
+              </p>
+            </div>
+          </li>
+          <li class="glass-card rounded-2xl p-6 md:p-8 flex gap-6 items-start">
+            <span class="text-lg font-light text-nd-lavender/40 tracking-[0.2em] flex-shrink-0" aria-hidden="true">I</span>
+            <div class="space-y-2">
+              <h3 class="text-base font-semibold text-white tracking-wide">Pillar 3: Interface Visibility Engine</h3>
+              <p class="text-sm text-gray-400 font-light leading-relaxed">
+                Translating complex databases into exactly three centralized control panels via our <em>Dashboards That Deliver</em> blueprint: an Executive Strategy View, an Operational Efficiency View, and a Financial Performance View.
+              </p>
+            </div>
+          </li>
+          <li class="glass-card rounded-2xl p-6 md:p-8 flex gap-6 items-start">
+            <span class="text-lg font-light text-nd-lavender/40 tracking-[0.2em] flex-shrink-0" aria-hidden="true">G</span>
+            <div class="space-y-2">
+              <h3 class="text-base font-semibold text-white tracking-wide">Pillar 4: Governance &amp; Risk Defenses</h3>
+              <p class="text-sm text-gray-400 font-light leading-relaxed">
+                Wrapping pipelines in high-grade data privacy guardrails, stress-testing setups against data exposure risks, and red-teaming automated pipelines to insulate private customer details.
+              </p>
+            </div>
+          </li>
+          <li class="glass-card rounded-2xl p-6 md:p-8 flex gap-6 items-start">
+            <span class="text-lg font-light text-nd-lavender/40 tracking-[0.2em] flex-shrink-0" aria-hidden="true">N</span>
+            <div class="space-y-2">
+              <h3 class="text-base font-semibold text-white tracking-wide">Pillar 5: Nurtured Team Adoption</h3>
+              <p class="text-sm text-gray-400 font-light leading-relaxed">
+                Using a person-centered psychological framework to guide administrative teams through organizational change, clearing tech anxiety via customized micro-training videos and simple playbooks.
+              </p>
+            </div>
+          </li>
+        </ol>
+
+        <!-- Sequential dependency -->
+        <div class="space-y-6" aria-labelledby="dependency-heading">
+          <h3 id="dependency-heading" class="text-base font-semibold text-white tracking-wide text-center">The Sequential Process Dependency</h3>
+          <div class="formula-flow" role="img" aria-label="Audit A, then Logic L, then Interface I, then Governance G, then Nurture N">
+            <span class="formula-step">Audit (A)</span>
+            <span class="formula-arrow" aria-hidden="true">&rarr;</span>
+            <span class="formula-step">Logic (L)</span>
+            <span class="formula-arrow" aria-hidden="true">&rarr;</span>
+            <span class="formula-step">Interface (I)</span>
+            <span class="formula-arrow" aria-hidden="true">&rarr;</span>
+            <span class="formula-step">Governance (G)</span>
+            <span class="formula-arrow" aria-hidden="true">&rarr;</span>
+            <span class="formula-step">Nurture (N)</span>
+          </div>
+          <p class="text-sm text-gray-400 font-light leading-relaxed text-center max-w-2xl mx-auto">
+            Zero business ROI is captured if the client&rsquo;s internal team rejects the systems layout. Nurtured team onboarding (N) is the ultimate anchor that preserves the entire architecture.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================================================
+         B4. PROPRIETARY IP TERMINOLOGY
+    ================================================= -->
+    <section id="terminology" class="section border-t border-white/5 py-24" aria-labelledby="terminology-heading">
+      <div class="max-w-7xl mx-auto px-6 md:px-8">
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end mb-16">
+          <div class="space-y-4">
+            <span class="section-label">Proprietary Language</span>
+            <h2 id="terminology-heading" class="text-3xl md:text-4xl font-light text-white leading-snug tracking-tight">
+              Terms that define how we diagnose and fix operational friction.
+            </h2>
+          </div>
+          <p class="text-gray-400 font-light leading-relaxed max-w-xl">
+            Shared vocabulary accelerates alignment. These branded terms describe the exact problems we solve and the mechanisms we deploy.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" role="list" aria-label="Proprietary terminology definitions">
+
+          <div class="glass-card rounded-2xl p-6 md:p-8 space-y-3" role="listitem">
+            <h3 class="text-base font-semibold text-white tracking-wide">The Status Quo Tax</h3>
+            <p class="text-sm text-gray-400 font-light leading-relaxed">
+              The compounding financial, operational, and emotional drain a business owner pays every month they remain stuck inside manual administrative workflows.
+            </p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 md:p-8 space-y-3" role="listitem">
+            <h3 class="text-base font-semibold text-white tracking-wide">Administrative Drag</h3>
+            <p class="text-sm text-gray-400 font-light leading-relaxed">
+              The specific timeline delay caused by pulling data, cleaning files, and compiling views manually.
+            </p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 md:p-8 space-y-3" role="listitem">
+            <h3 class="text-base font-semibold text-white tracking-wide">Data Symmetrics</h3>
+            <p class="text-sm text-gray-400 font-light leading-relaxed">
+              Building tech workflows that mirror the natural psychological and behavioral routines of employees.
+            </p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 md:p-8 space-y-3" role="listitem">
+            <h3 class="text-base font-semibold text-white tracking-wide">The Data Minimization Gate</h3>
+            <p class="text-sm text-gray-400 font-light leading-relaxed">
+              A secure compliance check built directly into automated pipelines to strip out high-risk personal details before external platform transfer.
+            </p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 md:p-8 space-y-3 md:col-span-2 lg:col-span-1" role="listitem">
+            <h3 class="text-base font-semibold text-white tracking-wide">Systemic Friction Scan</h3>
+            <p class="text-sm text-gray-400 font-light leading-relaxed">
+              Our diagnostic method for identifying the exact step where a team member gets overwhelmed and resorts to manual paper backups.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         B5. VERIFIED SYSTEM PROOF POINTS
+    ================================================= -->
+    <section id="proof-points" class="section border-t border-white/5 py-24" aria-labelledby="proof-heading">
+      <div class="max-w-7xl mx-auto px-6 md:px-8">
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end mb-16">
+          <div class="space-y-4">
+            <span class="section-label">Verified Proof Points</span>
+            <h2 id="proof-heading" class="text-3xl md:text-4xl font-light text-white leading-snug tracking-tight">
+              Real-world metrics from deployed systems.
+            </h2>
+          </div>
+          <p class="text-gray-400 font-light leading-relaxed max-w-xl">
+            Quantifiable outcomes from A.L.I.G.N. deployments&mdash;not projections, but measured operational impact.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" role="list" aria-label="Verified system metrics">
+
+          <div class="glass-card rounded-2xl p-8 md:p-10 space-y-4 text-center" role="listitem">
+            <span class="stat-value" aria-hidden="true">50%</span>
+            <h3 class="text-base font-semibold text-white tracking-wide">Administrative Drag Reduction</h3>
+            <p class="text-sm text-gray-400 font-light leading-relaxed">
+              Slashing internal reporting timelines by 50%&mdash;reducing manual report creation from 80 hours down to 40 hours per operational cycle.
+            </p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-8 md:p-10 space-y-4 text-center" role="listitem">
+            <span class="stat-value" aria-hidden="true">$21K+</span>
+            <h3 class="text-base font-semibold text-white tracking-wide">Structural Financial Capture</h3>
+            <p class="text-sm text-gray-400 font-light leading-relaxed">
+              Resource optimization workflows generating over $21,000 in recurring annual savings for a single deployment.
+            </p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-8 md:p-10 space-y-4 text-center" role="listitem">
+            <span class="stat-value" aria-hidden="true">100%</span>
+            <h3 class="text-base font-semibold text-white tracking-wide">Flawless Compliance Velocity</h3>
+            <p class="text-sm text-gray-400 font-light leading-relaxed">
+              Information response architectures delivering a 100% on-time response rate for complex data requests completed in under 14 days.
+            </p>
           </div>
 
         </div>
