@@ -194,3 +194,21 @@ input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: var(--
   .band, .hero { background: none; }
   a { color: inherit; }
 }
+
+/* Why now */
+.stats { list-style: none; display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.stats li { background: var(--lavender-soft); border-radius: var(--radius); padding: 1.5rem; }
+.stats strong { display: block; font-size: 2.5rem; line-height: 1.1; color: var(--violet); margin-bottom: 0.5rem; }
+.stats span { color: var(--text-soft); font-size: 1rem; display: block; }
+.why-after { margin-top: 1.75rem; color: var(--text-soft); font-size: 1.125rem; }
+
+.recommend { margin-top: 1.5rem; max-width: var(--measure); color: var(--charcoal); }
+.recommend strong { color: var(--violet); }
+
+.portrait { display: block; width: 100%; max-width: 20rem; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); margin: 1.5rem 0 0; box-shadow: 0 8px 28px rgba(55, 39, 87, 0.12); }
+
+@media (min-width: 52rem) {
+  .stats { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+}
+
+.portrait + .quote { margin-top: 1.75rem; }
