@@ -212,3 +212,10 @@ input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: var(--
 }
 
 .portrait + .quote { margin-top: 1.75rem; }
+
+/* Experience strip under the hero */
+.proof { padding: 0 0 1rem; }
+.proof-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-top: 1px solid var(--lavender); border-bottom: 1px solid var(--lavender); padding: 1.5rem 0; }
+.proof-list strong { display: block; color: var(--violet); font-size: 1.5rem; line-height: 1.2; margin-bottom: 0.25rem; }
+.proof-list span { color: var(--text-soft); font-size: 0.9375rem; display: block; }
+@media (min-width: 52rem) { .proof-list { grid-template-columns: repeat(4, 1fr); gap: 2rem; } }
