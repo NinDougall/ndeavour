@@ -69,3 +69,38 @@
     });
   });
 })();
+
+// Gentle motion: soft header edge on scroll and a one-time fade-in for sections.
+// Nothing here is needed to use the page.
+(function () {
+  var header = document.querySelector('.site-header');
+  if (header) {
+    var onScroll = function () { header.classList.toggle('scrolled', window.scrollY > 8); };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (calm) return;
+
+  if (!('IntersectionObserver' in window)) return;
+
+  var targets = document.querySelectorAll(
+    '.section-head, .stats li, .why-after, .service, .recommend, .step, .pilot-cols > div, ' +
+    '.proof-list li, .about-grid > div, .contact-grid > div'
+  );
+  targets.forEach(function (el) { el.classList.add('reveal'); });
+
+  var observer = new IntersectionObserver(function (entries) {
+    var n = 0;
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      entry.target.style.setProperty('--d', Math.min(n * 80, 320) + 'ms');
+      entry.target.classList.add('is-in');
+      observer.unobserve(entry.target);
+      n++;
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -5% 0px' });
+
+  targets.forEach(function (el) { observer.observe(el); });
+})();
