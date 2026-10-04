@@ -256,3 +256,98 @@ input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: var(--
   .hero-panel { padding: 3rem 2.5rem 2.25rem; }
   .hero-points { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 }
+
+/* ------------------------------------------------------------------
+   Interaction and motion
+   Colour and shadow changes always apply. Movement only applies when
+   the visitor has not asked for reduced motion. Hover effects only
+   apply on devices that can hover.
+   ------------------------------------------------------------------ */
+:root { --ease: cubic-bezier(0.22, 0.8, 0.28, 1); }
+
+.service, .stats li, .step, .pilot-cols > div, .facts li, .proof-list li, .hero-points li,
+.form-card, .button, .portrait, .site-header {
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), background-color 0.25s ease,
+    border-color 0.25s ease, color 0.2s ease;
+}
+.step::before { transition: transform 0.3s var(--ease), background-color 0.25s ease; }
+.checks li::before { transition: background-color 0.25s ease, transform 0.3s var(--ease); }
+.service .price { transition: border-color 0.25s ease; }
+
+/* Items that gain a hover highlight need a little room for it */
+.proof-list li { padding: 0.75rem 1rem; margin: -0.75rem -1rem; border-radius: 16px; }
+.hero-points li { padding: 0.75rem 1rem; margin: -0.75rem -1rem; border-radius: 14px; }
+
+/* Header gains a soft edge once the page is scrolled */
+.site-header.scrolled { box-shadow: 0 6px 24px rgba(55, 39, 87, 0.08); }
+
+/* Nav links: underline slides in from the left */
+.site-nav a { position: relative; text-decoration: none; }
+.site-nav a:hover { text-decoration: none; }
+.site-nav a::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0.2rem; height: 2px;
+  background: var(--lilac); border-radius: 2px; transform: scaleX(0); transform-origin: left;
+}
+.site-nav a:hover::after, .site-nav a:focus-visible::after { transform: scaleX(1); }
+
+/* Form fields respond to hover and focus */
+input[type="text"], input[type="email"], select, textarea { transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+input[type="text"]:focus:not([aria-invalid="true"]), input[type="email"]:focus:not([aria-invalid="true"]), select:focus, textarea:focus:not([aria-invalid="true"]) { border-color: var(--violet); box-shadow: 0 0 0 4px rgba(169, 157, 198, 0.35); }
+
+@media (hover: hover) and (pointer: fine) {
+  .service:hover { border-color: var(--lilac); box-shadow: 0 16px 36px rgba(55, 39, 87, 0.12); }
+  .service:hover .price { border-top-color: var(--lilac); }
+  .stats li:hover, .step:hover { background: var(--white); box-shadow: 0 0 0 1.5px var(--lilac), 0 14px 30px rgba(55, 39, 87, 0.1); }
+  .pilot-cols > div:hover, .facts li:hover { box-shadow: 0 0 0 1.5px var(--lilac), 0 14px 30px rgba(55, 39, 87, 0.1); }
+  .checks li:hover::before { background: var(--violet); }
+  .proof-list li:hover { background: var(--lavender-soft); }
+  .hero-points li:hover { background: rgba(255, 255, 255, 0.08); }
+  .form-card:hover { box-shadow: 0 14px 36px rgba(55, 39, 87, 0.12); }
+  input[type="text"]:hover:not([aria-invalid="true"]), input[type="email"]:hover:not([aria-invalid="true"]), select:hover, textarea:hover:not([aria-invalid="true"]) { border-color: var(--violet); }
+  .portrait:hover { box-shadow: 0 18px 40px rgba(55, 39, 87, 0.18); }
+  .button:hover { box-shadow: 0 10px 22px rgba(55, 39, 87, 0.22); }
+  .hero-panel .button:hover { box-shadow: 0 10px 24px rgba(10, 5, 25, 0.35); }
+  .button:active { box-shadow: none; }
+
+  /* A soft light follows the pointer across the hero panel */
+  .hero-panel::before {
+    content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0;
+    background: radial-gradient(26rem circle at var(--mx, 72%) var(--my, 28%), rgba(224, 214, 248, 0.16), transparent 62%);
+    transition: opacity 0.5s ease;
+  }
+  .hero-panel:hover::before { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes rise { from { opacity: 0; translate: 0 16px; } to { opacity: 1; translate: 0 0; } }
+  @keyframes drift { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(12px) rotate(2.5deg); } }
+
+  .site-nav a::after { transition: transform 0.3s var(--ease); }
+  .wordmark img { transition: transform 0.4s var(--ease); }
+
+  /* One calm entrance for the hero */
+  .hero-copy > * { animation: rise 0.8s var(--ease) both; }
+  .hero-copy > :nth-child(2) { animation-delay: 0.08s; }
+  .hero-copy > :nth-child(3) { animation-delay: 0.16s; }
+  .hero-points li { animation: rise 0.8s var(--ease) both; animation-delay: 0.3s; }
+  .hero-points li:nth-child(2) { animation-delay: 0.38s; }
+  .hero-points li:nth-child(3) { animation-delay: 0.46s; }
+  .hero-panel::after { animation: drift 18s ease-in-out infinite; }
+
+  /* Everything further down fades up once as it scrolls into view (see site.js) */
+  .reveal { opacity: 0; }
+  .reveal.is-in { animation: rise 0.7s var(--ease) both; animation-delay: var(--d, 0ms); }
+
+  @media (hover: hover) and (pointer: fine) {
+    .service:hover, .stats li:hover, .step:hover, .pilot-cols > div:hover, .facts li:hover { transform: translateY(-4px); }
+    .proof-list li:hover, .hero-points li:hover { transform: translateY(-2px); }
+    .step:hover::before { transform: scale(1.1); }
+    .checks li:hover::before { transform: scale(1.25); }
+    .button:hover { transform: translateY(-2px); }
+    .button:active { transform: translateY(0); }
+    .portrait:hover { transform: translateY(-3px) scale(1.012); }
+    .wordmark:hover img { transform: rotate(-8deg) scale(1.06); }
+  }
+}
+
+@media print { .reveal { opacity: 1 !important; animation: none !important; } }
