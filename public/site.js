@@ -9,7 +9,11 @@
 
   function clearErrors() {
     form.querySelectorAll('.field-error').forEach(function (el) { el.remove(); });
-    form.querySelectorAll('[aria-invalid]').forEach(function (el) { el.removeAttribute('aria-invalid'); });
+    form.querySelectorAll('[aria-invalid]').forEach(function (el) {
+      el.removeAttribute('aria-invalid');
+      var ids = (el.getAttribute('aria-describedby') || '').split(/\s+/).filter(function (id) { return id && !/-error$/.test(id); });
+      if (ids.length) el.setAttribute('aria-describedby', ids.join(' ')); else el.removeAttribute('aria-describedby');
+    });
   }
 
   function showError(input, message) {
@@ -103,4 +107,25 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -5% 0px' });
 
   targets.forEach(function (el) { observer.observe(el); });
+})();
+
+// Pause animations: lets visitors stop the logo float, shimmer and other motion.
+// Hidden for visitors who already ask their device for reduced motion.
+(function () {
+  var button = document.getElementById('motion-toggle');
+  if (!button) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var root = document.documentElement;
+  function setOff(off) {
+    root.classList.toggle('motion-off', off);
+    button.setAttribute('aria-pressed', off ? 'true' : 'false');
+    try { localStorage.setItem('ndeavour-motion', off ? 'off' : 'on'); } catch (e) { /* storage may be blocked */ }
+  }
+
+  var saved = null;
+  try { saved = localStorage.getItem('ndeavour-motion'); } catch (e) { /* storage may be blocked */ }
+  button.hidden = false;
+  setOff(saved === 'off');
+  button.addEventListener('click', function () { setOff(!root.classList.contains('motion-off')); });
 })();

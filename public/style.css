@@ -161,7 +161,7 @@ section { padding: 4.5rem 0; }
 .contact-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
 .contact-details { list-style: none; margin-top: 1.5rem; }
 .contact-details li { margin-bottom: 1rem; }
-.contact-details span { display: block; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dusk); }
+.contact-details span { display: block; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--violet); }
 .contact-details a, .contact-details div { font-size: 1.125rem; }
 .form-card { background: var(--white); border: 1px solid var(--lavender); border-radius: var(--radius); padding: 1.5rem; box-shadow: 0 8px 28px rgba(55, 39, 87, 0.08); }
 .field { margin-bottom: 1.25rem; }
@@ -373,14 +373,7 @@ input[type="text"]:focus:not([aria-invalid="true"]), input[type="email"]:focus:n
 
 
 /* Sharper edges and a little tonal gradient (all from the brand palette) */
-.band { background: var(--white); }
-
-/* A mostly light page: sections are separated by a hairline and space, and cards stand out on white */
-main > section + section { border-top: 1px solid var(--lavender); }
-main > .hero + section, main > .proof, main > .proof + section { border-top: 0; }
-.service { border-color: var(--lilac); box-shadow: 0 1px 2px rgba(55, 39, 87, 0.08), 0 8px 22px rgba(55, 39, 87, 0.07); }
-.facts li { background: var(--lavender-soft); border: 1px solid var(--lavender); box-shadow: none; }
-.form-card { border-color: var(--lilac); box-shadow: 0 1px 2px rgba(55, 39, 87, 0.08), 0 8px 22px rgba(55, 39, 87, 0.07); }
+.band { background: linear-gradient(180deg, var(--lavender-soft) 0%, var(--white) 140%); }
 
 /* Hero text: clearer on the dark panel, with one accent colour */
 .hero-panel .lede, .hero-points span { color: #f4f0fc; }
@@ -415,3 +408,22 @@ main > .hero + section, main > .proof, main > .proof + section { border-top: 0; 
 
 /* On phones the headline runs the full width, so the logo mark steps aside */
 @media (max-width: 39.99rem) { .hero-mark { display: none; } }
+
+/* Accessibility */
+/* A tall sticky header would cover the page on small screens and at high zoom, so it only sticks from tablet width up */
+@media (max-width: 47.99rem) {
+  .site-header { position: static; }
+  html { scroll-padding-top: 1rem; }
+}
+
+/* Windows high-contrast mode removes backgrounds, so show the accent words as plain text there */
+@media (forced-colors: active) {
+  .hero-panel h1 .accent { background: none; -webkit-text-fill-color: currentColor; color: inherit; }
+  .hero-mark { display: none; }
+}
+
+/* Visitors can pause the logo animation and other motion (WCAG 2.2.2) */
+.link-button { font: inherit; color: var(--violet); background: none; border: 0; padding: 0.4rem 0; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.link-button:hover { color: var(--violet-dark); }
+html.motion-off *, html.motion-off *::before, html.motion-off *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+html.motion-off .reveal { opacity: 1; }
