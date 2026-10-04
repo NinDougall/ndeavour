@@ -70,8 +70,8 @@
   });
 })();
 
-// Gentle motion: soft header edge on scroll, a one-time fade-in for sections,
-// and a light that follows the pointer across the hero. Nothing here is needed to use the page.
+// Gentle motion: soft header edge on scroll and a one-time fade-in for sections.
+// Nothing here is needed to use the page.
 (function () {
   var header = document.querySelector('.site-header');
   if (header) {
@@ -82,15 +82,6 @@
 
   var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (calm) return;
-
-  var panel = document.querySelector('.hero-panel');
-  if (panel && window.matchMedia('(hover: hover)').matches) {
-    panel.addEventListener('pointermove', function (event) {
-      var box = panel.getBoundingClientRect();
-      panel.style.setProperty('--mx', ((event.clientX - box.left) / box.width * 100).toFixed(1) + '%');
-      panel.style.setProperty('--my', ((event.clientY - box.top) / box.height * 100).toFixed(1) + '%');
-    });
-  }
 
   if (!('IntersectionObserver' in window)) return;
 
