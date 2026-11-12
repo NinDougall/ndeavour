@@ -5,7 +5,7 @@
 
   var button = document.getElementById('inquiry-submit');
   var status = document.getElementById('form-status');
-  var fallbackEmail = 'nindougall@gmail.com';
+  var fallbackEmail = 'ninian@ndeavour.ca';
 
   function clearErrors() {
     form.querySelectorAll('.field-error').forEach(function (el) { el.remove(); });
