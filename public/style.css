@@ -71,6 +71,8 @@ a:hover { color: var(--violet-dark); }
 .site-nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0 1.5rem; }
 .site-nav a { text-decoration: none; color: var(--charcoal); font-size: 0.975rem; padding: 0.5rem 0; display: inline-block; }
 .site-nav a:hover { color: var(--violet); text-decoration: underline; }
+.site-nav a.button-small { padding: 0.45rem 1rem; color: var(--white); font-size: 0.9rem; }
+.site-nav a.button-small:hover { color: var(--white); text-decoration: none; }
 
 /* Sections */
 section { padding: 4.5rem 0; }
@@ -427,3 +429,4 @@ input[type="text"]:focus:not([aria-invalid="true"]), input[type="email"]:focus:n
 .link-button:hover { color: var(--violet-dark); }
 html.motion-off *, html.motion-off *::before, html.motion-off *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 html.motion-off .reveal { opacity: 1; }
+.pilot-count { margin-top: 0.75rem; color: var(--violet); }
