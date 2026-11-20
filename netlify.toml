@@ -1,6 +1,10 @@
 # ndeavour.ca: static site served from /public, no build step.
 # Security headers live in public/_headers.
 # The contact form is handled by Netlify Forms (see the data-netlify attributes in public/index.html).
+# netlify/functions/submission-created.mjs passes each enquiry to the CRM (needs CRM_LEADS_API_KEY).
 
 [build]
   publish = "public"
+
+[functions]
+  directory = "netlify/functions"
