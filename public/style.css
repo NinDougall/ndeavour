@@ -207,12 +207,17 @@ input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: var(--
   .hero-panel .button { padding: 0.9rem 1.75rem; font-size: 1.0625rem; }
   .hero-points { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
   .service-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-  .steps { grid-template-columns: repeat(5, 1fr); }
+  .steps { grid-template-columns: repeat(2, 1fr); }
   .step { padding: 4.25rem 1.1rem 1.25rem; }
   .step::before { top: 1.1rem; left: 1.1rem; }
   .about-grid { grid-template-columns: 4fr 7fr; gap: 4rem; }
   .contact-grid { grid-template-columns: 5fr 7fr; gap: 4rem; }
   .form-card { padding: 2rem; }
+}
+
+/* Four method steps sit in one row once there's room for them. */
+@media (min-width: 68rem) {
+  .steps { grid-template-columns: repeat(4, 1fr); }
 }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
